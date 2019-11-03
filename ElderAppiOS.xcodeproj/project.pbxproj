@@ -7,25 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */; };
+		CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */; };
 		CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA639E236EC3B4000D054B /* AppDelegate.swift */; };
 		CDCA63A1236EC3B4000D054B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63A0236EC3B4000D054B /* SceneDelegate.swift */; };
-		CDCA63A3236EC3B4000D054B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63A2236EC3B4000D054B /* ViewController.swift */; };
 		CDCA63A6236EC3B4000D054B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCA63A4236EC3B4000D054B /* Main.storyboard */; };
 		CDCA63A9236EC3B4000D054B /* ElderAppiOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63A7236EC3B4000D054B /* ElderAppiOS.xcdatamodeld */; };
 		CDCA63AB236EC3B5000D054B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDCA63AA236EC3B5000D054B /* Assets.xcassets */; };
 		CDCA63AE236EC3B5000D054B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCA63AC236EC3B5000D054B /* LaunchScreen.storyboard */; };
+		CDCA63B7236EC6A9000D054B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63B6236EC6A9000D054B /* Service.swift */; };
+		CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63B9236EC932000D054B /* TabBarController.swift */; };
+		CDCA63BD236EE20B000D054B /* IndexPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63BC236EE20B000D054B /* IndexPageVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMoneyVC.swift; sourceTree = "<group>"; };
+		CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyVC.swift; sourceTree = "<group>"; };
 		CDCA639B236EC3B4000D054B /* ElderAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElderAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCA639E236EC3B4000D054B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDCA63A0236EC3B4000D054B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CDCA63A2236EC3B4000D054B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CDCA63A5236EC3B4000D054B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDCA63A8236EC3B4000D054B /* ElderAppiOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ElderAppiOS.xcdatamodel; sourceTree = "<group>"; };
 		CDCA63AA236EC3B5000D054B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDCA63AD236EC3B5000D054B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDCA63AF236EC3B5000D054B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDCA63B6236EC6A9000D054B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		CDCA63B9236EC932000D054B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CDCA63BC236EE20B000D054B /* IndexPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPageVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +66,44 @@
 		CDCA639D236EC3B4000D054B /* ElderAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				CDCA63BB236EDFE8000D054B /* ViewController */,
+				CDCA63B8236EC8D7000D054B /* Storyboards */,
+				CDCA63B5236EC687000D054B /* Helper */,
 				CDCA639E236EC3B4000D054B /* AppDelegate.swift */,
 				CDCA63A0236EC3B4000D054B /* SceneDelegate.swift */,
-				CDCA63A2236EC3B4000D054B /* ViewController.swift */,
-				CDCA63A4236EC3B4000D054B /* Main.storyboard */,
 				CDCA63AA236EC3B5000D054B /* Assets.xcassets */,
 				CDCA63AC236EC3B5000D054B /* LaunchScreen.storyboard */,
 				CDCA63AF236EC3B5000D054B /* Info.plist */,
 				CDCA63A7236EC3B4000D054B /* ElderAppiOS.xcdatamodeld */,
 			);
 			path = ElderAppiOS;
+			sourceTree = "<group>";
+		};
+		CDCA63B5236EC687000D054B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CDCA63B6236EC6A9000D054B /* Service.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		CDCA63B8236EC8D7000D054B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CDCA63A4236EC3B4000D054B /* Main.storyboard */,
+				CDCA63B9236EC932000D054B /* TabBarController.swift */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		CDCA63BB236EDFE8000D054B /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CDCA63BC236EE20B000D054B /* IndexPageVC.swift */,
+				CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */,
+				CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */,
 				CDCA63A9236EC3B4000D054B /* ElderAppiOS.xcdatamodeld in Sources */,
-				CDCA63A3236EC3B4000D054B /* ViewController.swift in Sources */,
+				CDCA63B7236EC6A9000D054B /* Service.swift in Sources */,
+				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
+				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
 				CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */,
+				CDCA63BD236EE20B000D054B /* IndexPageVC.swift in Sources */,
 				CDCA63A1236EC3B4000D054B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
