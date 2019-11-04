@@ -27,7 +27,7 @@ class IndexPageVC: UIViewController {
     @IBOutlet weak var myLevelLabel: UILabel!
     
     
-    
+    @IBAction func unwind_IndexPageVC(_ sender:UIStoryboardSegue){}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +46,12 @@ class IndexPageVC: UIViewController {
         bannerWebView.load(urlRequest)
         
         
-        updateMyData()
-        
-
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateMyData()
+    }
     
     
     private func updateMyData(){
@@ -65,6 +65,7 @@ class IndexPageVC: UIViewController {
                     self.myLevelLabel.text = "\(response["rank"] as? Int ?? 0)"
                 }else{
                     print("token 過期 重新登入")
+                    self.autoReLogin()
                 }
 //                self.myNameLabel.text = re
             case .failure(let error):
@@ -81,9 +82,9 @@ class IndexPageVC: UIViewController {
             switch result{
             case .success(let response):
                 if(response["access_token"] != nil){
-                    
+                    print("access_token : \(response["access_token"] as! String)")
                     let result = UserHelper.storeUser(response: response)
-                    if(result != true){
+                    if(result == false){
                         self.autoLogout()
                     }
                     

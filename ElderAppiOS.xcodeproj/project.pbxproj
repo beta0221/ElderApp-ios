@@ -15,6 +15,9 @@
 		9CE3F8F5236FDE4E008B783B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F4236FDE4E008B783B /* Event.swift */; };
 		9CE3F8F7236FE119008B783B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F6236FE119008B783B /* User.swift */; };
 		9CE3F8F9236FE4B5008B783B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F8236FE4B5008B783B /* Transaction.swift */; };
+		CD071D7923707CCB006B76C5 /* TransPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD071D7823707CCB006B76C5 /* TransPageVC.swift */; };
+		CD071D7B23708381006B76C5 /* UpdateAccountPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */; };
+		CD4152392370641200377091 /* GiveMoneyFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4152382370641200377091 /* GiveMoneyFormVC.swift */; };
 		CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */; };
 		CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */; };
 		CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA639E236EC3B4000D054B /* AppDelegate.swift */; };
@@ -26,6 +29,7 @@
 		CDCA63B7236EC6A9000D054B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63B6236EC6A9000D054B /* Service.swift */; };
 		CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63B9236EC932000D054B /* TabBarController.swift */; };
 		CDCA63BD236EE20B000D054B /* IndexPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63BC236EE20B000D054B /* IndexPageVC.swift */; };
+		CDEE2C6B23704C0700C2754E /* TransCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE2C6A23704C0700C2754E /* TransCVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,9 @@
 		9CE3F8F4236FDE4E008B783B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		9CE3F8F6236FE119008B783B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9CE3F8F8236FE4B5008B783B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		CD071D7823707CCB006B76C5 /* TransPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransPageVC.swift; sourceTree = "<group>"; };
+		CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountPageVC.swift; sourceTree = "<group>"; };
+		CD4152382370641200377091 /* GiveMoneyFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyFormVC.swift; sourceTree = "<group>"; };
 		CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMoneyVC.swift; sourceTree = "<group>"; };
 		CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyVC.swift; sourceTree = "<group>"; };
 		CDCA639B236EC3B4000D054B /* ElderAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElderAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +57,7 @@
 		CDCA63B6236EC6A9000D054B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		CDCA63B9236EC932000D054B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CDCA63BC236EE20B000D054B /* IndexPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPageVC.swift; sourceTree = "<group>"; };
+		CDEE2C6A23704C0700C2754E /* TransCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransCVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 		CDCA639D236EC3B4000D054B /* ElderAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				CDEE2C6923704BE300C2754E /* CVC */,
 				9CE3F8EF236FDCBE008B783B /* Models */,
 				CDCA63BB236EDFE8000D054B /* ViewController */,
 				CDCA63B8236EC8D7000D054B /* Storyboards */,
@@ -129,13 +138,24 @@
 		CDCA63BB236EDFE8000D054B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CD071D7823707CCB006B76C5 /* TransPageVC.swift */,
 				CDCA63BC236EE20B000D054B /* IndexPageVC.swift */,
 				CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */,
 				CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */,
 				9C9B2818236FEEA900C93C2C /* AccountPageVC.swift */,
 				9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */,
+				CD4152382370641200377091 /* GiveMoneyFormVC.swift */,
+				CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CDEE2C6923704BE300C2754E /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				CDEE2C6A23704C0700C2754E /* TransCVC.swift */,
+			);
+			path = CVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,15 +231,19 @@
 			files = (
 				9CE3F8F3236FDD12008B783B /* EventCategory.swift in Sources */,
 				9CE3F8F5236FDE4E008B783B /* Event.swift in Sources */,
+				CD071D7B23708381006B76C5 /* UpdateAccountPageVC.swift in Sources */,
 				CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */,
 				CDCA63A9236EC3B4000D054B /* ElderAppiOS.xcdatamodeld in Sources */,
 				CDCA63B7236EC6A9000D054B /* Service.swift in Sources */,
 				9C9B281B236FEF1700C93C2C /* LoginPageVC.swift in Sources */,
+				CDEE2C6B23704C0700C2754E /* TransCVC.swift in Sources */,
 				9CE3F8F9236FE4B5008B783B /* Transaction.swift in Sources */,
 				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
 				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
 				CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */,
 				9C10E70B23702F89007E7557 /* UserHelper.swift in Sources */,
+				CD4152392370641200377091 /* GiveMoneyFormVC.swift in Sources */,
+				CD071D7923707CCB006B76C5 /* TransPageVC.swift in Sources */,
 				9C9B2819236FEEA900C93C2C /* AccountPageVC.swift in Sources */,
 				9CE3F8F7236FE119008B783B /* User.swift in Sources */,
 				CDCA63BD236EE20B000D054B /* IndexPageVC.swift in Sources */,

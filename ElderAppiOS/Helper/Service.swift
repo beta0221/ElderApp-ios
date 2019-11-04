@@ -42,6 +42,11 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let postString = "user_id=\(user_id)&token=\(token)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
             return
@@ -377,7 +382,10 @@ struct Service {
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
+            DispatchQueue.main.async {
+                completion(.failure(.responseProblem))
+            }
+            
             return
             }
             do{
@@ -441,8 +449,10 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        let postString = "token=\()&name=\()&phone=\()&tel=\()&address=\()&id_number=\()"
-        //        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let postString = "token=\(token)&name=\(Name)&phone=\(Phone)&tel=\(Tel)&address=\(Address)&id_number=\(Id_number)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
@@ -533,7 +543,7 @@ struct Service {
     //Get 交易紀錄
     func GetTransHistory(completion:@escaping(Result<Transaction,APIError>)->Void){
         // access from core data
-        let user_id = 1526
+        let user_id = UserDefaults.standard.integer(forKey: "user_id")
         let requestString = "\(host)/api/trans-history/\(user_id)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
@@ -597,7 +607,7 @@ struct Service {
     
     
     //付錢
-    func TransactionRequest(take_id:Int,take_email:String,amount:Int,eventName:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
+    func TransactionRequest(take_id:Int,take_email:String,amount:Int,eventName:String,completion:@escaping(Result<String,APIError>)->Void){
         
         let requestString = "\(host)/api/transaction"
         guard let requestURL = URL(string:requestString) else{fatalError()}
@@ -605,24 +615,27 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        let postString = "give_id=\()&give_email=\()&take_id=\()&take_email=\()&amount=\()&event=\()"
-        //        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let give_id = UserDefaults.standard.integer(forKey: "user_id")
+        let give_email = UserDefaults.standard.string(forKey: "email") ?? ""
+        let postString = "give_id=\(give_id)&give_email=\(give_email)&take_id=\(take_id)&take_email=\(take_email)&amount=\(amount)&event=\(eventName)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let _ = response as? HTTPURLResponse,let jsonData = data else {
             completion(.failure(.responseProblem))
             return
             }
-            do{
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
+//            do{
+//                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
+                let json = String(data: jsonData, encoding: .utf8)
                 DispatchQueue.main.async{
                     completion(.success(json!))
                 }
-            }catch{
-                DispatchQueue.main.async{
-                    print(error)
-                    completion(.failure(.decodingProblem))
-                }
-            }
+//            }catch{
+//                DispatchQueue.main.async{
+//                    print(error)
+//                    completion(.failure(.decodingProblem))
+//                }
+//            }
         }
         dataTask.resume()
     }

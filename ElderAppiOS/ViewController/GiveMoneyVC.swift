@@ -15,6 +15,10 @@ class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     var captureSession:AVCaptureSession?
     var previewLayer:AVCaptureVideoPreviewLayer!
     
+    var take_id:Int?
+    var take_email:String?
+    var take_name:String?
+    
     @IBOutlet weak var camWindow: UIView!
     
     override func viewDidLoad() {
@@ -61,6 +65,19 @@ class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if (segue.identifier == "goto_GiveMoneyFormVC")
+        {
+            let GiveMoneyFormVC = segue.destination as! GiveMoneyFormVC
+            
+            GiveMoneyFormVC.take_id = self.take_id
+            GiveMoneyFormVC.take_email = self.take_email
+            GiveMoneyFormVC.take_name = self.take_name
+            
+        }
+    }
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession?.stopRunning()
         
@@ -69,7 +86,31 @@ class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
             guard let stringValue = readableObject.stringValue else {
                 return
             }
+            
+            
+            
+            
+            
             print("\(stringValue)")
+            
+            let temp = stringValue.components(separatedBy: ",")
+            if(temp.count == 3){
+                self.take_id = Int(temp[0])
+                self.take_email = temp[2]
+                self.take_name = temp[1]
+                print("valid")
+                
+                self.performSegue(withIdentifier: "goto_GiveMoneyFormVC", sender: nil)
+                
+                
+            }else{
+                print("no")
+            }
+            
+            
+            
+            
+            
         }
         
     }

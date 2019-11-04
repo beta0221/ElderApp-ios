@@ -40,6 +40,9 @@ class AccountPageVC: UIViewController {
     
     @IBOutlet weak var extendRequestButton: UIButton!
     
+    var qrcodeImage:CIImage!
+    
+    var service = Service()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,23 +52,57 @@ class AccountPageVC: UIViewController {
         updateRequestButton.layer.cornerRadius = 5
         extendRequestButton.layer.cornerRadius = 5
         
-        
-        
-        
-        let service = Service()
-        service.MyAccountRequest(completion: { result in switch result{
-            case .success(let res):
-                let img_url = "\(service.host)/images/users/\(res.id!)/\(res.img!)"
-                let url = NSURL(string:img_url)
-                let data = NSData(contentsOf: url! as URL)
-                self.userImage.image = UIImage(data: data! as Data)
-            case .failure(let error):
-                print(error)
-            }
-            
-        })
-        
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        loadAccountData()
+        print("loadAccountData")
+    }
+    
+    private func loadAccountData(){
+            service = Service()
+            service.MyAccountRequest(completion: { result in switch result{
+                case .success(let res):
+                    
+                let img_url = "\(self.service.host)/images/users/\(res.id!)/\(res.img!)"
+                self.userImage.loadImageUsingUrlString(urlString: img_url)
+                
+    //            let url = NSURL(string:img_url)
+    //            let data = NSData(contentsOf: url! as URL)
+    //            self.userImage.image = UIImage(data: data! as Data)
+                    
+                self.userNameLabel.text = res.name
+                self.userEmailLabel.text = res.email
+                if(res.gender == 1){
+                    self.userGenderLabel.text = "男"
+                }else{
+                    self.userGenderLabel.text = "女"
+                }
+                self.userBirthdateLabel.text = res.birthdate
+                self.userTelLabel.text = res.tel
+                self.userPhoneLabel.text = res.phone
+                self.userAddressLabel.text = res.address
+                self.userIdNumberLabel.text = res.idNumber
+                if(res.valid == 1){
+                    self.userIsValidLabel.text = "有效"
+                    self.userIsValidLabel.textColor = .green
+                }else{
+                    self.userIsValidLabel.text = "無效"
+                    self.userIsValidLabel.textColor = .red
+                }
+                //            res.idCode
+                let myString = res.idCode
+                let data = myString!.data(using: String.Encoding.utf8)
+                guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return }
+                qrFilter.setValue(data, forKey: "inputMessage")
+                guard let qrcodeImage = qrFilter.outputImage else { return }
+                let scaledQrImage = qrcodeImage.transformed(by: CGAffineTransform(scaleX: 10, y: 10))
+                self.userQrCodeImage.image = UIImage(ciImage:scaledQrImage)
+                
+                case .failure(let error):
+                    print(error)
+                }
+                
+            })
     }
     
     
@@ -82,9 +119,88 @@ class AccountPageVC: UIViewController {
     }
     
     
+    @IBAction func updateAccount(_ sender: Any) {
+        
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "UpdateAccountPageVC") as? UpdateAccountPageVC{
+            controller.updateDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+        
+    }
     
-    
+    @IBAction func extendRequest(_ sender: Any) {
+        
+        let service = Service()
+        service.ExtandRequest(completion: {result in
+            switch result{
+            case .success(let res):
+                let controller = UIAlertController(title: "訊息", message:res, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "確定", style: .default, handler:nil)
+                controller.addAction(okAction)
+                self.present(controller, animated: true, completion:nil)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+   
     
     
 
+}
+
+let imageCache = NSCache<AnyObject, AnyObject>()
+
+extension UIImageView{
+    
+    func loadImageUsingUrlString(urlString:String){
+        
+    
+        let url = NSURL(string: urlString)
+        
+        if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage{
+            self.image = imageFromCache
+            return
+        }
+        
+        let urlRequest = URLRequest(url: url! as URL)
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){(data,response,error) in
+            
+            if error != nil{
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let imageToCache = UIImage(data: data!)
+                imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
+                self.image = imageToCache
+            }
+            
+        }
+        
+        dataTask.resume()
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+}
+
+extension AccountPageVC:UpdateDelegate{
+    func update() {
+        loadAccountData()
+    }
+    
+    
+}
+
+
+protocol UpdateDelegate {
+    func update()->Void
 }
