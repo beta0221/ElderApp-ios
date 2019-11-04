@@ -13,7 +13,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //for qrcode scanner
-    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -81,3 +80,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+
+let ad = UIApplication.shared.delegate as! AppDelegate
+let viewContext = ad.persistentContainer.viewContext
+
+//var CurrentUser:UserData?

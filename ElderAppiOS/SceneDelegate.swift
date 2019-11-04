@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,7 +18,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+//        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
+        var isLogin = false
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"UserData")
+        do{
+            let result = try viewContext.fetch(fetchRequest)
+            if(result.count > 0){
+                isLogin = true
+            }
+        }catch{
+            print("error")
+            return
+        }
+        
+        
+        
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        self.window = UIWindow(windowScene: windowScene)
+        
+        if(isLogin == true){
+            let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+            let rootNC = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = rootNC
+        }else{
+            let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageVC")
+            let rootNC = UINavigationController(rootViewController: rootVC)
+            self.window?.rootViewController = rootNC
+        }
+        
+        
+        self.window?.makeKeyAndVisible()
+        
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
