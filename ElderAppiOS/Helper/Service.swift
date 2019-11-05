@@ -20,11 +20,11 @@ enum APIError:Error{
 
 struct Service {
     
-    let host:String
+    let host:String = "https://www.happybi.com.tw"
     
-    init() {
-        host = "https://www.happybi.com.tw"
-    }
+//    init() {
+//        host = "https://www.happybi.com.tw"
+//    }
     
     private func printJsonData(jsonData:Data){
         let string = String(data: jsonData, encoding: String.Encoding.utf8) as String?
@@ -312,14 +312,17 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        let postString = "token=\()&id=\()"
-//        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        let postString = "id=\(user_id)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
             return
             }
             do{
+//                self.printJsonData(jsonData: jsonData)
                 let events = try JSONDecoder().decode(Event.self, from: jsonData)
                 DispatchQueue.main.async{
                     completion(.success(events))
@@ -483,8 +486,10 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        let postString = "token=\()&id=\()"
-        //        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let postString = "token=\(token)&id=\(user_id)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
@@ -516,8 +521,10 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        let postString = "token=\()&id=\()"
-        //        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let postString = "token=\(token)&id=\(user_id)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
@@ -581,8 +588,9 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        let postString = "token=\()&id=\()"
-        //        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        let postString = "user_id=\(user_id)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
@@ -663,22 +671,5 @@ struct Service {
 }
 
 
-
-
-extension String {
-    func md5() -> String {
-        let str = self.cString(using: String.Encoding.utf8)
-        let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
-        let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
-        CC_MD5(str!, strLen, result)
-        let hash = NSMutableString()
-        for i in 0 ..< digestLen {
-            hash.appendFormat("%02x", result[i])
-        }
-        free(result)
-        return String(format: hash as String)
-    }
-}
 
 

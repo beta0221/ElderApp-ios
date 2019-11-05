@@ -83,13 +83,16 @@ class IndexPageVC: UIViewController {
             case .success(let response):
                 if(response["access_token"] != nil){
                     print("access_token : \(response["access_token"] as! String)")
+                    _ = UserHelper.clearUser()
                     let result = UserHelper.storeUser(response: response)
                     if(result == false){
                         self.autoLogout()
+                        print("response 有回來 token, Device fucked up")
                     }
-                    
+                    self.updateMyData()
                 }else{
                     self.autoLogout()
+                    print("response 沒有回來 token, Server fucked up")
                 }
             case .failure(let error):
                 print("An error occured \(error)")

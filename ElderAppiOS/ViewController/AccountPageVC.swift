@@ -63,12 +63,12 @@ class AccountPageVC: UIViewController {
             service.MyAccountRequest(completion: { result in switch result{
                 case .success(let res):
                     
-                let img_url = "\(self.service.host)/images/users/\(res.id!)/\(res.img!)"
-                self.userImage.loadImageUsingUrlString(urlString: img_url)
-                
-    //            let url = NSURL(string:img_url)
-    //            let data = NSData(contentsOf: url! as URL)
-    //            self.userImage.image = UIImage(data: data! as Data)
+                if(res.img == "" || res.img == nil){
+                    self.userImage.image = UIImage(named: "user_default")
+                }else{
+                    let img_url = "\(self.service.host)/images/users/\(res.id!)/\(res.img!)"
+                    self.userImage.loadImageUsingUrlString(urlString: img_url)
+                }
                     
                 self.userNameLabel.text = res.name
                 self.userEmailLabel.text = res.email

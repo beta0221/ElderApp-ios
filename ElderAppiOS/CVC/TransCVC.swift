@@ -20,8 +20,8 @@ class TransCVC: UICollectionViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     
     func setTransCell(tran:TransactionElement){
-        backView.layer.cornerRadius = 5
-        if(tran.event == ""){
+        backView.layer.cornerRadius = 8
+        if(tran.event == "" || tran.event == nil){
             eventLabel.text = "無"
         }else{
             eventLabel.text = tran.event
@@ -32,9 +32,10 @@ class TransCVC: UICollectionViewCell {
         amountLabel.text = "\(tran.amount ?? 0)"
         
         if(tran.giveTake == 1){
-            amountLabel.textColor = .green
+            
+            amountLabel.textColor = UIColor(red: 1/255, green: 144/255, blue: 35/255, alpha: 1)
         }else{
-            amountLabel.textColor = .red
+            amountLabel.textColor = UIColor(red: 194/255, green: 24/255, blue: 16/255, alpha: 1)
         }
     }
     
