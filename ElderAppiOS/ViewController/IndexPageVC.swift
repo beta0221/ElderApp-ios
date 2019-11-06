@@ -67,7 +67,6 @@ class IndexPageVC: UIViewController {
                     print("token 過期 重新登入")
                     self.autoReLogin()
                 }
-//                self.myNameLabel.text = re
             case .failure(let error):
                 print("錯誤:\(error)")
             }

@@ -24,8 +24,27 @@ class EventPageVC: UIViewController {
     @IBOutlet weak var eventSwitcher: UIButton!
     var isAllEvent = true
     
+    @IBOutlet var searchBoxView: UIView!
+    var searchBoxHeightConstraint:NSLayoutConstraint?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    searchBoxView.translatesAutoresizingMaskIntoConstraints=false
+        searchBoxView.clipsToBounds=true
+        self.view.addSubview(searchBoxView)
+    searchBoxHeightConstraint=searchBoxView.heightAnchor.constraint(equalToConstant: 240)
+        NSLayoutConstraint.activate([
+            searchBoxView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            searchBoxView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0),
+            searchBoxView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0),
+            self.searchBoxHeightConstraint!
+            
+        ])
+        
+        
+        
         
         let group = DispatchGroup()
         group.enter()
