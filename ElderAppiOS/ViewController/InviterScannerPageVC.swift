@@ -1,48 +1,42 @@
 //
-//  GiveMoneyVC.swift
+//  InviterScannerPageVC.swift
 //  ElderAppiOS
 //
-//  Created by 林奕儒 on 2019/11/4.
+//  Created by Movark on 2019/11/6.
 //  Copyright © 2019 林奕儒. All rights reserved.
 //
 
 import UIKit
 import AVFoundation
 
-class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
+class InviterScannerPageVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
 
-    
     var captureSession:AVCaptureSession?
     var previewLayer:AVCaptureVideoPreviewLayer!
     
-    var take_id:Int?
-    var take_email:String?
-    var take_name:String?
-    
     @IBOutlet weak var camWindow: UIView!
+    
+    var getInviterIdCode:GetInviterIdCode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        captureSession = AVCaptureSession()
-
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {return}
-
         
+        captureSession = AVCaptureSession()
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {return}
         let videoInput:AVCaptureDeviceInput
+        
         do{
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         }catch let error{
             print(error)
             return
         }
-
+        
         if(captureSession?.canAddInput(videoInput) ?? false){
             captureSession?.addInput(videoInput)
         }else{
             return
         }
-        
         
         let metadataOutput = AVCaptureMetadataOutput()
         
@@ -65,19 +59,6 @@ class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if (segue.identifier == "goto_GiveMoneyFormVC")
-        {
-            let GiveMoneyFormVC = segue.destination as! GiveMoneyFormVC
-            
-            GiveMoneyFormVC.take_id = self.take_id
-            GiveMoneyFormVC.take_email = self.take_email
-            GiveMoneyFormVC.take_name = self.take_name
-            
-        }
-    }
-    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession?.stopRunning()
         
@@ -86,28 +67,10 @@ class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
             guard let stringValue = readableObject.stringValue else {
                 return
             }
-            
-            print("\(stringValue)")
-            
-            let temp = stringValue.components(separatedBy: ",")
-            if(temp.count == 3){
-                self.take_id = Int(temp[0])
-                self.take_email = temp[2]
-                self.take_name = temp[1]
-                
-                self.performSegue(withIdentifier: "goto_GiveMoneyFormVC", sender: nil)
-                
-            }else{
-                Common.SystemAlert(Title: "錯誤", Body: "無效的QRcode", SingleBtn: "確定", viewController: self, handler: {_ in
-                    DispatchQueue.main.async {
-                        self.captureSession?.startRunning()
-                    }
-                })
-            }
-            
-            
-            
-            
+
+            getInviterIdCode?.get(idCode: stringValue)
+
+            self.dismiss(animated: true, completion: nil)
             
         }
         

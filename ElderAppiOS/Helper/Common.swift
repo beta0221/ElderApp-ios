@@ -25,6 +25,15 @@ class Common{
         viewController.present(controller, animated: true, completion: nil)
     }
     
+    static func SystemConfirm(Title:String,Body:String,ConBtn:String,CancelBtn:String,viewController:UIViewController,ConHandler:@escaping (_ action:UIAlertAction)->Void,CancelHandler:@escaping(_ action:UIAlertAction)->Void){
+        let controller = UIAlertController(title: Title, message:Body , preferredStyle: .alert)
+        let okAction = UIAlertAction(title: ConBtn, style: .default, handler: ConHandler)
+        let cancelAction = UIAlertAction(title: CancelBtn, style: .default, handler: CancelHandler)
+        controller.addAction(okAction)
+        controller.addAction(cancelAction)
+        viewController.present(controller, animated: true, completion: nil)
+    }
+    
     
     
     
