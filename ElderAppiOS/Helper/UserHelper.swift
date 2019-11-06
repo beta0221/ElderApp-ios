@@ -22,7 +22,7 @@ class UserHelper{
         if(password != ""){
             user.setValue(response["email"] as! String,forKeyPath:"email")
             user.setValue(response["id_code"] as! String,forKeyPath:"id_code")
-            user.setValue(response["img"] as! String,forKeyPath:"img")
+            user.setValue(response["img"] as? String,forKeyPath:"img")            
             user.setValue(response["name"] as! String,forKeyPath:"name")
             user.setValue(password,forKeyPath:"password")
             user.setValue(response["rank"] as! Int,forKeyPath:"rank")

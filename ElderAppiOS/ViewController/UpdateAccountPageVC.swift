@@ -41,14 +41,14 @@ class UpdateAccountPageVC: UIViewController {
         service.MyAccountRequest(completion: { result in switch result{
             case .success(let res):
                 
-            self.nameTextfield.text = res.name
+            self.nameTextfield.text = res["name"] as? String ?? ""
             
             
             
-            self.telTextfield.text = res.tel
-            self.phoneTextfield.text = res.phone
-            self.addressTextfield.text = res.address
-            self.idNumberTextfield.text = res.idNumber
+            self.telTextfield.text = res["tel"] as? String ?? ""
+            self.phoneTextfield.text = res["phone"] as? String ?? ""
+            self.addressTextfield.text = res["address"] as? String ?? ""
+            self.idNumberTextfield.text = res["id_number"] as? String ?? ""
             
             case .failure(let error):
                 print(error)

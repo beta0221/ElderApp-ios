@@ -29,12 +29,13 @@ class TransCVC: UICollectionViewCell {
         
         targetLabel.text = tran.targetName
         dateLabel.text = tran.createdAt?.substring(to: 10)
-        amountLabel.text = "\(tran.amount ?? 0)"
+        
         
         if(tran.giveTake == 1){
-            
+            amountLabel.text = "+\(tran.amount ?? 0)"
             amountLabel.textColor = UIColor(red: 1/255, green: 144/255, blue: 35/255, alpha: 1)
         }else{
+            amountLabel.text = "-\(tran.amount ?? 0)"
             amountLabel.textColor = UIColor(red: 194/255, green: 24/255, blue: 16/255, alpha: 1)
         }
     }

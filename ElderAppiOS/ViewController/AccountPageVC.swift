@@ -40,6 +40,8 @@ class AccountPageVC: UIViewController {
     
     @IBOutlet weak var extendRequestButton: UIButton!
     
+    @IBOutlet weak var extendBtn_view: UIView!
+    
     var qrcodeImage:CIImage!
     
     var service = Service()
@@ -63,35 +65,37 @@ class AccountPageVC: UIViewController {
             service.MyAccountRequest(completion: { result in switch result{
                 case .success(let res):
                     
-                if(res.img == "" || res.img == nil){
+                if((res["img"] as? String ?? "null") == "null"){
                     self.userImage.image = UIImage(named: "user_default")
                 }else{
-                    let img_url = "\(self.service.host)/images/users/\(res.id!)/\(res.img!)"
+                    let img_url = "\(self.service.host)/images/users/\(res["id"] as! Int)/\(res["img"] as! String)"
                     self.userImage.loadImageUsingUrlString(urlString: img_url)
                 }
                     
-                self.userNameLabel.text = res.name
-                self.userEmailLabel.text = res.email
-                if(res.gender == 1){
+                self.userNameLabel.text = res["name"] as? String ?? ""
+                self.userEmailLabel.text = res["email"] as? String ?? ""
+                if(res["gender"] as! Int == 1){
                     self.userGenderLabel.text = "男"
                 }else{
                     self.userGenderLabel.text = "女"
                 }
-                self.userBirthdateLabel.text = res.birthdate
-                self.userTelLabel.text = res.tel
-                self.userPhoneLabel.text = res.phone
-                self.userAddressLabel.text = res.address
-                self.userIdNumberLabel.text = res.idNumber
-                if(res.valid == 1){
+                self.userBirthdateLabel.text = res["birthdate"] as? String ?? ""
+                self.userTelLabel.text = res["tel"] as? String ?? ""
+                self.userPhoneLabel.text = res["phone"] as? String ?? ""
+                self.userAddressLabel.text = res["address"] as? String ?? ""
+                self.userIdNumberLabel.text = res["id_number"] as? String ?? ""
+                if(res["valid"] as! Int == 1){
+                    self.extendBtn_view.isHidden = true
                     self.userIsValidLabel.text = "有效"
                     self.userIsValidLabel.textColor = .green
                 }else{
+                    self.extendBtn_view.isHidden = false
                     self.userIsValidLabel.text = "無效"
                     self.userIsValidLabel.textColor = .red
                 }
-                //            res.idCode
-                let myString = res.idCode
-                let data = myString!.data(using: String.Encoding.utf8)
+                
+                let myString = res["id_code"] as! String
+                let data = myString.data(using: String.Encoding.utf8)
                 guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return }
                 qrFilter.setValue(data, forKey: "inputMessage")
                 guard let qrcodeImage = qrFilter.outputImage else { return }
@@ -146,6 +150,9 @@ class AccountPageVC: UIViewController {
     }
    
     
+    @IBAction func uploadImage(_ sender: Any) {
+        Common.SystemAlert(Title: "非常抱歉", Body: "此功能尚未開放", SingleBtn: "確定", viewController: self)
+    }
     
 
 }

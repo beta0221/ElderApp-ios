@@ -20,6 +20,8 @@ enum APIError:Error{
 
 struct Service {
     
+    static var hostName:String = "https://www.happybi.com.tw"
+    
     let host:String = "https://www.happybi.com.tw"
     
 //    init() {
@@ -372,7 +374,7 @@ struct Service {
     
     
     //get 使用者 資料
-    func MyAccountRequest(completion:@escaping(Result<User,APIError>)->Void){
+    func MyAccountRequest(completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
         let requestString = "\(host)/api/auth/myAccount"
         guard let requestURL = URL(string:requestString) else{fatalError()}
@@ -392,9 +394,11 @@ struct Service {
             return
             }
             do{
-                let user = try JSONDecoder().decode(User.self, from: jsonData)
+                
+                self.printJsonData(jsonData: jsonData)
+                let user = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
                 DispatchQueue.main.async{
-                    completion(.success(user))
+                    completion(.success(user!))
                 }
             }catch{
                 DispatchQueue.main.async{

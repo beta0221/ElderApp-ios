@@ -69,6 +69,7 @@ class IndexPageVC: UIViewController {
                 }
             case .failure(let error):
                 print("錯誤:\(error)")
+                self.autoReLogin()
             }
         })
         

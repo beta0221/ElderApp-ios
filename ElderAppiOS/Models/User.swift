@@ -12,16 +12,15 @@ class User: Codable {
     let emailVerifiedAt: JSONNull?
     let wallet, rank, gender: Int?
     let birthdate, phone, tel, address: String?
-    let img, idNumber: String?
-    let districtID: JSONNull?
-    let districtName: String?
-    let inviterID, inviter, inviterPhone, emgContact: JSONNull?
-    let emgPhone, orgRank: JSONNull?
-    let payStatus: Int?
-    let payMethod, joinDate, lastPayDate: JSONNull?
+    let img: JSONNull?
+    let idNumber, districtID: String?
+    let districtName, inviterID, inviter, inviterPhone: JSONNull?
+    let emgContact, emgPhone, orgRank: JSONNull?
+    let payStatus, payMethod: Int?
+    let joinDate, lastPayDate: JSONNull?
     let valid: Int?
     let createdAt, updatedAt: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case idCode = "id_code"
@@ -45,8 +44,8 @@ class User: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
-    
-    init(id: Int?, idCode: String?, name: String?, email: String?, emailVerifiedAt: JSONNull?, wallet: Int?, rank: Int?, gender: Int?, birthdate: String?, phone: String?, tel: String?, address: String?, img: String?, idNumber: String?, districtID: JSONNull?, districtName: String?, inviterID: JSONNull?, inviter: JSONNull?, inviterPhone: JSONNull?, emgContact: JSONNull?, emgPhone: JSONNull?, orgRank: JSONNull?, payStatus: Int?, payMethod: JSONNull?, joinDate: JSONNull?, lastPayDate: JSONNull?, valid: Int?, createdAt: String?, updatedAt: String?) {
+
+    init(id: Int?, idCode: String?, name: String?, email: String?, emailVerifiedAt: JSONNull?, wallet: Int?, rank: Int?, gender: Int?, birthdate: String?, phone: String?, tel: String?, address: String?, img: JSONNull?, idNumber: String?, districtID: String?, districtName: JSONNull?, inviterID: JSONNull?, inviter: JSONNull?, inviterPhone: JSONNull?, emgContact: JSONNull?, emgPhone: JSONNull?, orgRank: JSONNull?, payStatus: Int?, payMethod: Int?, joinDate: JSONNull?, lastPayDate: JSONNull?, valid: Int?, createdAt: String?, updatedAt: String?) {
         self.id = id
         self.idCode = idCode
         self.name = name
@@ -82,24 +81,24 @@ class User: Codable {
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {
-    
+
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-    
+
     public var hashValue: Int {
         return 0
     }
-    
+
     public init() {}
-    
+
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
             throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encodeNil()

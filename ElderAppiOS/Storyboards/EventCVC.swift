@@ -39,8 +39,14 @@ class EventCVC: UICollectionViewCell {
     func SetEventItem(event:EventElement,catDic:Dictionary<Int,String>,disDic:Dictionary<Int,String>){
         self.event = event
         backView.layer.cornerRadius = 8
-        let urlString = "https://www.happybi.com.tw/images/events/\(event.slug ?? "")/\(event.image ?? "")"
-        eventImage.loadImageUsingUrlString(urlString:urlString)
+        
+        if(event.image != "" || event.image != nil){
+            let urlString = "\(Service.hostName)/images/events/\(event.slug ?? "")/\(event.image ?? "")"
+            eventImage.loadImageUsingUrlString(urlString:urlString)
+        }else{
+            eventImage.image = UIImage(named: "event_default")
+        }
+        
         eventImage.contentMode = .scaleAspectFill
         eventImage.layer.cornerRadius = eventImage.frame.width / 2
         
