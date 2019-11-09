@@ -156,7 +156,7 @@ struct Service {
     
     
     //註冊
-    func SignUpRequest(Email:String,Password:String,Name:String,Phone:String,Tel:String,GenderVal:Int,Birthdate:String,Id_number:String,DistrictId:Int,Address:String,Pay_mathodVal:Int,Inviter_id_code:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
+    func SignUpRequest(Email:String,Password:String,Name:String,Phone:String,Tel:String,GenderVal:Int,Birthdate:String,Id_number:String,DistrictId:Int,Address:String,Pay_mathodVal:Int,Inviter_id_code:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
         let requestString = "\(host)/api/member/join"
         guard let requestURL = URL(string:requestString) else{fatalError()}
@@ -164,15 +164,19 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postString = "email=\(Email)&password=\(Password)&name=\(Name)&phone=\(Phone)&tel=\(Tel)&gender=\(GenderVal)&birthdate=\(Birthdate)&id_number=\(Id_number)&district_id=\(DistrictId)&address=\(Address)&pay_method=\(Pay_mathodVal)inviter_id_code=\(Inviter_id_code)&app=true"
+        let postString = "email=\(Email)&password=\(Password)&name=\(Name)&phone=\(Phone)&tel=\(Tel)&gender=\(GenderVal)&birthdate=\(Birthdate)&id_number=\(Id_number)&district_id=\(DistrictId)&address=\(Address)&pay_method=\(Pay_mathodVal)&inviter_id_code=\(Inviter_id_code)&app=1"
+
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
-            return
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let _ = response as? HTTPURLResponse,let jsonData = data else {
+                DispatchQueue.main.async {
+                    completion(.failure(.responseProblem))
+                }
+                return
             }
             do{
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? NSDictionary
                 DispatchQueue.main.async{
                     completion(.success(json!))
                 }

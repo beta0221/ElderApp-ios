@@ -39,13 +39,14 @@ class RegisterPageVC: UIViewController {
     
     @IBOutlet weak var districtField: UITextField!
     @IBOutlet weak var districtAlert: UIView!
+    var selectDistrictId:Int?
     
     @IBOutlet weak var addressField: UITextField!
     @IBOutlet weak var addressAlert: UIView!
     
     @IBOutlet weak var payTypeField: UITextField!
     @IBOutlet weak var payTypeAlert: UIView!
-    
+    var selectPayType:Int?
     
     @IBOutlet weak var inviterTitle_view: UIView!
     @IBOutlet weak var inviterField_view: UIView!
@@ -235,7 +236,52 @@ class RegisterPageVC: UIViewController {
     }
     
     func signUpRequest(){
-        print("送出註冊")
+        
+        
+        let Email = emailField.text ?? ""
+        let Password = passwordField.text ?? ""
+        let Name = nameField.text ?? ""
+        let Phone = phoneField.text ?? ""
+        let Tel = telField.text ?? ""
+        var GenderVal = 1
+        if(genderField.text == "女"){
+            GenderVal = 0
+        }
+        let Birthdate = birthdateField.text ?? ""
+        let Id_number = idNumberField.text ?? ""
+        let DistrictId = selectDistrictId
+        let Address = addressField.text ?? ""
+        let Pay_mathodVal = selectPayType
+        let Inviter_id_code = inviterField.text ?? ""
+        
+        
+        service.SignUpRequest(Email: Email, Password: Password, Name: Name, Phone: Phone, Tel: Tel, GenderVal: GenderVal, Birthdate: Birthdate, Id_number: Id_number, DistrictId: DistrictId!, Address: Address, Pay_mathodVal: Pay_mathodVal!, Inviter_id_code: Inviter_id_code, completion: {result in
+            switch result{
+            case .success(let res):
+                if(res["s"] != nil){
+                    if(res["s"] as! Int == 1){
+                        Common.SystemAlert(Title: "成功", Body: "您已完成註冊", SingleBtn: "確定", viewController: self, handler: {_ in
+                            self.performSegue(withIdentifier: "unwindLoginPageVC", sender: nil)
+                        })
+                    }
+                }else if(res["errors"] != nil){
+
+                    var errorString = ""
+                    let errors = res["errors"] as! NSDictionary
+                    for (_,value) in errors{
+                        let str = "\(value)"
+                        let d = str.data(using: .utf8)!
+                        let s = String(data: d, encoding: .nonLossyASCII)
+                        errorString = s ?? "系統錯誤"
+                    }
+                    Common.SystemAlert(Title: "錯誤", Body: errorString , SingleBtn: "確定", viewController: self)
+                }
+                
+            case .failure(let error):
+                Common.SystemAlert(Title: "錯誤", Body: "系統錯誤", SingleBtn: "確定", viewController: self)
+                print(error)
+            }
+        })
     }
     
     @IBAction func showScanerPage(_ sender: Any) {
@@ -296,6 +342,7 @@ extension RegisterPageVC:UIPickerViewDelegate,UIPickerViewDataSource{
         }
         if(pickerView.restorationIdentifier == "DistrictPicker"){
             districtField.text = districtArray?[row].name ?? ""
+            selectDistrictId = districtArray?[row].id
         }
         if(pickerView.restorationIdentifier == "PayTypePicker"){
             payTypeField.text = payTypeArray[row]
@@ -303,11 +350,13 @@ extension RegisterPageVC:UIPickerViewDelegate,UIPickerViewDataSource{
                 self.inviterTitle_view.isHidden = false
                 self.inviterField_view.isHidden = false
                 self.inviterScanBtn_view.isHidden = false
+                selectPayType = 1
             }else{
                 self.inviterTitle_view.isHidden = true
                 self.inviterField_view.isHidden = true
                 self.inviterScanBtn_view.isHidden = true
                 self.inviterAlert.isHidden = true
+                selectPayType = 0
             }
         }
     }
