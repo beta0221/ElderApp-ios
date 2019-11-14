@@ -59,3 +59,50 @@ class Common{
     }
     
 }
+
+extension UserDefaults{
+    func setUserId(value:Int){
+        set(value,forKey: "user_id")
+        synchronize()
+    }
+    func getUserId()->Int?{
+        return integer(forKey: "user_id")
+    }
+    func setAccount(value:String){
+        set(value,forKey: "email")
+        synchronize()
+    }
+    func getAccount()->String?{
+        return string(forKey: "email")
+    }
+    func setPassword(value:String){
+        set(value,forKey: "password")
+        synchronize()
+    }
+    func getPassword()->String?{
+        return string(forKey: "password")
+    }
+    func setUserName(value:String){
+        set(value,forKey: "userName")
+        synchronize()
+    }
+    func getUserName()->String?{
+        return string(forKey: "userName")
+    }
+    func setToken(value:String){
+        set(value,forKey: "token")
+        synchronize()
+    }
+    func getToken()->String?{
+        return string(forKey: "token")
+    }
+    
+    func removeUserData(){
+        removeObject(forKey: "user_id")
+        removeObject(forKey: "email")
+        removeObject(forKey: "password")
+        removeObject(forKey: "userName")
+        removeObject(forKey: "token")
+    }
+    
+}

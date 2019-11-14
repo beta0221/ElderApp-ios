@@ -22,15 +22,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         var isLogin = false
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"UserData")
-        do{
-            let result = try viewContext.fetch(fetchRequest)
-            if(result.count > 0){
-                isLogin = true
-            }
-        }catch{
-            print("error")
-            return
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"UserData")
+//        do{
+//            let result = try viewContext.fetch(fetchRequest)
+//            if(result.count > 0){
+//                isLogin = true
+//            }
+//        }catch{
+//            print("error")
+//            return
+//        }
+        if(UserDefaults.standard.getAccount() != nil){
+            isLogin = true
         }
         
         

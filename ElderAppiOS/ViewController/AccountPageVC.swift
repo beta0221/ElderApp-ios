@@ -111,7 +111,7 @@ class AccountPageVC: UIViewController {
     
     
     @IBAction func logout(_ sender: Any) {
-        _ = UserHelper.clearUser()
+        UserDefaults.standard.removeUserData()
         self.navigateToLoginPage()
     }
     
@@ -149,6 +149,14 @@ class AccountPageVC: UIViewController {
         })
     }
    
+    
+    @IBAction func showStatement(_ sender: Any) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "StatementVC") as? StatementVC{
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    
     
     @IBAction func uploadImage(_ sender: Any) {
         Common.SystemAlert(Title: "非常抱歉", Body: "此功能尚未開放", SingleBtn: "確定", viewController: self)

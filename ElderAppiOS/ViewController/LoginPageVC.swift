@@ -18,21 +18,28 @@ class LoginPageVC: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
+    @IBAction func unwindLoginPageVC(_ sender:UIStoryboardSegue){}
     override func viewDidLoad() {
         super.viewDidLoad()
 
         loginButton.layer.cornerRadius = 5
-        
+    
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "StatementVC") as? StatementVC{            
+            self.present(controller, animated: true, completion: nil)
+        }
+
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
     }
-    @IBAction func unwindLoginPageVC(_ sender:UIStoryboardSegue){}
     
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
+    
+    
     
     @IBAction func login(_ sender: Any) {
     
@@ -46,10 +53,9 @@ class LoginPageVC: UIViewController {
             case .success(let response):
                 if(response["access_token"] != nil){
                     
-                    let result = UserHelper.storeUser(response: response, password: password)
-                    if(result){
-                        self.navigateToIndexPage()
-                    }
+                    UserHelper.storeUser(response: response, password: password)
+                    self.navigateToIndexPage()
+                    
                     
                 }else{
                     print("帳號密碼錯誤")

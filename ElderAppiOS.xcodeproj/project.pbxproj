@@ -24,6 +24,7 @@
 		CD10C812237124E500029C90 /* EventCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD10C810237124E500029C90 /* EventCVC.xib */; };
 		CD10C8142371254000029C90 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD10C8132371254000029C90 /* EventList.swift */; };
 		CD4152392370641200377091 /* GiveMoneyFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4152382370641200377091 /* GiveMoneyFormVC.swift */; };
+		CD6397622379A8FD00794788 /* StatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6397612379A8FD00794788 /* StatementVC.swift */; };
 		CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */; };
 		CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */; };
 		CDC346252371988200E44069 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC346242371988200E44069 /* Common.swift */; };
@@ -60,6 +61,7 @@
 		CD10C810237124E500029C90 /* EventCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCVC.xib; sourceTree = "<group>"; };
 		CD10C8132371254000029C90 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		CD4152382370641200377091 /* GiveMoneyFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyFormVC.swift; sourceTree = "<group>"; };
+		CD6397612379A8FD00794788 /* StatementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementVC.swift; sourceTree = "<group>"; };
 		CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMoneyVC.swift; sourceTree = "<group>"; };
 		CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyVC.swift; sourceTree = "<group>"; };
 		CDC346242371988200E44069 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				CDC482D82371E4C70038AF34 /* EventRewardScannerVC.swift */,
 				9C9E5BCB23726BE6008F29BC /* RegisterPageVC.swift */,
 				9C9E5BCD2372962A008F29BC /* InviterScannerPageVC.swift */,
+				CD6397612379A8FD00794788 /* StatementVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				CDEE2C6B23704C0700C2754E /* TransCVC.swift in Sources */,
 				CD10C811237124E500029C90 /* EventCVC.swift in Sources */,
 				9CE3F8F9236FE4B5008B783B /* Transaction.swift in Sources */,
+				CD6397622379A8FD00794788 /* StatementVC.swift in Sources */,
 				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
 				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
 				CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */,
@@ -433,7 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -453,7 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

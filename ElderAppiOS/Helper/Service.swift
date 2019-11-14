@@ -44,8 +44,8 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let user_id = UserDefaults.standard.integer(forKey: "user_id")
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        guard let user_id = UserDefaults.standard.getUserId() else {return}
+        let token = UserDefaults.standard.getToken() ?? ""
         let postString = "user_id=\(user_id)&token=\(token)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -119,8 +119,8 @@ struct Service {
         var _password = ""
         
         if(Email == "" && Password == ""){
-            _email = UserDefaults.standard.string(forKey: "email") ?? ""
-            _password = UserDefaults.standard.string(forKey: "password") ?? ""
+            _email = UserDefaults.standard.getAccount() ?? ""
+            _password = UserDefaults.standard.getPassword() ?? ""
         }else{
             _email = Email
             _password = Password
@@ -318,7 +318,9 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        guard let user_id = UserDefaults.standard.getUserId() else{
+            return
+        }
         let postString = "id=\(user_id)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
 
@@ -386,7 +388,7 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let token = UserDefaults.standard.getToken() ?? ""
         let postString = "token=\(token)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -425,7 +427,7 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let token = UserDefaults.standard.string(forKey: "token")
+        let token = UserDefaults.standard.getToken()
         let postString = "token=\(token ?? "")"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -461,7 +463,7 @@ struct Service {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let token = UserDefaults.standard.getToken() ?? ""
         let postString = "token=\(token)&name=\(Name)&phone=\(Phone)&tel=\(Tel)&address=\(Address)&id_number=\(Id_number)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -494,8 +496,8 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let user_id = UserDefaults.standard.integer(forKey: "user_id")
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        guard let user_id = UserDefaults.standard.getUserId() else{return}
+        let token = UserDefaults.standard.getToken() ?? ""
         let postString = "token=\(token)&id=\(user_id)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -529,8 +531,8 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let user_id = UserDefaults.standard.integer(forKey: "user_id")
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        guard let user_id = UserDefaults.standard.getUserId() else {return}
+        let token = UserDefaults.standard.getToken() ?? ""
         let postString = "token=\(token)&id=\(user_id)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -558,7 +560,7 @@ struct Service {
     //Get 交易紀錄
     func GetTransHistory(completion:@escaping(Result<Transaction,APIError>)->Void){
         // access from core data
-        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        guard let user_id = UserDefaults.standard.getUserId() else {return}
         let requestString = "\(host)/api/trans-history/\(user_id)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
@@ -596,7 +598,7 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let user_id = UserDefaults.standard.integer(forKey: "user_id")
+        guard let user_id = UserDefaults.standard.getUserId() else {return}
         let postString = "user_id=\(user_id)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
@@ -631,8 +633,8 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let give_id = UserDefaults.standard.integer(forKey: "user_id")
-        let give_email = UserDefaults.standard.string(forKey: "email") ?? ""
+        guard let give_id = UserDefaults.standard.getUserId() else {return}
+        let give_email = UserDefaults.standard.getAccount() ?? ""
         let postString = "give_id=\(give_id)&give_email=\(give_email)&take_id=\(take_id)&take_email=\(take_email)&amount=\(amount)&event=\(eventName)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         

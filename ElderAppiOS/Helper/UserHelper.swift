@@ -11,57 +11,13 @@ import CoreData
 
 class UserHelper{
     
-    static func storeUser(response:Dictionary<String,Any>,password:String = "")->Bool{
-        
-        
-        let userEntity = NSEntityDescription.entity(forEntityName:"UserData",in:viewContext)!
-        let user = NSManagedObject(entity:userEntity,insertInto:viewContext)
-        
-        
-        
+    static func storeUser(response:Dictionary<String,Any>,password:String = "")->Void{
         if(password != ""){
-            user.setValue(response["email"] as! String,forKeyPath:"email")
-            user.setValue(response["id_code"] as! String,forKeyPath:"id_code")
-            user.setValue(response["img"] as? String,forKeyPath:"img")            
-            user.setValue(response["name"] as! String,forKeyPath:"name")
-            user.setValue(password,forKeyPath:"password")
-            user.setValue(response["rank"] as! Int,forKeyPath:"rank")
-            user.setValue(response["user_id"] as! Int,forKeyPath:"user_id")
-            user.setValue(response["wallet"] as! Int,forKeyPath:"wallet")
+            UserDefaults.standard.setAccount(value: response["email"] as! String)
+            UserDefaults.standard.setPassword(value: password)
+            UserDefaults.standard.setUserId(value: response["user_id"] as! Int)
         }
-        
-        user.setValue(response["access_token"] as! String,forKeyPath:"token")
-        
-        do {
-            try viewContext.save()
-            UserDefaults.standard.set(response["email"] as! String, forKey: "email")
-            UserDefaults.standard.set(password, forKey: "password")
-            UserDefaults.standard.set(response["user_id"] as! Int, forKey: "user_id")
-            UserDefaults.standard.set(response["access_token"] as! String, forKey: "token")
-            UserDefaults.standard.synchronize()
-            return true
-        } catch let error as NSError {
-            print("\(error)")
-            return false
-        }
-        
-        
+        UserDefaults.standard.setToken(value: response["access_token"] as! String)
     }
     
-    
-    static func clearUser()->Bool{
-        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "UserData")
-        let request = NSBatchDeleteRequest(fetchRequest: fetch)
-        do {
-            try viewContext.execute(request)
-            print("刪除成功")
-            return true
-        } catch {
-            print("Delete Fail")
-            return false
-        }
-    }
-    
-    
-
 }

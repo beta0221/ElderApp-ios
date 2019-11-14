@@ -29,6 +29,8 @@ class IndexPageVC: UIViewController {
     
     @IBAction func unwind_IndexPageVC(_ sender:UIStoryboardSegue){}
     
+    let service = Service()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +43,7 @@ class IndexPageVC: UIViewController {
             panelView2.heightAnchor.constraint(equalToConstant: self.view.frame.width / 2),
         ])
         
-        let url:URL = URL(string: "https://www.happybi.com.tw/slider.html")!
+        let url:URL = URL(string: "\(Service.hostName)/slider.html")!
         let urlRequest:URLRequest = URLRequest(url: url)
         bannerWebView.load(urlRequest)
         
@@ -55,7 +57,7 @@ class IndexPageVC: UIViewController {
     
     
     private func updateMyData(){
-        let service = Service()
+        
         service.MeRequest(completion: {
             result in switch result{
             case .success(let response):
@@ -77,32 +79,28 @@ class IndexPageVC: UIViewController {
     
     
     private func autoReLogin(){
-        let service = Service()
+        
         service.LoginRequest(completion: {result in
             switch result{
             case .success(let response):
                 if(response["access_token"] != nil){
                     print("access_token : \(response["access_token"] as! String)")
-                    _ = UserHelper.clearUser()
-                    let result = UserHelper.storeUser(response: response)
-                    if(result == false){
-                        self.autoLogout()
-                        print("response 有回來 token, Device fucked up")
-                    }
+                    UserHelper.storeUser(response: response)
                     self.updateMyData()
                 }else{
-                    self.autoLogout()
                     print("response 沒有回來 token, Server fucked up")
+                    self.autoLogout()
                 }
             case .failure(let error):
                 print("An error occured \(error)")
+                self.autoLogout()
             }
         })
     }
     
     private func autoLogout(){
         print("自動登出")
-        _ = UserHelper.clearUser()
+        UserDefaults.standard.removeUserData()
         self.navigateToLoginPage()
     }
     

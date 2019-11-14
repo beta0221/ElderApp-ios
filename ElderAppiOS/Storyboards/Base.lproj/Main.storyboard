@@ -595,10 +595,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1351"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtl-6f-b1Y">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1192"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1240"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oRD-An-m77">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1192"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1240"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsB-MI-Ntu">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -1175,11 +1175,34 @@
                                                             <constraint firstAttribute="bottom" secondItem="dc4-7c-otH" secondAttribute="bottom" constant="4" id="tne-0K-kG1"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OcI-fO-dK6">
+                                                        <rect key="frame" x="0.0" y="1128" width="375" height="56"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMC-cn-zuy">
+                                                                <rect key="frame" x="24" y="4" width="327" height="48"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                <state key="normal" title="會員服務條款">
+                                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="showStatement:" destination="di1-ja-kES" eventType="touchUpInside" id="IuX-Xc-A2a"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="0on-De-QdN"/>
+                                                            <constraint firstAttribute="trailing" secondItem="OMC-cn-zuy" secondAttribute="trailing" constant="24" id="M9Y-b9-Vsb"/>
+                                                            <constraint firstItem="OMC-cn-zuy" firstAttribute="top" secondItem="OcI-fO-dK6" secondAttribute="top" constant="4" id="Tjq-jp-egI"/>
+                                                            <constraint firstAttribute="bottom" secondItem="OMC-cn-zuy" secondAttribute="bottom" constant="4" id="iaX-aV-GNX"/>
+                                                            <constraint firstItem="OMC-cn-zuy" firstAttribute="leading" secondItem="OcI-fO-dK6" secondAttribute="leading" constant="24" id="shs-jp-uyJ"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PbG-q6-yVF">
-                                                        <rect key="frame" x="0.0" y="1128" width="375" height="64"/>
+                                                        <rect key="frame" x="0.0" y="1184" width="375" height="56"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pF9-Bd-N1j">
-                                                                <rect key="frame" x="24" y="4" width="327" height="56"/>
+                                                                <rect key="frame" x="24" y="4" width="327" height="48"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                 <state key="normal" title="登出">
                                                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1194,7 +1217,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="pF9-Bd-N1j" secondAttribute="bottom" constant="4" id="Kql-0w-fvu"/>
                                                             <constraint firstItem="pF9-Bd-N1j" firstAttribute="top" secondItem="PbG-q6-yVF" secondAttribute="top" constant="4" id="LIX-83-sIz"/>
                                                             <constraint firstItem="pF9-Bd-N1j" firstAttribute="leading" secondItem="PbG-q6-yVF" secondAttribute="leading" constant="24" id="Rgc-5c-ifw"/>
-                                                            <constraint firstAttribute="height" constant="64" id="hJq-Oe-cPD"/>
+                                                            <constraint firstAttribute="height" constant="56" id="hJq-Oe-cPD"/>
                                                             <constraint firstAttribute="trailing" secondItem="pF9-Bd-N1j" secondAttribute="trailing" constant="24" id="hxg-dF-4Mq"/>
                                                         </constraints>
                                                     </view>
@@ -3179,6 +3202,160 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MhT-DZ-txD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1370" y="599"/>
+        </scene>
+        <!--StatementVC-->
+        <scene sceneID="cci-Hs-rgQ">
+            <objects>
+                <viewController storyboardIdentifier="StatementVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gqu-TS-J8k" customClass="StatementVC" customModule="ElderAppiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ass-Ty-kXC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRS-ZO-bXF">
+                                <rect key="frame" x="20" y="20" width="335" height="627"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7B-EI-mSN">
+                                        <rect key="frame" x="8" y="8" width="319" height="555"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <mutableString key="content">會員服務條款
+銀髮學院會員權益條款
+
+歡迎您加入成為銀髮學院會員，銀髮學院會員服務(以下稱會員服務)係由『立園生技股份有限公司』 (以下稱本公司)所建置提供，請詳細閱讀以下權益條款，本條款訂立的目的，是為了保護本公司會員的利益，並作為本公司與會員間會員服務提供權利義務關係之依據，當您完成相關基本資料(含姓名、聯絡電話、地址、出生日期、性別等資料)之提供進入APP，即正式成為本公司會員，並於開始使用本公司所提供之會員服務時，即視為已知悉及完全同意本條款的所有約定。本公司有權於任何時間修改或變更本約定書之內容，你可隨時到銀髮學院APP瞭解相關修訂內容，任何修訂將於APP上公佈後 10 日內生效，如你不同意會員服務條款的修訂內容。你應停止使用本服務，如你仍繼續使用本服務，則視為你已閱讀、瞭解並同意接受該等修改或變更。
+
+若您為未滿十七歲，除應符合上述規定外，並應於你的家長（或監護人）閱讀、瞭解並同意本約定書之所有內容及其後修訂內容後，方得使用或繼續使用本服務。當你使用或繼續使用本服務時，即表示你的家長（或監護人）已閱讀、瞭解並同意接受本約定書之所有內容及其後修改變更。
+
+本服務一切由本公司提供，Apple不是資助者，並且在任何情況下與此事無關。
+
+二.會員服務及權利義務
+
+本公司於完成並確認您的會員資格後，本公司將提供『一般』 會員服務內容有：銀髮學院參與、提供遊戲點數 ( 樂幣 )、商品兌換功能等。
+本公司提供之會員服務、功能以及其他一切因會員身分得享有之權益，均仍屬本公司或其他合法權利人所有，會員除僅得於服務期間內依本條款之約定為使用及會員間轉讓、移轉外，不得以任何方式將其出租或出借予其他任何第三人，會員就會員服務或服務內容所為之任何全部或一部之出租、出借或以其他方式予其他任何第三人之行為，對本公司均不生效力。
+本公司所發行之遊戲點數，僅可兌換本公司提供之指定商品及會員間轉讓或交換。會員累積的遊戲點數並非屬於會員的財產，本公司有權在任何時候撤銷遊戲點數。遊戲點數亦不能兌換現金。
+會員帳戶中所累積的遊戲點數，可以保留至點數全部兌換或點數有效期期滿為止，若已過有效期但點數仍未使用完畢，已過期之點數將會自動歸零失效。
+會員不得以偽造或其他不法手段獲取遊戲點數，如經本公司查證該帳號有違反前開行為時，本公司將註銷該帳號，並回收遊戲點數及兌換商品，再向主管機關舉報其不法行為。
+加入會員前請務必確認是否已同意銀髮學院行銷資訊提供政策．
+提醒您，必須同意銀髮學院行銷資訊提供政策，才可獲得活動中遊戲回饋點數。
+
+
+
+三、你的註冊義務
+
+本公司提供會員服務之期間，係指您完成基本資料提供建檔完成註冊程序後，本公司於完成相關系統設定、使會員服務達於可供使用之日起至：(1)會員向本公司請求刪除其全部個人資料而經本公司同意終止服務之日止；或(2)本公司因會員有違反本權益條款而為主動終止服務之日止。
+
+為了能使用本服務，你同意以下事項：
+
+1.依本服務註冊表之提示提供你本人正確、最新及完整的資料，
+2.維持並更新你個人資料，確保其為正確、最新及完整。若你提供任何錯誤或不實的資料，銀髮學院APP有權暫停或終止你的帳號，並拒絕你使用本服務之全部或一部，其新修正內容將適時公布於本網站，不另個別通知會員。
+
+會員為取得會員資格需經提供完整正確之資料提供及完成註冊手續，如拒絕提供完整正確之基本資料或未完成註冊，將無法享有會員服務。如會員提供或註冊之資料有不完整、不正確或資料有所更改而怠於通知本公司更正者，其相關責任應由會員自行負擔，概與本公司無涉，如因此致本公司受有損害者，會員並應負損害賠償責任。
+
+四、隱私權政策
+
+會員應嚴防其個人資料、商城資料、使用者帳號和密碼外洩。倘有外洩而遭他人留用、冒用者，會員應自負法律責任。會員使用各項專屬權益時，請清楚告知會員帳號及相關資料，若資料錯誤，本公司於會員之個人資料有受冒用而產生損失之風險時，為維護會員權益，得停止會員服務。會員若有包括但不限於大量訂購惡意銷退，拒收、濫用本公司回饋機制、拒絕償還、進線主張非消費性問題，或違反會員服務之精神或本條款者，本公司均有權力終止及拒絕提供會員服務，您承認並同意本公司依本條款任何規定對會員提供之服務，無需進行事先通知即得終止，且會員服務之終止，本公司對會員或任何第三人均不承擔任何責任。
+
+五、系統中斷或故障
+
+會員在下列情形，本公司將暫停或中斷會員服務系統之全部或一部，且對使用者任何直接或間接之損害，均不負任何責任：
+1.對本服務系統相關軟硬體設備進行搬遷、更換、升級、保養或維修時。
+2.使用者有任何違反政府法令或本使用條款情形。
+3.天災或其他不可抗力所致之服務系統停止或中斷。
+4.其他不可歸責於本公司之事由所致之服務停止或中斷。
+5.會員服務系統或功能『例行性』之維護、改置或變動所發生之服務暫停或中斷，本公司將於該暫停或中斷前以電子郵件、公告或其他適當之方式告知會員。
+
+六、個資權益宣告
+
+依個資法§8規定，向會員蒐集個人資料時，應明確告知以下事項：
+
+資料之蒐集： 本公司依照您主動提供，或經合法或經您同意由第三人提供有關您之個人資料。
+蒐集之目的： 基於消費者客戶管理與服務（包括但不限於會員相關權益通知、服務滿意度調查、為提供更適合會員之商品或優惠所作之統計分析等）、行銷資料、其他合於營業登記項目或章程所定之業務。
+蒐集之個人資料類別：
+C○○一 識別個人者：如姓名、住居所、聯絡電話、電子郵件或其他可辨識資料本人者等。
+C○○三 政府資料中之辨識者：如身分證統一編號、護照號碼等。
+C○一一 個人描述：如年齡、性別、出生年月日、國籍等。
+C○九三 財務資料：如支付方式、往來記錄等。
+C一○二 契約或約定：如關於交易、法律或契約等。
+C○五一 學校紀錄：如學歷。
+C○二一 家庭情形：如婚姻有無、子女人數等。
+個人資料利用之期間、地區、對象及方式：
+本公司於本國為提供會員服務，將於營運期間蒐集使用會員個人資料，且為基於服務目的，本公司會委任處理營運相關事務之必要第三人（如：合作廠商、數據分析公司）或由本公司之關係企業基於寄發行銷優惠訊息者，均將使用您的個人資料 您可以向本公司行使以下權利：
+查詢或請求閱覽。
+請求製給複製本。
+請求補充或更正。
+請求停止蒐集、處理或利用。
+若非本人或於本公司尚未查證您為本人前，使用者不得申請查詢、複製、請求閱覽或申請變動不屬於本帳號之個人資料及帳號服務。您本人可要求停止利用或刪除屬於您的個人資料；但一經停止或刪除，您將無法繼續使用本公司的服務。
+您可以自由選擇提供您之個人資料予本公司，惟若無法提供身分證字號，則無法參與本公司相關之行銷活動；若您無法提供生日，將無法寄發相關活動贈品與廣告給您。
+
+七、終止會員服務
+
+基於公司的運作，本公司得無條件停止提供服務之全部或一部，會員不可以因此而要求任何賠償或補償。
+會員如違反了本條款，本公司得暫時停止向會員提供服務、或終止會員之權利，會員不可以因此而要求任何賠償或補償。
+
+八、智慧財產權
+
+非經本公司事先書面同意，會員不得將本公司各通路之任何資料進行重製、移轉、散布、改作、租用或出售等行為。同時會員必須遵守商標法、著作權法、電信法、個人資料保護法及其他相關法令之規定，如有違反造成本公司損害時，本公司得依法請求賠償。</mutableString>
+                                                <attributes>
+                                                    <color key="NSColor" white="0.26704302226027404" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="24" name=".PingFangTC-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mD-Eu-fhA">
+                                        <rect key="frame" x="0.0" y="571" width="335" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-XH-2LI">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="56"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="我同意遵守 銀髮學院會員權益條款">
+                                                    <color key="titleColor" red="0.96470588239999999" green="0.65490196079999996" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="close:" destination="Gqu-TS-J8k" eventType="touchUpInside" id="5x9-49-YOu"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="NG1-XH-2LI" firstAttribute="top" secondItem="6mD-Eu-fhA" secondAttribute="top" id="IjC-nM-AaX"/>
+                                            <constraint firstAttribute="trailing" secondItem="NG1-XH-2LI" secondAttribute="trailing" id="aTY-UV-0Z8"/>
+                                            <constraint firstItem="NG1-XH-2LI" firstAttribute="leading" secondItem="6mD-Eu-fhA" secondAttribute="leading" id="fVx-ph-7TM"/>
+                                            <constraint firstAttribute="height" constant="56" id="g3m-yV-rew"/>
+                                            <constraint firstAttribute="bottom" secondItem="NG1-XH-2LI" secondAttribute="bottom" id="hHk-RA-mOF"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="G7B-EI-mSN" firstAttribute="leading" secondItem="XRS-ZO-bXF" secondAttribute="leading" constant="8" id="OM6-2g-M9P"/>
+                                    <constraint firstAttribute="trailing" secondItem="6mD-Eu-fhA" secondAttribute="trailing" id="RpU-xj-ZIi"/>
+                                    <constraint firstItem="6mD-Eu-fhA" firstAttribute="leading" secondItem="XRS-ZO-bXF" secondAttribute="leading" id="YhQ-gu-Zom"/>
+                                    <constraint firstAttribute="bottom" secondItem="6mD-Eu-fhA" secondAttribute="bottom" id="gI1-oW-C8G"/>
+                                    <constraint firstItem="6mD-Eu-fhA" firstAttribute="top" secondItem="G7B-EI-mSN" secondAttribute="bottom" constant="8" id="mBk-z3-D6h"/>
+                                    <constraint firstAttribute="trailing" secondItem="G7B-EI-mSN" secondAttribute="trailing" constant="8" id="r0U-6F-aLu"/>
+                                    <constraint firstItem="G7B-EI-mSN" firstAttribute="top" secondItem="XRS-ZO-bXF" secondAttribute="top" constant="8" id="vGs-1o-jWM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.70451626712328763" alpha="0.6505511558219178" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qCS-77-T8W" firstAttribute="bottom" secondItem="XRS-ZO-bXF" secondAttribute="bottom" constant="20" id="Gbn-zA-gEs"/>
+                            <constraint firstItem="XRS-ZO-bXF" firstAttribute="leading" secondItem="qCS-77-T8W" secondAttribute="leading" constant="20" id="Qqs-LA-OYP"/>
+                            <constraint firstItem="XRS-ZO-bXF" firstAttribute="top" secondItem="qCS-77-T8W" secondAttribute="top" constant="20" id="aMK-oA-PWI"/>
+                            <constraint firstItem="qCS-77-T8W" firstAttribute="trailing" secondItem="XRS-ZO-bXF" secondAttribute="trailing" constant="20" id="kdb-SS-xSa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qCS-77-T8W"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="XRS-ZO-bXF" id="s3k-7S-ZGF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0JV-lG-fuW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1281" y="-1945"/>
         </scene>
     </scenes>
     <resources>
