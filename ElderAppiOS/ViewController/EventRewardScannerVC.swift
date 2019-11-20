@@ -15,13 +15,26 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     var captureSession:AVCaptureSession?
     var previewLayer:AVCaptureVideoPreviewLayer!
     
+    var rewardMode = true
     
     @IBOutlet weak var camWindow: UIView!
     
     var service = Service()
     
+    @IBOutlet weak var rewardLabel: UILabel!
+    @IBOutlet weak var arriveLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(!rewardMode){
+            rewardLabel.isHidden = true
+            arriveLabel.isHidden = false
+        }
+        
+        
+        
 
         captureSession = AVCaptureSession()
 
@@ -75,32 +88,72 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                
                print("\(stringValue)")
             
-            service.RrawEventReward(event_slug: stringValue, completion: {result in
-                switch result{
-                case .success(let res):
-                    if(res["s"] as! Int == 1){
-                        
-                        Common.SystemAlert(Title: "成功", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self,handler: {_ in self.captureSession?.startRunning()})
-                        
-                    }else{
-                        Common.SystemAlert(Title: "錯誤", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self,handler: {_ in
-                            self.captureSession?.startRunning()
-                        })
-                        
-                    }
-                case .failure(let error):
-                    Common.SystemAlert(Title: "錯誤", Body: "\(error)", SingleBtn: "確定", viewController: self)
-                }
-            })
+            let str = stringValue.split(separator: ",")
+            
+            if (str.count != 2){
+                Common.SystemAlert(Title: "錯誤", Body: "條碼錯誤", SingleBtn: "確定", viewController: self,handler: {_ in
+                self.captureSession?.startRunning()
+                })
+            }
+            
+            if(String(str[0]) == "reward"){
+                self.getReward(stringValue: String(str[1]))
+            }else if(String(str[0]) == "arrive"){
+                self.arriveEvent(stringValue: String(str[1]))
+            }
                
-               
-               
-               
-           }
+        }
            
-       }
+    }
     
     
+    
+    func getReward(stringValue:String){
+        service.RrawEventReward(event_slug: stringValue, completion: {result in
+            switch result{
+            case .success(let res):
+                if(res["s"] as! Int == 1){
+                    
+                    Common.SystemAlert(Title: "成功", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self,handler: {_ in self.captureSession?.startRunning()})
+                    
+                }else{
+                    Common.SystemAlert(Title: "錯誤", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self,handler: {_ in
+                        self.captureSession?.startRunning()
+                    })
+                    
+                }
+            case .failure(let error):
+                Common.SystemAlert(Title: "錯誤", Body: "\(error)", SingleBtn: "確定", viewController: self)
+            }
+        })
+    }
+    
+    func arriveEvent(stringValue:String){
+        service.ArriveEvent(slug: stringValue, completion: {result in
+            switch result{
+            case .success(let res):
+                
+                if(res["s"] as! Int == 1){
+                    self.showPassPermitVC(title: res["name"] as? String ?? "")
+                }else{
+                    Common.SystemAlert(Title: "錯誤", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self,handler: {_ in
+                        self.captureSession?.startRunning()
+                    })
+                }
+                
+                break
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    func showPassPermitVC(title:String){
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "PassPermitVC") as? PassPermitVC{
+            controller.eventTitle = title
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
     
     
 

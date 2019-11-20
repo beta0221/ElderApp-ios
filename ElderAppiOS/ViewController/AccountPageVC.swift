@@ -90,7 +90,7 @@ class AccountPageVC: UIViewController {
                     self.userIsValidLabel.textColor = .green
                 }else{
                     self.extendBtn_view.isHidden = false
-                    self.userIsValidLabel.text = "無效"
+                    self.userIsValidLabel.text = "待付款"
                     self.userIsValidLabel.textColor = .red
                 }
                 

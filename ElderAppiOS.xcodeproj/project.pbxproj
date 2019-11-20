@@ -19,6 +19,7 @@
 		9CE3F8F9236FE4B5008B783B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F8236FE4B5008B783B /* Transaction.swift */; };
 		CD071D7923707CCB006B76C5 /* TransPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD071D7823707CCB006B76C5 /* TransPageVC.swift */; };
 		CD071D7B23708381006B76C5 /* UpdateAccountPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */; };
+		CD095BBE238591B700083F1E /* PassPermitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD095BBD238591B700083F1E /* PassPermitVC.swift */; };
 		CD10C80E237124B700029C90 /* EventList.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD10C80D237124B700029C90 /* EventList.xib */; };
 		CD10C811237124E500029C90 /* EventCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD10C80F237124E500029C90 /* EventCVC.swift */; };
 		CD10C812237124E500029C90 /* EventCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD10C810237124E500029C90 /* EventCVC.xib */; };
@@ -56,6 +57,7 @@
 		9CE3F8F8236FE4B5008B783B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CD071D7823707CCB006B76C5 /* TransPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransPageVC.swift; sourceTree = "<group>"; };
 		CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountPageVC.swift; sourceTree = "<group>"; };
+		CD095BBD238591B700083F1E /* PassPermitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassPermitVC.swift; sourceTree = "<group>"; };
 		CD10C80D237124B700029C90 /* EventList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventList.xib; sourceTree = "<group>"; };
 		CD10C80F237124E500029C90 /* EventCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCVC.swift; sourceTree = "<group>"; };
 		CD10C810237124E500029C90 /* EventCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCVC.xib; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				9C9E5BCB23726BE6008F29BC /* RegisterPageVC.swift */,
 				9C9E5BCD2372962A008F29BC /* InviterScannerPageVC.swift */,
 				CD6397612379A8FD00794788 /* StatementVC.swift */,
+				CD095BBD238591B700083F1E /* PassPermitVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				9C9B2819236FEEA900C93C2C /* AccountPageVC.swift in Sources */,
 				9CE3F8F7236FE119008B783B /* User.swift in Sources */,
 				9C9E5BCC23726BE6008F29BC /* RegisterPageVC.swift in Sources */,
+				CD095BBE238591B700083F1E /* PassPermitVC.swift in Sources */,
 				CDCA63BD236EE20B000D054B /* IndexPageVC.swift in Sources */,
 				9CE3F8F1236FDCD2008B783B /* District.swift in Sources */,
 				CDCA63A1236EC3B4000D054B /* SceneDelegate.swift in Sources */,
@@ -437,7 +441,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -457,7 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

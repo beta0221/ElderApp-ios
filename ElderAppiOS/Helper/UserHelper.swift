@@ -16,6 +16,7 @@ class UserHelper{
             UserDefaults.standard.setAccount(value: response["email"] as! String)
             UserDefaults.standard.setPassword(value: password)
             UserDefaults.standard.setUserId(value: response["user_id"] as! Int)
+            UserDefaults.standard.setUserName(value: response["name"] as! String)
         }
         UserDefaults.standard.setToken(value: response["access_token"] as! String)
     }

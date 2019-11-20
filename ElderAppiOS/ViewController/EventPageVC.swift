@@ -180,7 +180,7 @@ class EventPageVC: UIViewController {
     func switchToAll(){
         self.eventList?.Events = allEvent
         self.eventList?.collectionView.reloadData()
-        self.eventSwitcher.setTitle("我的活動", for: .normal)
+        self.eventSwitcher.setTitle("已報名活動", for: .normal)
         self.isAllEvent = true
     }
     

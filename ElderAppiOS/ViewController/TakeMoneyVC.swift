@@ -17,7 +17,11 @@ class TakeMoneyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let myString = "https://pennlabs.org"
+        let user_id = UserDefaults.standard.getUserId()?.description ?? ""
+        let user_name = UserDefaults.standard.getUserName() ?? ""
+        let user_account = UserDefaults.standard.getAccount() ?? ""
+        
+        let myString = "\(user_id),\(user_name),\(user_account)"
         
         let data = myString.data(using: String.Encoding.utf8)
         

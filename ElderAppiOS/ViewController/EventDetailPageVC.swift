@@ -20,8 +20,8 @@ class EventDetailPageVC: UIViewController {
     @IBOutlet weak var eventBodyTextview: UITextView!
     
     @IBOutlet weak var cancelEventButton: UIButton!
-    
     @IBOutlet weak var joinEventButton: UIButton!
+    @IBOutlet weak var rewardAndArriveButton: UIView!
     
     var updateEventDelegate:UpdateEventDelegate?
     
@@ -47,7 +47,9 @@ class EventDetailPageVC: UIViewController {
     
     func checkStatus(){
         cancelEventButton.isHidden = !hasJoined
+        rewardAndArriveButton.isHidden = !hasJoined
         joinEventButton.isHidden = hasJoined
+        
     }
     
     @IBAction func joinButton(_ sender: Any) {
@@ -89,6 +91,50 @@ class EventDetailPageVC: UIViewController {
                 Common.SystemAlert(Title: "錯誤", Body:"\(error)", SingleBtn:"確定", viewController: self)
             }
         })
+    }
+    
+    @IBAction func isUserArrive(_ sender: Any) {
+        service.IsUserArrive(slug: self.event?.slug ?? "", completion: {result in
+            switch result{
+            case .success(let res):
+                let s = res["s"] as! Int
+                if(s == 1){
+                    //已完成報到 顯示通行證
+                    self.showPassPermitVC()
+                }else if(s == 2){
+                    //未完成報到 掃描 qrcode
+                    self.showScannerVC()
+                }else{
+                    Common.SystemAlert(Title: "錯誤", Body: res["m"] as? String ?? "", SingleBtn: "確定", viewController: self)
+                }
+                
+                break
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "arriveScanner")
+        {
+            let eventScannerVC = segue.destination as! EventRewardScannerVC
+            
+            eventScannerVC.rewardMode = false
+            
+        }
+    }
+    
+    func showScannerVC(){
+        self.performSegue(withIdentifier: "arriveScanner", sender: nil)
+    }
+    
+    func showPassPermitVC(){
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "PassPermitVC") as? PassPermitVC{
+            controller.eventTitle = self.event?.title ?? ""
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
 }

@@ -659,8 +659,71 @@ struct Service {
     }
     
     
+    //檢查是否報到
+    func IsUserArrive(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        
+        let requestString = "\(host)/api/isUserArrive/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "GET"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+    }
     
     
+    
+    //掃描報到
+    func ArriveEvent(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        
+        let requestString = "\(host)/api/arriveEvent/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+    }
     
     
     
