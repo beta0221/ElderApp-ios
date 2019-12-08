@@ -72,6 +72,20 @@ extension UIView{
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
         ])
     }
+    
+    func Theme(){
+        clipsToBounds=true
+        layer.borderWidth=1.0
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.cornerRadius = 8.0
+        
+        layer.masksToBounds=true
+        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 8.0
+    }
+    
 }
 
 

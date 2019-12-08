@@ -10,6 +10,7 @@ import UIKit
 
 class ProductCVC: UICollectionViewCell {
     
+    @IBOutlet weak var outterView: UIView!
     @IBOutlet weak var productImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -17,6 +18,9 @@ class ProductCVC: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     func setProductCVC(product:NSDictionary){
+        
+        outterView.Theme()
+        
         let urlString = "\(Service.hostName)/images/products/\(product["slug"] as? String ?? "")/\(product["img"] as? String ?? "")"
         productImage.loadImageUsingUrlString(urlString: urlString)
         nameLabel.text = "商品：\(product["name"] as? String ?? "")"

@@ -123,7 +123,7 @@ extension ProductDetailPageVC:LocationCellDelegate{
             return
         }
         LocationDetailVC.modalPresentationStyle = .overFullScreen
-        self.present(LocationDetailVC,animated: true,completion: nil)
+        self.present(LocationDetailVC,animated: false,completion: nil)
         LocationDetailVC.setLocationDetail(location: location)
         
     }

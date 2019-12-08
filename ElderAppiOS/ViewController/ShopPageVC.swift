@@ -123,7 +123,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = self.productCollectionView.frame.size.width
-        return CGSize(width: w, height: 220.0)
+        return CGSize(width: w, height: 240.0)
     }
     
 }

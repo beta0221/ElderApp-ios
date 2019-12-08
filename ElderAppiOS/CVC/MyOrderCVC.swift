@@ -10,6 +10,7 @@ import UIKit
 
 class MyOrderCVC: UICollectionViewCell {
     
+    @IBOutlet weak var outterView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
@@ -19,6 +20,8 @@ class MyOrderCVC: UICollectionViewCell {
     
     
     func setMyOrderCVC(order:NSDictionary){
+        
+        outterView.Theme()
         let urlString = "\(Service.hostName)\(order["img"] as? String ?? "")"
         productImage.loadImageUsingUrlString(urlString: urlString)
         productNameLabel.text = "產品:\(order["product"] as? String ?? "")"
