@@ -725,9 +725,144 @@ struct Service {
         dataTask.resume()
     }
     
+    //所有商品
+    func GetAllProducts(completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        let requestString = "\(host)/api/getAllProduct"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+        
+    }
+    
+    //產品內頁
+    func GetProductDetail(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        let requestString = "\(host)/api/product/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+        
+    }
+    
+    //所有經銷據點
+    func GetLocation(completion:@escaping(Result<[NSDictionary],APIError>)->Void){
+        let requestString = "\(host)/api/location"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [NSDictionary]
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+    }
     
     
+    //購買商品
+    func PurchaseProduct(location_id:Int,product_slug:String,completion:@escaping(Result<String,APIError>)->Void){
+        let requestString = "\(host)/api/purchase/\(product_slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let postString = "location_id=\(location_id.description)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            
+            self.printJsonData(jsonData: jsonData)
+            let json = String(data: jsonData, encoding: .utf8)
+            DispatchQueue.main.async{
+                completion(.success(json!))
+            }
+        }
+        dataTask.resume()
+    }
     
+    //我的兌換清單
+    func MyOrderList(completion:@escaping(Result<[NSDictionary],APIError>)->Void){
+        let requestString = "\(host)/api/my-order-list"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [NSDictionary]
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+    }
     
     
     

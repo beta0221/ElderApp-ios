@@ -12,6 +12,7 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let service = Service()
     //for qrcode scanner
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -82,7 +83,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
-let ad = UIApplication.shared.delegate as! AppDelegate
-let viewContext = ad.persistentContainer.viewContext
-
-//var CurrentUser:UserData?
+let AD = UIApplication.shared.delegate as! AppDelegate
+let viewContext = AD.persistentContainer.viewContext

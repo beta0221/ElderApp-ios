@@ -60,6 +60,21 @@ class Common{
     
 }
 
+
+extension UIView{
+    func addAndFill(view:UIView){
+        view.translatesAutoresizingMaskIntoConstraints=false
+        addSubview(view)
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+        ])
+    }
+}
+
+
 extension UserDefaults{
     func setUserId(value:Int){
         set(value,forKey: "user_id")
@@ -105,4 +120,10 @@ extension UserDefaults{
         removeObject(forKey: "token")
     }
     
+}
+
+class MyTapGesture:UITapGestureRecognizer{
+    var tapView:UIView?
+    var int:Int?
+    var string:String?
 }
