@@ -28,6 +28,7 @@ class ProductDetailPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addDismissButton()
         getProductDetail()
     }
     

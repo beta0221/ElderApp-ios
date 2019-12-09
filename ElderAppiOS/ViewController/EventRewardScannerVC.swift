@@ -27,7 +27,7 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addDismissButton()
         if(!rewardMode){
             rewardLabel.isHidden = true
             arriveLabel.isHidden = false

@@ -25,6 +25,7 @@ class ShopPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addDismissButton()
         
         loadMyOrderListView()
         

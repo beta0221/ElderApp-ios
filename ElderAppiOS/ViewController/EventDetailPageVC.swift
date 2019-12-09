@@ -33,7 +33,7 @@ class EventDetailPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addDismissButton()
         
         let urlString = "https://www.happybi.com.tw/images/events/\(event?.slug ?? "")/\(event?.image ?? "")"
         eventImageView.loadImageUsingUrlString(urlString: urlString)

@@ -16,6 +16,7 @@ class PassPermitVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addDismissButton()
         eventTitleLabel.text = eventTitle
         
     }

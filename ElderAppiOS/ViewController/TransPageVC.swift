@@ -18,6 +18,7 @@ class TransPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addDismissButton()
         transCollectionView.dataSource = self
         transCollectionView.delegate = self
         

@@ -20,7 +20,7 @@ class InviterScannerPageVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addDismissButton()
         captureSession = AVCaptureSession()
         guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {return}
         let videoInput:AVCaptureDeviceInput

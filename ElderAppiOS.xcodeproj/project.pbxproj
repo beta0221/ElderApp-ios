@@ -31,6 +31,7 @@
 		CD10C812237124E500029C90 /* EventCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD10C810237124E500029C90 /* EventCVC.xib */; };
 		CD10C8142371254000029C90 /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD10C8132371254000029C90 /* EventList.swift */; };
 		CD4152392370641200377091 /* GiveMoneyFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4152382370641200377091 /* GiveMoneyFormVC.swift */; };
+		CD50F1E5239EB83F00360D58 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD50F1E4239EB83F00360D58 /* WebKit.framework */; };
 		CD6397622379A8FD00794788 /* StatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6397612379A8FD00794788 /* StatementVC.swift */; };
 		CD736854239CA29C00B7690A /* ShopPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD736853239CA29C00B7690A /* ShopPageVC.swift */; };
 		CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD736855239CA2CC00B7690A /* ProductCVC.swift */; };
@@ -77,6 +78,7 @@
 		CD10C810237124E500029C90 /* EventCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCVC.xib; sourceTree = "<group>"; };
 		CD10C8132371254000029C90 /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		CD4152382370641200377091 /* GiveMoneyFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyFormVC.swift; sourceTree = "<group>"; };
+		CD50F1E4239EB83F00360D58 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CD6397612379A8FD00794788 /* StatementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementVC.swift; sourceTree = "<group>"; };
 		CD736853239CA29C00B7690A /* ShopPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPageVC.swift; sourceTree = "<group>"; };
 		CD736855239CA2CC00B7690A /* ProductCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCVC.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD50F1E5239EB83F00360D58 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,11 +126,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CD50F1E3239EB83F00360D58 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD50F1E4239EB83F00360D58 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CDCA6392236EC3B4000D054B = {
 			isa = PBXGroup;
 			children = (
 				CDCA639D236EC3B4000D054B /* ElderAppiOS */,
 				CDCA639C236EC3B4000D054B /* Products */,
+				CD50F1E3239EB83F00360D58 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -473,7 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -494,7 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;

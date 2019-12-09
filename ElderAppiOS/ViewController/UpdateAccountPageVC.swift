@@ -29,8 +29,9 @@ class UpdateAccountPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        addDismissButton()
+        keyboardDissmissable()
+        
         
         submitButton.layer.cornerRadius = 5
         cancelButton.layer.cornerRadius = 5
@@ -59,9 +60,6 @@ class UpdateAccountPageVC: UIViewController {
         
         
         
-    }
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
     }
 
     @IBAction func cancel(_ sender: Any) {

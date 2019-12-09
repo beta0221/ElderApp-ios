@@ -61,6 +61,41 @@ class Common{
 }
 
 
+extension UIViewController{
+    
+    func addDismissButton(){
+        if #available(iOS 13, *) {
+            return
+        }
+        let button = UIButton()
+        let img = UIImage(named: "back")
+        button.setImage(img, for: .normal)
+        button.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints=false
+        self.view.addSubview(button)
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: 40.0),
+            button.widthAnchor.constraint(equalToConstant: 40.0),
+            button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0),
+            button.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8.0),
+        ])
+    }
+    
+    @objc func dismiss(_ sender:Any){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func donePressed() {
+        view.endEditing(true)
+    }
+    
+    func keyboardDissmissable(){
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.donePressed))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+}
+
 extension UIView{
     func addAndFill(view:UIView){
         view.translatesAutoresizingMaskIntoConstraints=false

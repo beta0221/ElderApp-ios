@@ -18,6 +18,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //支援12.4加上去的
+        if #available(iOS 13.0, *) {
+            // In iOS 13 setup is done in SceneDelegate
+        } else {
+            
+            
+            let window = UIWindow(frame: UIScreen.main.bounds)
+            self.window = window
+
+            var isLogin = false
+
+            if(UserDefaults.standard.getAccount() != nil){
+                isLogin = true
+            }
+            if(isLogin == true){
+                let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+                let rootNC = UINavigationController(rootViewController: rootVC)
+                self.window?.rootViewController = rootNC
+            }else{
+                let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageVC")
+                let rootNC = UINavigationController(rootViewController: rootVC)
+                self.window?.rootViewController = rootNC
+            }
+//            self.window?.makeKeyAndVisible()
+        }
+        
+        
         return true
     }
 

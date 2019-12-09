@@ -23,7 +23,7 @@ class GiveMoneyVC: UIViewController,AVCaptureMetadataOutputObjectsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addDismissButton()
         captureSession = AVCaptureSession()
 
         guard let videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {return}

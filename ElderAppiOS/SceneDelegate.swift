@@ -22,26 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        guard let _ = (scene as? UIWindowScene) else { return }
         
         
-        var isLogin = false
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"UserData")
-//        do{
-//            let result = try viewContext.fetch(fetchRequest)
-//            if(result.count > 0){
-//                isLogin = true
-//            }
-//        }catch{
-//            print("error")
-//            return
-//        }
-        if(UserDefaults.standard.getAccount() != nil){
-            isLogin = true
-        }
-        
-        
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
+        
+        var isLogin = false
+        if(UserDefaults.standard.getAccount() != nil){
+            isLogin = true
+        }
         if(isLogin == true){
             let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
             let rootNC = UINavigationController(rootViewController: rootVC)

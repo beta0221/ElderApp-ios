@@ -16,7 +16,7 @@ class TakeMoneyVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addDismissButton()
         let user_id = UserDefaults.standard.getUserId()?.description ?? ""
         let user_name = UserDefaults.standard.getUserName() ?? ""
         let user_account = UserDefaults.standard.getAccount() ?? ""
