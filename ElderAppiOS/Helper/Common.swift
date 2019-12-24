@@ -110,8 +110,8 @@ extension UIView{
     
     func Theme(){
         clipsToBounds=true
-        layer.borderWidth=1.0
-        layer.borderColor = UIColor.lightGray.cgColor
+//        layer.borderWidth=1.0
+//        layer.borderColor = UIColor.lightGray.cgColor
         layer.cornerRadius = 8.0
         
         layer.masksToBounds=true

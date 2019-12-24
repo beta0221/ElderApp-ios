@@ -11,7 +11,7 @@ import UIKit
 class MyOrderCVC: UICollectionViewCell {
     
     @IBOutlet weak var outterView: UIView!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusImage: UIImageView!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -29,9 +29,9 @@ class MyOrderCVC: UICollectionViewCell {
         addressLabel.text = "地址:\(order["address"] as? String ?? "")"
         purchaseDateLabel.text = "兌換時間:\(order["created_at"] as? String ?? "")"
         if(order["receive"] as? Int == 1){
-            statusLabel.isHidden = false
+            statusImage.isHidden = false
         }else{
-            statusLabel.isHidden = true
+            statusImage.isHidden = true
         }
     }
     

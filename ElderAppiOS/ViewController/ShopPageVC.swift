@@ -11,11 +11,14 @@ import UIKit
 class ShopPageVC: UIViewController {
 
     //所有商品
+    
+    @IBOutlet weak var showProductButton: UIButton!
     var products:[NSDictionary]?
     var cats:[NSDictionary]?
     @IBOutlet weak var productCollectionView: UICollectionView!
     
     //已兌換
+    @IBOutlet weak var showMyOrderButton: UIButton!
     @IBOutlet var MyOrderListView: UIView!
     @IBOutlet weak var myOrderCollectionView: UICollectionView!
     var myOrder:[NSDictionary]?
@@ -28,6 +31,13 @@ class ShopPageVC: UIViewController {
         addDismissButton()
         
         loadMyOrderListView()
+        
+        showProductButton.backgroundColor = UIColor(red: 254/255, green: 114/255, blue: 53/255, alpha: 100)
+        showMyOrderButton.backgroundColor = UIColor(red: 254/255, green: 167/255, blue: 53/255, alpha: 100)
+        showProductButton.clipsToBounds=true
+        showMyOrderButton.clipsToBounds=true
+        showProductButton.layer.cornerRadius=4
+        showMyOrderButton.layer.cornerRadius=4
         
         productCollectionView.delegate = self
         productCollectionView.dataSource = self
@@ -57,6 +67,8 @@ class ShopPageVC: UIViewController {
     
     @IBAction func showMyOrderList(_ sender: Any) {
         MyOrderListView.isHidden=false
+        showMyOrderButton.backgroundColor = UIColor(red: 254/255, green: 114/255, blue: 53/255, alpha: 100)
+        showProductButton.backgroundColor = UIColor(red: 254/255, green: 167/255, blue: 53/255, alpha: 100)
         AD.service.MyOrderList(completion: {result in
             switch result{
             case .success(let res):
@@ -71,6 +83,8 @@ class ShopPageVC: UIViewController {
     
     @IBAction func showProductList(_ sender: Any) {
         MyOrderListView.isHidden=true
+        showProductButton.backgroundColor = UIColor(red: 254/255, green: 114/255, blue: 53/255, alpha: 100)
+        showMyOrderButton.backgroundColor = UIColor(red: 254/255, green: 167/255, blue: 53/255, alpha: 100)
     }
     
 
