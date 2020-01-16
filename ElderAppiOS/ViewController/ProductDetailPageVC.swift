@@ -20,9 +20,9 @@ class ProductDetailPageVC: UIViewController {
     
     @IBOutlet weak var LocationStack: UIStackView!
     
-    var productLocationArray:[Int] = []
-    
+    var locationArray:[NSDictionary] = []
     var locationCellArray:[LocationCell] = []
+    var locationQuantity:[Int:Int] = [:]
     
     var selectedLocationId:Int?
     
@@ -50,7 +50,9 @@ class ProductDetailPageVC: UIViewController {
                 
                 let locations = res["location"] as? [NSDictionary]
                 for l in locations!{
-                    self.productLocationArray.append(l["location_id"] as! Int)
+                    let location_id = l["location_id"] as! Int
+                    let quantity = l["quantity"] as! Int
+                    self.locationQuantity[location_id] = quantity
                 }
                 self.getLocation()
                 break
@@ -65,22 +67,34 @@ class ProductDetailPageVC: UIViewController {
         AD.service.GetLocation(completion: {result in
             switch result{
             case .success(let res):
-                for l in res{
-                    if(self.productLocationArray.contains(l["id"] as! Int)){
-                        let locationView = LocationCell(location: l)
-                        locationView!.tag = l["id"] as! Int
-                        self.locationCellArray.append(locationView!)
-                        locationView?.delegate = self
-                        self.LocationStack.addArrangedSubview(locationView!)
-                        locationView?.translatesAutoresizingMaskIntoConstraints=false
-                        locationView?.heightAnchor.constraint(equalToConstant: 56.0).isActive=true
-                    }
-                }
+                self.locationArray = res
+                self.loadLocation()
                 break
             case .failure(let error):
                 print(error)
             }
         })
+    }
+    
+    func loadLocation(){
+        self.LocationStack.subviews.forEach({$0.removeFromSuperview()})
+        for l in self.locationArray{
+            let location_id = l["id"] as! Int
+            if(self.locationQuantity.keys.contains(location_id)){
+                let quantity = self.locationQuantity[location_id]
+                var isCheck = false
+                if(location_id == self.selectedLocationId){
+                    isCheck = true
+                }
+                let locationView = LocationCell(location: l,quantity:quantity!,isCheck: isCheck)
+                locationView!.tag = location_id
+                self.locationCellArray.append(locationView!)
+                locationView?.delegate = self
+                self.LocationStack.addArrangedSubview(locationView!)
+                locationView?.translatesAutoresizingMaskIntoConstraints=false
+                locationView?.heightAnchor.constraint(equalToConstant: 56.0).isActive=true
+            }
+        }
     }
     
     @IBAction func SubmitPurchaseRequest(_ sender: Any) {
@@ -94,6 +108,12 @@ class ProductDetailPageVC: UIViewController {
             case .success(let res):
                 if(res == "success"){
                     Common.SystemAlert(Title: "提醒", Body: "兌換成功", SingleBtn: "確定", viewController: self)
+                    
+                    var q = self.locationQuantity[self.selectedLocationId!]
+                    q! -= 1
+                    self.locationQuantity[self.selectedLocationId!] = q!
+                    self.loadLocation()
+                    
                 }else{
                     Common.SystemAlert(Title: "提醒", Body: res, SingleBtn: "確定", viewController: self)
                 }

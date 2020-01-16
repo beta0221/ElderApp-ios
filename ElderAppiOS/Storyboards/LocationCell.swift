@@ -10,7 +10,8 @@ import UIKit
 
 class LocationCell: UIView {
 
-    var location:NSDictionary?
+    var location:NSDictionary!
+    var quantity:Int!
     
     @IBOutlet var contentView: UIView!
     
@@ -19,10 +20,10 @@ class LocationCell: UIView {
     
     var delegate:LocationCellDelegate?
     
-    required init?(location:NSDictionary) {
+    required init?(location:NSDictionary,quantity:Int,isCheck:Bool=false) {
         super.init(frame:.zero)
         self.location = location
-        
+        self.quantity=quantity
         
         let bundle = Bundle(for: type(of: self))
         bundle.loadNibNamed("LocationCell", owner: self, options: nil)
@@ -30,6 +31,9 @@ class LocationCell: UIView {
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         
+        if(isCheck){
+            checkButton.isChecked=true
+        }
         commonInit()
         
     }
@@ -38,7 +42,8 @@ class LocationCell: UIView {
     }
     
     func commonInit(){
-        locationNameLabel.text = location!["name"] as? String ?? ""
+        let name = location["name"] as? String ?? ""
+        locationNameLabel.text = "\(name)(數量:\(self.quantity.description))"
         checkButton.tag = location!["id"] as! Int
     }
     

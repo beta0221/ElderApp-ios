@@ -2,12 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationCell" customModule="ElderAppiOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationCell" customModule="銀髮學院" customModuleProvider="target">
             <connections>
                 <outlet property="checkButton" destination="ZX3-iE-ygh" id="pbH-ou-LWB"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="b0i-8y-Leg"/>
@@ -25,7 +26,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjX-co-wfo">
                             <rect key="frame" x="0.0" y="0.0" width="48" height="108"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX3-iE-ygh" customClass="CheckBox" customModule="ElderAppiOS" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX3-iE-ygh" customClass="CheckBox" customModule="銀髮學院" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="30" width="48" height="48"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="48" id="cvY-np-MMT"/>
@@ -50,7 +51,7 @@
                             <rect key="frame" x="48" y="0.0" width="227" height="108"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMn-GH-3bp">
-                                    <rect key="frame" x="12" y="0.0" width="215" height="108"/>
+                                    <rect key="frame" x="4" y="0.0" width="223" height="108"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -61,7 +62,7 @@
                                 <constraint firstAttribute="bottom" secondItem="BMn-GH-3bp" secondAttribute="bottom" id="E3c-QX-4Iz"/>
                                 <constraint firstItem="BMn-GH-3bp" firstAttribute="top" secondItem="z89-5c-plv" secondAttribute="top" id="Gwa-h6-9Or"/>
                                 <constraint firstAttribute="trailing" secondItem="BMn-GH-3bp" secondAttribute="trailing" id="OJl-Jd-XBz"/>
-                                <constraint firstItem="BMn-GH-3bp" firstAttribute="leading" secondItem="z89-5c-plv" secondAttribute="leading" constant="12" id="ei2-Tl-aJ8"/>
+                                <constraint firstItem="BMn-GH-3bp" firstAttribute="leading" secondItem="z89-5c-plv" secondAttribute="leading" constant="4" id="ei2-Tl-aJ8"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZx-Le-6pg">
@@ -103,6 +104,6 @@
         </view>
     </objects>
     <resources>
-        <image name="uncheck" width="120" height="120"/>
+        <image name="uncheck" width="100" height="100"/>
     </resources>
 </document>
