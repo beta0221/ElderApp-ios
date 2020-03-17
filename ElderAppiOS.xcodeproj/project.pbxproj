@@ -37,6 +37,7 @@
 		CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD736855239CA2CC00B7690A /* ProductCVC.swift */; };
 		CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */; };
 		CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */; };
+		CD7D7631241FC05C0028FCB5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7D7630241FC05C0028FCB5 /* WebViewController.swift */; };
 		CDC346252371988200E44069 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC346242371988200E44069 /* Common.swift */; };
 		CDC3462723719A7500E44069 /* EventPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3462623719A7500E44069 /* EventPageVC.swift */; };
 		CDC482D72371BB300038AF34 /* EventDetailPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC482D62371BB300038AF34 /* EventDetailPageVC.swift */; };
@@ -84,6 +85,7 @@
 		CD736855239CA2CC00B7690A /* ProductCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCVC.swift; sourceTree = "<group>"; };
 		CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMoneyVC.swift; sourceTree = "<group>"; };
 		CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyVC.swift; sourceTree = "<group>"; };
+		CD7D7630241FC05C0028FCB5 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		CDC346242371988200E44069 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		CDC3462623719A7500E44069 /* EventPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPageVC.swift; sourceTree = "<group>"; };
 		CDC482D62371BB300038AF34 /* EventDetailPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPageVC.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				CD736853239CA29C00B7690A /* ShopPageVC.swift */,
 				CD0F5968239CAE3500ED495A /* ProductDetailPageVC.swift */,
 				CD0F5970239CDE5100ED495A /* LocationDetailVC.swift */,
+				CD7D7630241FC05C0028FCB5 /* WebViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				CDEE2C6B23704C0700C2754E /* TransCVC.swift in Sources */,
 				CD10C811237124E500029C90 /* EventCVC.swift in Sources */,
 				9CE3F8F9236FE4B5008B783B /* Transaction.swift in Sources */,
+				CD7D7631241FC05C0028FCB5 /* WebViewController.swift in Sources */,
 				CD6397622379A8FD00794788 /* StatementVC.swift in Sources */,
 				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
 				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
@@ -485,7 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -493,7 +497,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fullygarden.ElderAppiOS;
 				PRODUCT_NAME = "銀髮學院";
 				SWIFT_VERSION = 5.0;
@@ -506,7 +510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -514,7 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fullygarden.ElderAppiOS;
 				PRODUCT_NAME = "銀髮學院";
 				SWIFT_VERSION = 5.0;

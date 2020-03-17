@@ -26,6 +26,8 @@ class IndexPageVC: UIViewController {
     @IBOutlet weak var myWalletLabel: UILabel!
     @IBOutlet weak var myLevelLabel: UILabel!
     
+    @IBOutlet weak var orgRankLabel: UILabel!
+    @IBOutlet weak var orgRankOutterView: UIView!
     
     @IBAction func unwind_IndexPageVC(_ sender:UIStoryboardSegue){}
     
@@ -65,6 +67,27 @@ class IndexPageVC: UIViewController {
                     self.myNameLabel.text = response["name"] as? String
                     self.myWalletLabel.text = "\(response["wallet"] as? Int ?? 0)"
                     self.myLevelLabel.text = "\(response["rank"] as? Int ?? 0)"
+                    
+                    if (response["org_rank"] as? Int) != nil{
+                        let org_rank = response["org_rank"] as! Int
+                        if(org_rank > 1){
+                            self.orgRankOutterView.isHidden = false
+                            switch org_rank {
+                            case 2:
+                                self.orgRankLabel.text = "小天使"
+                            case 3:
+                                self.orgRankLabel.text = "大天使"
+                            case 4:
+                                self.orgRankLabel.text = "守護天使"
+                            case 5:
+                                self.orgRankLabel.text = "領航天使"
+                            default:
+                                break
+                            }
+                        }
+                    }else{
+                        self.orgRankOutterView.isHidden = true
+                    }
                 }else{
                     print("token 過期 重新登入")
                     self.autoReLogin()

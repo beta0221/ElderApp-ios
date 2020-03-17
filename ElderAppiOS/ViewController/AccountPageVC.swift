@@ -61,7 +61,7 @@ class AccountPageVC: UIViewController {
     }
     
     private func loadAccountData(){
-            service = Service()
+            
             service.MyAccountRequest(completion: { result in switch result{
                 case .success(let res):
                     
