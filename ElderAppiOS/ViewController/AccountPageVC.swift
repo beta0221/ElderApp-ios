@@ -188,9 +188,10 @@ extension UIImageView{
             }
             
             DispatchQueue.main.async {
-                let imageToCache = UIImage(data: data!)
-                imageCache.setObject(imageToCache!, forKey: urlString as AnyObject)
-                self.image = imageToCache
+                if let imageToCache = UIImage(data: data!){
+                    imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
+                    self.image = imageToCache
+                }   
             }
             
         }
