@@ -64,9 +64,9 @@ class Common{
 extension UIViewController{
     
     func addDismissButton(){
-        if #available(iOS 13, *) {
-            return
-        }
+//        if #available(iOS 13, *) {
+//            return
+//        }
         let button = UIButton()
         let img = UIImage(named: "back")
         button.setImage(img, for: .normal)
