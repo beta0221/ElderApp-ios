@@ -19,25 +19,31 @@ class TransCVC: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
-    func setTransCell(tran:TransactionElement){
+    
+    
+    func setCell(tran:NSDictionary){
         backView.layer.cornerRadius = 8
-        if(tran.event == "" || tran.event == nil){
+        let event = tran["event"] as? String ?? ""
+        if(event.isEmpty){
             eventLabel.text = "無"
         }else{
-            eventLabel.text = tran.event
+            eventLabel.text = event
         }
         
-        targetLabel.text = tran.targetName
-        dateLabel.text = tran.createdAt?.substring(to: 10)
+        targetLabel.text = tran["target_name"] as? String
+        dateLabel.text = "(\((tran["created_at"] as? String)?.substring(to: 10) ?? ""))"
         
-        
-        if(tran.giveTake == 1){
-            amountLabel.text = "+\(tran.amount ?? 0)"
-            amountLabel.textColor = UIColor(red: 1/255, green: 144/255, blue: 35/255, alpha: 1)
-        }else{
-            amountLabel.text = "-\(tran.amount ?? 0)"
-            amountLabel.textColor = UIColor(red: 194/255, green: 24/255, blue: 16/255, alpha: 1)
+        let amount = tran["amount"] as? Int ?? 0
+        if let giveTake = tran["give_take"] as? Int{
+            if(giveTake == 1){
+                amountLabel.text = "+\(amount)"
+                amountLabel.textColor = UIColor(red: 1/255, green: 144/255, blue: 35/255, alpha: 1)
+            }else{
+                amountLabel.text = "-\(amount)"
+                amountLabel.textColor = UIColor(red: 194/255, green: 24/255, blue: 16/255, alpha: 1)
+            }
         }
+        
     }
     
 }

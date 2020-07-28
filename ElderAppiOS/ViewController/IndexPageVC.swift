@@ -37,15 +37,6 @@ class IndexPageVC: UIViewController {
         super.viewDidLoad()
 
         bannerView.translatesAutoresizingMaskIntoConstraints=false
-//        panelView1.translatesAutoresizingMaskIntoConstraints=false
-//        panelView2.translatesAutoresizingMaskIntoConstraints=false
-//        panelView3.translatesAutoresizingMaskIntoConstraints=false
-//        NSLayoutConstraint.activate([
-//            bannerView.heightAnchor.constraint(equalToConstant: self.view.frame.width / 2),
-//            panelView1.heightAnchor.constraint(equalToConstant: self.view.frame.width / 2),
-//            panelView2.heightAnchor.constraint(equalToConstant: self.view.frame.width / 2),
-//            panelView3.heightAnchor.constraint(equalToConstant: self.view.frame.width / 2),
-//        ])
         
         let url:URL = URL(string: "\(Service.hostName)/slider.html")!
         let urlRequest:URLRequest = URLRequest(url: url)
@@ -69,26 +60,23 @@ class IndexPageVC: UIViewController {
                     self.myWalletLabel.text = "\(response["wallet"] as? Int ?? 0)"
                     self.myLevelLabel.text = "\(response["rank"] as? Int ?? 0)"
                     
-//                    if (response["org_rank"] as? Int) != nil{
-//                        let org_rank = response["org_rank"] as! Int
-//                        if(org_rank > 1){
-//                            self.orgRankOutterView.isHidden = false
-//                            switch org_rank {
-//                            case 2:
-//                                self.orgRankLabel.text = "小天使"
-//                            case 3:
-//                                self.orgRankLabel.text = "大天使"
-//                            case 4:
-//                                self.orgRankLabel.text = "守護天使"
-//                            case 5:
-//                                self.orgRankLabel.text = "領航天使"
-//                            default:
-//                                break
-//                            }
-//                        }
-//                    }else{
-//                        self.orgRankOutterView.isHidden = true
-//                    }
+                    if let org_rank = response["org_rank"] as? Int{
+                        if(org_rank >= 3){
+                            self.orgRankOutterView.isHidden = false
+                            switch org_rank {
+                            case 3:
+                                self.orgRankLabel.text = "大天使"
+                            case 4:
+                                self.orgRankLabel.text = "守護天使"
+                            case 5:
+                                self.orgRankLabel.text = "領航天使"
+                            default:
+                                break
+                            }
+                        }
+                    }else{
+                        self.orgRankOutterView.isHidden = true
+                    }
                 }else{
                     print("token 過期 重新登入")
                     self.autoReLogin()
@@ -142,6 +130,16 @@ class IndexPageVC: UIViewController {
         vc.modalPresentationStyle = .currentContext
         self.present(vc,animated: true,completion: {
             vc.loadProductList()
+        })
+    }
+    
+    
+    @IBAction func viewMyGroup(_ sender: Any) {
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadMyGroupMember()
         })
     }
     

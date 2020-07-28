@@ -14,7 +14,10 @@ class TransPageVC: UIViewController {
     
     @IBOutlet weak var transCollectionView: UICollectionView!
 
-    var Trans:Transaction?
+    var TransList:[NSDictionary] = []
+    
+    var page:Int = 1
+    var hasNextPage:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,21 +25,28 @@ class TransPageVC: UIViewController {
         transCollectionView.dataSource = self
         transCollectionView.delegate = self
         
-        
-        let service = Service()
-        service.GetTransHistory(completion: { result in
+        self.getTransHistory()
+    }
+    
+    private func getTransHistory(){
+        Spinner.start()
+        AD.service.GetTransHistory(page:self.page,completion: { result in
             switch result{
             case .success(let res):
-                self.Trans = res
+                self.TransList += res["transList"] as? [NSDictionary] ?? []
+                let hasNextPage = res["hasNextPage"] as? Bool ?? false
+                if(hasNextPage){
+                    self.page += 1
+                }
+                self.hasNextPage = hasNextPage
                 self.transCollectionView.reloadData()
+                DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
                 print(error)
-        
+                DispatchQueue.main.async {Spinner.stop()}
             }
             
         })
-        
-        
     }
     
 
@@ -45,21 +55,24 @@ class TransPageVC: UIViewController {
 
 extension TransPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.Trans?.count ?? 0
+        return self.TransList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let transCVC:TransCVC = collectionView.dequeueReusableCell(withReuseIdentifier: "TransCVC", for: indexPath) as! TransCVC
         
-        transCVC.setTransCell(tran: self.Trans![indexPath.row])
-        
+        transCVC.setCell(tran: self.TransList[indexPath.row])
         return transCVC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.transCollectionView.frame.width
-        return CGSize(width: width, height: 120.0)
+        let width = self.transCollectionView.frame.size.width
+        return CGSize(width: width, height: 140.0)
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if(indexPath.row == TransList.count - 1 && hasNextPage){
+            self.getTransHistory()
+        }
+    }
 }

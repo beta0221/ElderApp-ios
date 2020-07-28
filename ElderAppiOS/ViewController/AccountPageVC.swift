@@ -32,6 +32,8 @@ class AccountPageVC: UIViewController {
     
     @IBOutlet weak var userIdNumberLabel: UILabel!
     
+    @IBOutlet weak var userExpiryDateLabel: UILabel!
+    
     @IBOutlet weak var userIsValidLabel: UILabel!
     
     @IBOutlet weak var userQrCodeImage: UIImageView!
@@ -43,8 +45,6 @@ class AccountPageVC: UIViewController {
     @IBOutlet weak var extendBtn_view: UIView!
     
     var qrcodeImage:CIImage!
-    
-    var service = Service()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,14 +61,14 @@ class AccountPageVC: UIViewController {
     }
     
     private func loadAccountData(){
-            
-            service.MyAccountRequest(completion: { result in switch result{
+            Spinner.start()
+            AD.service.MyAccountRequest(completion: { result in switch result{
                 case .success(let res):
                     
                 if((res["img"] as? String ?? "null") == "null"){
                     self.userImage.image = UIImage(named: "user_default")
                 }else{
-                    let img_url = "\(self.service.host)/images/users/\(res["id"] as! Int)/\(res["img"] as! String)"
+                    let img_url = "\(Service.hostName)/images/users/\(res["id"] as! Int)/\(res["img"] as! String)"
                     self.userImage.loadImageUsingUrlString(urlString: img_url)
                 }
                     
@@ -84,10 +84,13 @@ class AccountPageVC: UIViewController {
                 self.userPhoneLabel.text = res["phone"] as? String ?? ""
                 self.userAddressLabel.text = res["address"] as? String ?? ""
                 self.userIdNumberLabel.text = res["id_number"] as? String ?? ""
+                
+                self.userExpiryDateLabel.text = res["expiry_date"] as? String ?? ""
+                
                 if(res["valid"] as! Int == 1){
                     self.extendBtn_view.isHidden = true
                     self.userIsValidLabel.text = "有效"
-                    self.userIsValidLabel.textColor = .green
+                    self.userIsValidLabel.textColor = UIColor(red: 1/255, green: 144/255, blue: 35/255, alpha: 1)
                 }else{
                     self.extendBtn_view.isHidden = false
                     self.userIsValidLabel.text = "待付款"
@@ -101,9 +104,10 @@ class AccountPageVC: UIViewController {
                 guard let qrcodeImage = qrFilter.outputImage else { return }
                 let scaledQrImage = qrcodeImage.transformed(by: CGAffineTransform(scaleX: 10, y: 10))
                 self.userQrCodeImage.image = UIImage(ciImage:scaledQrImage)
-                
+                DispatchQueue.main.async {Spinner.stop()}
                 case .failure(let error):
                     print(error)
+                    DispatchQueue.main.async {Spinner.stop()}
                 }
                 
             })
@@ -135,16 +139,18 @@ class AccountPageVC: UIViewController {
     
     @IBAction func extendRequest(_ sender: Any) {
         
-        let service = Service()
-        service.ExtandRequest(completion: {result in
+        Spinner.start()
+        AD.service.ExtandRequest(completion: {result in
             switch result{
             case .success(let res):
+                DispatchQueue.main.async {Spinner.stop()}
                 let controller = UIAlertController(title: "訊息", message:res, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "確定", style: .default, handler:nil)
                 controller.addAction(okAction)
                 self.present(controller, animated: true, completion:nil)
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {Spinner.stop()}
             }
         })
     }

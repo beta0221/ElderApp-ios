@@ -21,8 +21,8 @@ class ProductCVC: UICollectionViewCell {
         
         outterView.Theme()
         
-        let urlString = "\(Service.hostName)/images/products/\(product["slug"] as? String ?? "")/\(product["img"] as? String ?? "")"
-        productImage.loadImageUsingUrlString(urlString: urlString)
+        let imgUrl = product["imgUrl"] as? String ?? ""
+        productImage.loadImageUsingUrlString(urlString: imgUrl)
         nameLabel.text = "商品：\(product["name"] as? String ?? "")"
         priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
     }

@@ -558,24 +558,26 @@ struct Service {
     
     
     //Get 交易紀錄
-    func GetTransHistory(completion:@escaping(Result<Transaction,APIError>)->Void){
+    func GetTransHistory(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         // access from core data
-        guard let user_id = UserDefaults.standard.getUserId() else {return}
-        let requestString = "\(host)/api/trans-history/\(user_id)"
+        let requestString = "\(host)/api/transaction/myTransactionHistory?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
             return
             }
             do{
-                let transactions = try JSONDecoder().decode(Transaction.self, from: jsonData)
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                
+                //let transactions = try JSONDecoder().decode(Transaction.self, from: jsonData)
                 DispatchQueue.main.async{
-                    completion(.success(transactions))
+                    completion(.success(json))
                 }
             }catch{
                 DispatchQueue.main.async{
@@ -726,8 +728,8 @@ struct Service {
     }
     
     //所有商品
-    func GetAllProducts(completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        let requestString = "\(host)/api/getAllProduct"
+    func GetProductList(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        let requestString = "\(host)/api/productList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")

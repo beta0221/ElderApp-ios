@@ -13,8 +13,12 @@ class ShopPageVC: UIViewController {
     //所有商品
     
     @IBOutlet weak var showProductButton: UIButton!
-    var products:[NSDictionary]?
-    var cats:[NSDictionary]?
+    
+    var productList:[NSDictionary] = []
+    
+    var page:Int = 1
+    var hasNextPage:Bool = true
+    
     @IBOutlet weak var productCollectionView: UICollectionView!
     
     //已兌換
@@ -43,7 +47,7 @@ class ShopPageVC: UIViewController {
         productCollectionView.dataSource = self
         myOrderCollectionView.delegate = self
         myOrderCollectionView.dataSource = self
-        getAllProducts()
+        getProducts()
     }
     
     func loadMyOrderListView(){
@@ -51,16 +55,24 @@ class ShopPageVC: UIViewController {
         contentView.addAndFill(view: MyOrderListView)
     }
     
-    func getAllProducts(){
-        AD.service.GetAllProducts(completion: {result in
+    private func getProducts(){
+        Spinner.start()
+        AD.service.GetProductList(page:self.page,completion: {result in
             switch result{
             case .success(let res):
-                self.products =  res["products"] as? [NSDictionary]
-                self.cats = res["cats"] as? [NSDictionary]
+                self.productList +=  res["productList"] as? [NSDictionary] ?? []
+                
+                let hasNextPage = res["hasNextPage"] as? Bool ?? false
+                if(hasNextPage){
+                    self.page += 1
+                }
+                self.hasNextPage = hasNextPage
+                
                 self.productCollectionView.reloadData()
-                break
+                DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {Spinner.stop()}
             }
         })
     }
@@ -95,7 +107,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == productCollectionView){
-            return products?.count ?? 0
+            return productList.count
         }
         
         return myOrder?.count ?? 0
@@ -107,7 +119,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         if(collectionView == productCollectionView){
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCVC", for: indexPath) as! ProductCVC
             
-            let product = products![indexPath.row]
+            let product = self.productList[indexPath.row]
             cell.setProductCVC(product: product)
             return cell
         }
@@ -129,7 +141,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC else{
                 return
             }
-            let product = products![indexPath.row]
+            let product = self.productList[indexPath.row]
             vc.slug = product["slug"] as? String ?? ""
             self.present(vc,animated: true,completion: nil)
         }
@@ -139,6 +151,13 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = self.productCollectionView.frame.size.width
         return CGSize(width: w, height: 240.0)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if(indexPath.row == productList.count - 1 && hasNextPage){
+            self.getProducts()
+        }
     }
     
 }

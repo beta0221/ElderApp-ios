@@ -17,7 +17,7 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addDismissButton()
+        //addDismissButton()
     }
     
     func loadProductList(){
@@ -28,26 +28,17 @@ class WebViewController: UIViewController {
         webview.load(urlRequest)
     }
     
-//    private func getIdCode(){
-//        AD.service.MyAccountRequest(completion: {result in
-//            switch result{
-//            case .success(let res):
-//                if let id_code = res["id_code"] as? String{
-//                    self.loadWebView(id_code: id_code)
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        })
-//    }
+    func loadMyGroupMember(){
+        titleLabel.text = "我的組織"
+        let urlString = "\(Service.hostName)/memberGroupMembers?token=\(UserDefaults.standard.getToken() ?? "")"
+        guard let url = URL(string: urlString) else { return }
+        let urlRequest = URLRequest(url: url)
+        webview.load(urlRequest)
+    }
     
-//    private func loadWebView(id_code:String){
-//        let urlString = "\(Service.hostName)/member_tree/\(id_code)"
-//        guard let url = URL(string: urlString) else {return}
-//        let urlRequest = URLRequest(url: url)
-//        webview.load(urlRequest)
-//    }
+    @IBAction func exit(_ sender: Any) {
+        dismiss(animated:true,completion: nil)
+    }
     
-
 
 }
