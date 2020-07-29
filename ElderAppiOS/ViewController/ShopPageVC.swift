@@ -15,7 +15,6 @@ class ShopPageVC: UIViewController {
     @IBOutlet weak var showProductButton: UIButton!
     
     var productList:[NSDictionary] = []
-    
     var page:Int = 1
     var hasNextPage:Bool = true
     
@@ -25,7 +24,10 @@ class ShopPageVC: UIViewController {
     @IBOutlet weak var showMyOrderButton: UIButton!
     @IBOutlet var MyOrderListView: UIView!
     @IBOutlet weak var myOrderCollectionView: UICollectionView!
-    var myOrder:[NSDictionary]?
+    
+    var myOrderList:[NSDictionary] = []
+    var myOrderPage:Int = 1
+    var myOrderHasNextPage:Bool = true
     
     //
     @IBOutlet weak var contentView: UIView!
@@ -76,21 +78,39 @@ class ShopPageVC: UIViewController {
             }
         })
     }
+    private func getMyOrderList(){
+        Spinner.start()
+        AD.service.MyOrderList(page:self.myOrderPage,completion: {result in
+            switch result{
+            case .success(let res):
+                self.myOrderList += res["orderList"] as? [NSDictionary] ?? []
+                
+                let hasNextPage = res["hasNextPage"] as? Bool ?? false
+                if(hasNextPage){
+                    self.myOrderPage += 1
+                }
+                self.myOrderHasNextPage = hasNextPage
+                
+                self.myOrderCollectionView.reloadData()
+                DispatchQueue.main.async {Spinner.stop()}
+            case .failure(let error):
+                print(error)
+                DispatchQueue.main.async {Spinner.stop()}
+            }
+        })
+    }
+    
     
     @IBAction func showMyOrderList(_ sender: Any) {
         MyOrderListView.isHidden=false
         showMyOrderButton.backgroundColor = UIColor(red: 254/255, green: 114/255, blue: 53/255, alpha: 100)
         showProductButton.backgroundColor = UIColor(red: 254/255, green: 167/255, blue: 53/255, alpha: 100)
-        AD.service.MyOrderList(completion: {result in
-            switch result{
-            case .success(let res):
-                self.myOrder = res
-                self.myOrderCollectionView.reloadData()
-                break
-            case .failure(let error):
-                print(error)
-            }
-        })
+        
+        self.myOrderPage = 1
+        self.myOrderHasNextPage = true
+        self.myOrderList = []
+        self.getMyOrderList()
+        
     }
     
     @IBAction func showProductList(_ sender: Any) {
@@ -110,7 +130,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             return productList.count
         }
         
-        return myOrder?.count ?? 0
+        return myOrderList.count
         
     }
     
@@ -126,7 +146,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyOrderCVC", for: indexPath) as! MyOrderCVC
         
-        let order = myOrder![indexPath.row]
+        let order = myOrderList[indexPath.row]
         cell.setMyOrderCVC(order: order)
         return cell
         
@@ -155,8 +175,14 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if(indexPath.row == productList.count - 1 && hasNextPage){
-            self.getProducts()
+        if(collectionView == productCollectionView){
+            if(indexPath.row == productList.count - 1 && hasNextPage){
+                self.getProducts()
+            }
+        }else if(collectionView == myOrderCollectionView){
+            if(indexPath.row == myOrderList.count - 1 && myOrderHasNextPage){
+                self.getMyOrderList()
+            }
         }
     }
     

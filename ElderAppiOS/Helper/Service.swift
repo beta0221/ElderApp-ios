@@ -838,8 +838,8 @@ struct Service {
     }
     
     //我的兌換清單
-    func MyOrderList(completion:@escaping(Result<[NSDictionary],APIError>)->Void){
-        let requestString = "\(host)/api/my-order-list"
+    func MyOrderList(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        let requestString = "\(host)/api/order/myOrderList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -852,7 +852,7 @@ struct Service {
             }
             do{
                 self.printJsonData(jsonData: jsonData)
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [NSDictionary]
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
                 DispatchQueue.main.async{
                     completion(.success(json))
                 }

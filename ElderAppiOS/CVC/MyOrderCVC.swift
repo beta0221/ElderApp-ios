@@ -22,10 +22,10 @@ class MyOrderCVC: UICollectionViewCell {
     func setMyOrderCVC(order:NSDictionary){
         
         outterView.Theme()
-        let urlString = "\(Service.hostName)\(order["img"] as? String ?? "")"
+        let urlString = order["imgUrl"] as? String ?? ""
         productImage.loadImageUsingUrlString(urlString: urlString)
-        productNameLabel.text = "產品:\(order["product"] as? String ?? "")"
-        locationLabel.text = "據點:\(order["location"] as? String ?? "")"
+        productNameLabel.text = "產品:\(order["name"] as? String ?? "")"
+        locationLabel.text = "據點:\(order["location_name"] as? String ?? "")"
         addressLabel.text = "地址:\(order["address"] as? String ?? "")"
         purchaseDateLabel.text = "兌換時間:\(order["created_at"] as? String ?? "")"
         if(order["receive"] as? Int == 1){
