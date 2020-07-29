@@ -44,7 +44,9 @@ class LocationCell: UIView {
     func commonInit(){
         let name = location["name"] as? String ?? ""
         locationNameLabel.text = "\(name)(數量:\(self.quantity.description))"
-        checkButton.tag = location!["id"] as! Int
+        let location_id = location["location_id"] as? Int ?? 0
+        checkButton.tag = location_id
+        self.tag = location_id
     }
     
     func uncheckButton(){

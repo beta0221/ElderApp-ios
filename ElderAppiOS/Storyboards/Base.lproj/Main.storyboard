@@ -2402,10 +2402,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="531"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSP-Bg-Uky">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="760"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6DA-yK-vHr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="760"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dav-TW-ggn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
@@ -2530,6 +2530,13 @@
                                                                             <constraint firstAttribute="trailing" secondItem="veW-aj-arS" secondAttribute="trailing" constant="12" id="tbe-t2-zzv"/>
                                                                             <constraint firstItem="veW-aj-arS" firstAttribute="leading" secondItem="ftS-yC-6X6" secondAttribute="leading" constant="12" id="vtI-QP-j65"/>
                                                                             <constraint firstAttribute="bottom" secondItem="veW-aj-arS" secondAttribute="bottom" id="yR4-hj-SbK"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-d2-fMJ">
+                                                                        <rect key="frame" x="0.0" y="720" width="375" height="40"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="XtO-ty-uWw"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>

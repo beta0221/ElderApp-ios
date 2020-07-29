@@ -19,11 +19,7 @@ class ProductDetailPageVC: UIViewController {
     @IBOutlet weak var infoLabel: UILabel!
     
     @IBOutlet weak var LocationStack: UIStackView!
-    
-    var locationArray:[NSDictionary] = []
     var locationCellArray:[LocationCell] = []
-    var locationQuantity:[Int:Int] = [:]
-    
     var selectedLocationId:Int?
     
     override func viewDidLoad() {
@@ -33,67 +29,53 @@ class ProductDetailPageVC: UIViewController {
     }
     
     func getProductDetail(){
+        //slug = "P1575710295"    //測試產品
         if(slug == nil){
             self.dismiss(animated: false, completion: nil)
             return
         }
         
+        Spinner.start()
         AD.service.GetProductDetail(slug: slug!, completion: {result in
             switch result{
             case .success(let res):
                 
-                let urlString = "\(Service.hostName)/images/products/\(res["slug"] as? String ?? "")/\(res["img"] as? String ?? "")"
-                self.productImage.loadImageUsingUrlString(urlString: urlString)
-                self.nameLabel.text = "商品：\(res["name"] as? String ?? "")"
-                self.priceLabel.text = "樂幣：\((res["price"] as? Int)?.description ?? "")"
-                self.infoLabel.text = res["info"] as? String ?? ""
+                guard let product = res["product"] as? NSDictionary else{ return }
                 
-                let locations = res["location"] as? [NSDictionary]
-                for l in locations!{
-                    let location_id = l["location_id"] as! Int
-                    let quantity = l["quantity"] as! Int
-                    self.locationQuantity[location_id] = quantity
-                }
-                self.getLocation()
-                break
+                let urlString = product["imgUrl"] as? String ?? ""
+                self.productImage.loadImageUsingUrlString(urlString: urlString)
+                self.nameLabel.text = "商品：\(product["name"] as? String ?? "")"
+                self.priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
+                self.infoLabel.text = product["info"] as? String ?? ""
+                
+                let locationList = res["locationList"] as? [NSDictionary] ?? []
+                self.loadLocation(locationList: locationList)
+                
+                DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {Spinner.stop()}
             }
         })
         
     }
     
-    func getLocation(){
-        AD.service.GetLocation(completion: {result in
-            switch result{
-            case .success(let res):
-                self.locationArray = res
-                self.loadLocation()
-                break
-            case .failure(let error):
-                print(error)
-            }
-        })
-    }
     
-    func loadLocation(){
+    
+    private func loadLocation(locationList:[NSDictionary]){
         self.LocationStack.subviews.forEach({$0.removeFromSuperview()})
-        for l in self.locationArray{
-            let location_id = l["id"] as! Int
-            if(self.locationQuantity.keys.contains(location_id)){
-                let quantity = self.locationQuantity[location_id]
-                var isCheck = false
-                if(location_id == self.selectedLocationId){
-                    isCheck = true
-                }
-                let locationView = LocationCell(location: l,quantity:quantity!,isCheck: isCheck)
-                locationView!.tag = location_id
-                self.locationCellArray.append(locationView!)
-                locationView?.delegate = self
-                self.LocationStack.addArrangedSubview(locationView!)
-                locationView?.translatesAutoresizingMaskIntoConstraints=false
-                locationView?.heightAnchor.constraint(equalToConstant: 56.0).isActive=true
-            }
+        self.locationCellArray = []
+        
+        for location in locationList{
+            
+            let quantity = location["quantity"] as? Int ?? 0
+            guard let locationCell = LocationCell(location: location, quantity: quantity) else { return }
+            self.locationCellArray.append(locationCell)
+            locationCell.delegate = self
+            locationCell.translatesAutoresizingMaskIntoConstraints = false
+            self.LocationStack.addArrangedSubview(locationCell)
+            locationCell.heightAnchor.constraint(equalToConstant: 56.0).isActive=true
+            
         }
     }
     
@@ -103,24 +85,20 @@ class ProductDetailPageVC: UIViewController {
             return
         }
         
+        Spinner.start()
         AD.service.PurchaseProduct(location_id: self.selectedLocationId!, product_slug: self.slug!, completion: {result in
             switch result{
             case .success(let res):
                 if(res == "success"){
                     Common.SystemAlert(Title: "提醒", Body: "兌換成功", SingleBtn: "確定", viewController: self)
-                    
-                    var q = self.locationQuantity[self.selectedLocationId!]
-                    q! -= 1
-                    self.locationQuantity[self.selectedLocationId!] = q!
-                    self.loadLocation()
-                    
+                    self.getProductDetail()
                 }else{
                     Common.SystemAlert(Title: "提醒", Body: res, SingleBtn: "確定", viewController: self)
                 }
-                
-                break
+                DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {Spinner.stop()}
             }
         })
         
@@ -155,9 +133,9 @@ extension ProductDetailPageVC:LocationCellDelegate{
     
     func select(id: Int) {
         
-        for l in self.locationCellArray{
-            if(l.tag == self.selectedLocationId){
-                l.uncheckButton()
+        for cell in self.locationCellArray{
+            if(cell.tag == self.selectedLocationId){
+                cell.uncheckButton()
             }
         }
         self.selectedLocationId = id

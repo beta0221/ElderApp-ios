@@ -757,7 +757,7 @@ struct Service {
     
     //產品內頁
     func GetProductDetail(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        let requestString = "\(host)/api/product/\(slug)"
+        let requestString = "\(host)/api/product/productDetail/\(slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")

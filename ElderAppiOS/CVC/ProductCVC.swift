@@ -18,7 +18,7 @@ class ProductCVC: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     func setProductCVC(product:NSDictionary){
-        
+        productImage.image = UIImage(named: "event_default")
         outterView.Theme()
         
         let imgUrl = product["imgUrl"] as? String ?? ""
