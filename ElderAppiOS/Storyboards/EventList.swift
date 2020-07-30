@@ -63,7 +63,7 @@ extension EventList:UICollectionViewDelegate,UICollectionViewDataSource,UICollec
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCVC", for: indexPath) as? EventCVC else {
             fatalError("can't dequeue ProductCell")
         }
-        cell.SetEventItem(event: Events![indexPath.row],catDic: self.CategoryDic!,disDic: self.DistrictDic!)
+//        cell.SetEventItem(event: Events![indexPath.row],catDic: self.CategoryDic!,disDic: self.DistrictDic!)
         
         return cell
     }

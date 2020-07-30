@@ -280,24 +280,26 @@ struct Service {
         dataTask.resume()
     }
     
-    //get Event
-    func GetEvents(cat_id:String,district_id:String,completion:@escaping(Result<Event,APIError>)->Void){
-        
-        let requestString = "\(host)/api/getEvents?category=\(cat_id)&district=\(district_id)"
+    //get EventList
+    func GetEventList(page:Int=1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("GetEventList")
+        let requestString = "\(host)/api/event/eventList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
-        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
-            return
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200,
+                let jsonData = data else {
+                completion(.failure(.responseProblem))
+                return
             }
             do{
-                let events = try JSONDecoder().decode(Event.self, from: jsonData)
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
                 DispatchQueue.main.async{
-                    completion(.success(events))
+                    completion(.success(json))
                 }
             }catch{
                 DispatchQueue.main.async{
@@ -310,30 +312,52 @@ struct Service {
     }
     
     //get 使用者參加的 Events
-    func GetUserEvent(completion:@escaping(Result<Event,APIError>)->Void){
-        
-        let requestString = "\(host)/api/myevent"
+    func GetMyEventList(page:Int=1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("GetMyEventList")
+        let requestString = "\(host)/api/event/myEventList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
-        urlRequest.httpMethod = "POST"
+        urlRequest.httpMethod = "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        guard let user_id = UserDefaults.standard.getUserId() else{
-            return
-        }
-        let postString = "id=\(user_id)"
-        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
-
-        
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             completion(.failure(.responseProblem))
             return
             }
             do{
-//                self.printJsonData(jsonData: jsonData)
-                let events = try JSONDecoder().decode(Event.self, from: jsonData)
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
                 DispatchQueue.main.async{
-                    completion(.success(events))
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    //活動內頁 api
+    func GetEventDetail(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("GetEventDetail")
+        let requestString = "\(host)/api/event/eventDetail/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
                 }
             }catch{
                 DispatchQueue.main.async{

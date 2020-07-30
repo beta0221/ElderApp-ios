@@ -11,10 +11,9 @@ import UIKit
 class EventDetailPageVC: UIViewController {
 
     
-    var event:EventElement?
-    
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var rewardLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var deadLineLabel: UILabel!
     @IBOutlet weak var eventBodyTextview: UITextView!
@@ -25,9 +24,8 @@ class EventDetailPageVC: UIViewController {
     
     var updateEventDelegate:UpdateEventDelegate?
     
-    var service = Service()
-    
-    var hasJoined = false
+    var slug:String = ""
+    var isParticipated:Bool = false
     
     @IBAction func unwindEventDetailPageVC(segue: UIStoryboardSegue){}
     
@@ -35,31 +33,65 @@ class EventDetailPageVC: UIViewController {
         super.viewDidLoad()
         addDismissButton()
         
-        let urlString = "https://www.happybi.com.tw/images/events/\(event?.slug ?? "")/\(event?.image ?? "")"
-        eventImageView.loadImageUsingUrlString(urlString: urlString)
-        eventTitleLabel.text = event?.title
-        dateTimeLabel.text = "活動時間:\(event?.dateTime ?? "")"
-        deadLineLabel.text = "截止日期:\(event?.deadline ?? "")"
-        eventBodyTextview.text = event?.body
-        
-        checkStatus()
+        eventImageView.image = UIImage(named: "event_default")
+        self.getEventDetail()
     }
     
-    func checkStatus(){
-        cancelEventButton.isHidden = !hasJoined
-        rewardAndArriveButton.isHidden = !hasJoined
-        joinEventButton.isHidden = hasJoined
+    private func checkParticipateStatus(){
+        cancelEventButton.isHidden = !isParticipated
+        rewardAndArriveButton.isHidden = !isParticipated
+        joinEventButton.isHidden = isParticipated
         
+    }
+    
+    private func getEventDetail(){
+        if(self.slug.isEmpty){return}
+        Spinner.start()
+        AD.service.GetEventDetail(slug: self.slug, completion: {result in
+            switch result{
+            case .success(let res):
+                guard let event = res["event"] as? NSDictionary else {
+                    DispatchQueue.main.async {Spinner.stop()}
+                    return
+                }
+                self.isParticipated = res["isParticipated"] as? Bool ?? false
+                
+                if let imgUrl = event["imgUrl"] as? String{
+                    self.eventImageView.loadImageUsingUrlString(urlString: imgUrl)
+                }
+                
+                self.eventTitleLabel.text = event["title"] as? String ?? ""
+                self.rewardLabel.text = (event["reward"] as? Int ?? 0).description
+                self.eventBodyTextview.text = event["body"] as? String ?? ""
+                
+                if let type = event["type"] as? Int{
+                    if(type == 1){
+                        self.dateTimeLabel.text = "活動時間：\(event["dateTime"] as? String ?? "")"
+                        self.deadLineLabel.text = "截止日期：\(event["deadline"] as? String ?? "")"
+                    }else{
+                        self.dateTimeLabel.text = "經常性活動"
+                        self.deadLineLabel.text = ""
+                    }
+                }
+                
+                self.checkParticipateStatus()
+                
+                DispatchQueue.main.async {Spinner.stop()}
+            case .failure(let error):
+                print(error)
+                DispatchQueue.main.async {Spinner.stop()}
+            }
+        })
     }
     
     @IBAction func joinButton(_ sender: Any) {
-        service.JoinEventRequest(event_slug: (event?.slug!)!, completion: {result in
+        AD.service.JoinEventRequest(event_slug: self.slug, completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] as! Int == 1){
                     Common.SystemAlert(Title: "成功", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self)
-                    self.hasJoined = true
-                    self.checkStatus()
+                    self.isParticipated = true
+                    self.checkParticipateStatus()
                     self.updateEventDelegate?.updateMyEvent()
                 }else{
                     Common.SystemAlert(Title: "訊息", Body: (res["m"] as! String), SingleBtn:"確定", viewController: self)
@@ -73,13 +105,13 @@ class EventDetailPageVC: UIViewController {
     
     @IBAction func cancelButton(_ sender: Any) {
         
-        service.CancelEventRequest(event_slug: (event?.slug!)!, completion: {result in
+        AD.service.CancelEventRequest(event_slug: self.slug, completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] as! Int == 1){
                     Common.SystemAlert(Title: "成功", Body: (res["m"] as! String), SingleBtn: "確定", viewController: self)
-                    self.hasJoined = false
-                    self.checkStatus()
+                    self.isParticipated = false
+                    self.checkParticipateStatus()
                     self.updateEventDelegate?.updateMyEvent()
 
                 }else{
@@ -94,7 +126,7 @@ class EventDetailPageVC: UIViewController {
     }
     
     @IBAction func isUserArrive(_ sender: Any) {
-        service.IsUserArrive(slug: self.event?.slug ?? "", completion: {result in
+        AD.service.IsUserArrive(slug: self.slug, completion: {result in
             switch result{
             case .success(let res):
                 let s = res["s"] as! Int
@@ -132,7 +164,7 @@ class EventDetailPageVC: UIViewController {
     
     func showPassPermitVC(){
         if let controller = storyboard?.instantiateViewController(withIdentifier: "PassPermitVC") as? PassPermitVC{
-            controller.eventTitle = self.event?.title ?? ""
+            controller.eventTitle = self.eventTitleLabel.text
             self.present(controller, animated: true, completion: nil)
         }
     }

@@ -11,50 +11,44 @@ import UIKit
 class EventCVC: UICollectionViewCell {
 
     @IBOutlet weak var backView: UIView!
-    
-    @IBOutlet weak var eventImage: UIImageView!
-    
-    @IBOutlet weak var eventStackview: UIStackView!
-    
+    @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var categoryLabel: UILabel!
-    
-    @IBOutlet weak var locationLabel: UILabel!
-    
-    @IBOutlet weak var peopleLabel: UILabel!
-    
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var peopleView: UIView!
+    @IBOutlet weak var peopleLabel: UILabel!
+    @IBOutlet weak var rewardLabel: UILabel!
     
-    var event:EventElement?
-    
-//    var CategoryDic:Dictionary<Int,String>?
-//    var DistrictDic:Dictionary<Int,String>?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    func SetEventItem(event:EventElement,catDic:Dictionary<Int,String>,disDic:Dictionary<Int,String>){
-        self.event = event
-        backView.layer.cornerRadius = 8
-        eventImage.image = UIImage(named: "event_default")
+    func setCell(event:NSDictionary){
         
-        if(event.image != "" || event.image != nil){
-            let urlString = "\(Service.hostName)/images/events/\(event.slug ?? "")/\(event.image ?? "")"
-            eventImage.loadImageUsingUrlString(urlString:urlString)
+        backView.Theme()
+        eventImageView.image = UIImage(named: "event_default")
+        
+        if let imgUrl = event["imgUrl"] as? String{
+            eventImageView.loadImageUsingUrlString(urlString: imgUrl)
         }
         
-        eventImage.contentMode = .scaleAspectFill
-        eventImage.layer.cornerRadius = eventImage.frame.width / 2
+        titleLabel.text = event["name"] as? String
+        categoryLabel.text = "\(event["cat"] as? String ?? "")(\(event["district"] as? String ?? ""))"
         
-        titleLabel.text = event.title
+        rewardLabel.text = ""
+        if let reward = event["reward"] as? Int{
+            rewardLabel.text = reward.description
+        }
         
-        categoryLabel.text = "\(catDic[event.categoryID!] ?? "")-\(disDic[event.districtID!] ?? "")"
-        locationLabel.text = event.location
-        dateLabel.text = event.dateTime
-        peopleLabel.text = "人數：\(event.people ?? 0) / \(event.maximum ?? 0)"
+        
+        if let type = event["type"] as? Int{
+            if(type == 1){
+                let date = (event["dateTime"] as? String ?? "").substring(to: 10)
+                dateLabel.text = date
+            }else{
+                dateLabel.text = "週期性活動"
+            }
+        }
+        peopleView.clipsToBounds=true
+        peopleView.layer.cornerRadius=4
+        peopleLabel.text = "\((event["people"] as? Int ?? 0).description) / \((event["maximum"] as? Int ?? 0).description)"
+        
     }
     
     

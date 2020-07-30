@@ -42,7 +42,6 @@ class IndexPageVC: UIViewController {
         let urlRequest:URLRequest = URLRequest(url: url)
         bannerWebView.load(urlRequest)
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
