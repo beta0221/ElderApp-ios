@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -347,10 +347,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-8Q-5EY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1084.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1212.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zDK-yf-ptL">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1020.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1148.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-xP-h0D">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
@@ -364,7 +364,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQ6-7l-WJY">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="80"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labelas dfsdfsdafsadfs dajfidsafjiodsa jfiosdajfiodsjfoisdajfiojsdafiojs daoifjis doafjadsf" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvy-vw-LfW">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvy-vw-LfW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="351" height="80"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                                                         <nil key="textColor"/>
@@ -400,13 +400,13 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBL-sh-31Q">
-                                                                <rect key="frame" x="52" y="0.0" width="71.5" height="56"/>
+                                                                <rect key="frame" x="52" y="0.0" width="7" height="56"/>
                                                                 <attributedString key="attributedText">
-                                                                    <fragment content="Reward">
+                                                                    <fragment content="-">
                                                                         <attributes>
                                                                             <color key="NSColor" red="0.99607843137254903" green="0.44705882352941173" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <font key="NSFont" metaFont="systemBold" size="20"/>
-                                                                            <font key="NSOriginalFont" metaFont="systemBold" size="20"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
                                                                 </attributedString>
@@ -429,7 +429,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKY-r4-zGs">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="40"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ot-uL-5fC">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ot-uL-5fC">
                                                                         <rect key="frame" x="0.0" y="0.0" width="351" height="40"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -460,7 +460,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DON-Ib-lNt">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="40"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aO-9V-ish">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aO-9V-ish">
                                                                         <rect key="frame" x="0.0" y="0.0" width="351" height="40"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -491,10 +491,9 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqI-zA-nhr">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="436.5"/>
                                                                 <subviews>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGj-47-4xW">
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="-" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGj-47-4xW">
                                                                         <rect key="frame" x="0.0" y="0.0" width="351" height="436.5"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -516,6 +515,10 @@
                                                             <constraint firstAttribute="trailing" secondItem="cqI-zA-nhr" secondAttribute="trailing" constant="12" id="OGs-Ql-1VJ"/>
                                                             <constraint firstItem="cqI-zA-nhr" firstAttribute="leading" secondItem="wJU-1l-1UQ" secondAttribute="leading" constant="12" id="zP7-Rf-adw"/>
                                                         </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ua6-mt-jBv">
+                                                        <rect key="frame" x="0.0" y="1020.5" width="375" height="128"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -4168,7 +4171,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-e3-dcd">
-                                                                <rect key="frame" x="265" y="12" width="98" height="56"/>
+                                                                <rect key="frame" x="267" y="12" width="96" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="F0c-XI-ezU"/>
                                                                 </constraints>
@@ -4751,9 +4754,6 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
             <point key="canvasLocation" x="-1281" y="-1945"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ooL-OO-cGq"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="academy_min" width="20" height="20"/>
         <image name="account_min" width="20" height="20"/>
@@ -4768,4 +4768,7 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
         <image name="take" width="393" height="400"/>
         <image name="trans" width="393" height="400"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ooL-OO-cGq"/>
+    </inferredMetricsTieBreakers>
 </document>
