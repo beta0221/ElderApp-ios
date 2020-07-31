@@ -42,30 +42,33 @@ class LoginPageVC: UIViewController {
     
     
     @IBAction func login(_ sender: Any) {
-    
         
         guard let email = emailTextfield.text else {return}
         guard let password = passwordTextfield.text else {return}
         
-        let service = Service()
-        service.LoginRequest(Email: email, Password: password,completion: {result in
+        Spinner.start()
+        AD.service.LoginRequest(Email: email, Password: password,completion: {result in
             switch result{
             case .success(let response):
+                DispatchQueue.main.async {Spinner.stop()}
                 if(response["access_token"] != nil){
                     
                     UserHelper.storeUser(response: response, password: password)
                     self.navigateToIndexPage()
                     
+                }else if(response["ios_update_url"] != nil){
+                    
+                    let ios_update_url = response["ios_update_url"] as? String ?? ""
+                    guard let url = URL(string: ios_update_url) else { return }
+                    UIApplication.shared.open(url)
                     
                 }else{
                     print("帳號密碼錯誤")
-                    let controller = UIAlertController(title: "錯誤", message: "帳號密碼錯誤", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    controller.addAction(okAction)
-                    self.present(controller, animated: true, completion: nil)
+                    Common.SystemAlert(Title: "錯誤", Body: "帳號或密碼錯誤", SingleBtn: "OK", viewController: self)
                 }
             case .failure(let error):
                 print("An error occured \(error)")
+                DispatchQueue.main.async {Spinner.stop()}
             }
         })
                 

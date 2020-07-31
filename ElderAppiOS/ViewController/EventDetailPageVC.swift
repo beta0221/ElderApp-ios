@@ -61,7 +61,7 @@ class EventDetailPageVC: UIViewController {
                 }
                 
                 self.eventTitleLabel.text = event["title"] as? String ?? ""
-                self.rewardLabel.text = (event["reward"] as? Int ?? 0).description
+                self.rewardLabel.text = "獎勵\((event["reward"] as? Int ?? 0).description)"
                 self.eventBodyTextview.text = event["body"] as? String ?? ""
                 
                 if let type = event["type"] as? Int{

@@ -49,15 +49,13 @@ class GiveMoneyFormVC: UIViewController {
         }
         
         
-        
-        
-        let service = Service()
-        service.TransactionRequest(take_id: self.take_id!, take_email: self.take_email!, amount: amount!, eventName: comment!, completion: {result in switch
+        AD.service.TransactionRequest(take_id: self.take_id!, take_email: self.take_email!, amount: amount!, eventName: comment!, completion: {result in switch
             result{
             case .success(let res):
                 if(res == "success"){
                     let controller = UIAlertController(title: "支付成功", message: "回首頁", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "確定", style: .default, handler:{ action in
+                        NotificationCenter.default.post(name: Notification.Name("updateMyData"), object: nil)
                         self.performSegue(withIdentifier: "unwind_IndexPageVC", sender: nil)
                     })
                     controller.addAction(okAction)

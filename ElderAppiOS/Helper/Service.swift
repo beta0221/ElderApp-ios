@@ -24,9 +24,25 @@ struct Service {
     
     let host:String = "https://www.happybi.com.tw"
     
-//    init() {
-//        host = "https://www.happybi.com.tw"
-//    }
+    var iOSVer:Int{
+        get{
+            let dictionary = Bundle.main.infoDictionary!
+            let localVersion = dictionary["CFBundleShortVersionString"] as! String
+            let localVersionArray = localVersion.components(separatedBy: ".")
+            var iOSVer = 0
+            for i in 0...2{
+                let lv = Int(localVersionArray[i]) ?? 0
+                if(i == 0){
+                    iOSVer += lv * 10000
+                }else if(i==1){
+                    iOSVer += lv * 100
+                }else if(i==2){
+                    iOSVer += lv
+                }
+            }
+            return iOSVer
+        }
+    }
     
     private func printJsonData(jsonData:Data){
         let string = String(data: jsonData, encoding: String.Encoding.utf8) as String?
@@ -118,7 +134,7 @@ struct Service {
         var _email = ""
         var _password = ""
         
-        if(Email == "" && Password == ""){
+        if(Email.isEmpty && Password.isEmpty){
             _email = UserDefaults.standard.getAccount() ?? ""
             _password = UserDefaults.standard.getPassword() ?? ""
         }else{
@@ -132,7 +148,7 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postString = "email=\(_email)&password=\(_password)"
+        let postString = "email=\(_email)&password=\(_password)&iOSVer=\(self.iOSVer.description)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let _ = response as? HTTPURLResponse,let jsonData = data else {

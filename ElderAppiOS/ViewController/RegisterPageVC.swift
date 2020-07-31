@@ -57,9 +57,6 @@ class RegisterPageVC: UIViewController {
     @IBOutlet weak var inviterAlert: UIView!
     
     
-    
-    var service = Service()
-    
     var genderArray = ["請選擇性別","男","女"]
     var districtArray:District?
     var payTypeArray = ["請選擇付款方式","推薦人代收","自行繳費"]
@@ -88,7 +85,7 @@ class RegisterPageVC: UIViewController {
         
     }
     func getDistrict(){
-        service.GetDistrict(completion: {result in
+        AD.service.GetDistrict(completion: {result in
             switch result{
             case .success(let res):
                 self.districtArray = res
@@ -218,7 +215,7 @@ class RegisterPageVC: UIViewController {
     }
     
     func checkInviter(){
-        service.CheckInviterRequest(inviter_id_code: self.inviterField.text ?? "", completion: {result in
+        AD.service.CheckInviterRequest(inviter_id_code: self.inviterField.text ?? "", completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] as! Int == 1){
@@ -255,7 +252,7 @@ class RegisterPageVC: UIViewController {
         let Inviter_id_code = inviterField.text ?? ""
         
         
-        service.SignUpRequest(Email: Email, Password: Password, Name: Name, Phone: Phone, Tel: Tel, GenderVal: GenderVal, Birthdate: Birthdate, Id_number: Id_number, DistrictId: DistrictId!, Address: Address, Pay_mathodVal: Pay_mathodVal!, Inviter_id_code: Inviter_id_code, completion: {result in
+        AD.service.SignUpRequest(Email: Email, Password: Password, Name: Name, Phone: Phone, Tel: Tel, GenderVal: GenderVal, Birthdate: Birthdate, Id_number: Id_number, DistrictId: DistrictId!, Address: Address, Pay_mathodVal: Pay_mathodVal!, Inviter_id_code: Inviter_id_code, completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] != nil){

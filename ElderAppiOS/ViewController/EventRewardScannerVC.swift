@@ -19,8 +19,6 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     @IBOutlet weak var camWindow: UIView!
     
-    var service = Service()
-    
     @IBOutlet weak var rewardLabel: UILabel!
     @IBOutlet weak var arriveLabel: UILabel!
     
@@ -109,7 +107,7 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     
     func getReward(stringValue:String){
-        service.RrawEventReward(event_slug: stringValue, completion: {result in
+        AD.service.RrawEventReward(event_slug: stringValue, completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] as! Int == 1){
@@ -129,7 +127,7 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     }
     
     func arriveEvent(stringValue:String){
-        service.ArriveEvent(slug: stringValue, completion: {result in
+        AD.service.ArriveEvent(slug: stringValue, completion: {result in
             switch result{
             case .success(let res):
                 

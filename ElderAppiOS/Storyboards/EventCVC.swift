@@ -33,7 +33,7 @@ class EventCVC: UICollectionViewCell {
         
         rewardLabel.text = ""
         if let reward = event["reward"] as? Int{
-            rewardLabel.text = reward.description
+            rewardLabel.text = "獎勵\(reward.description)"
         }
         
         

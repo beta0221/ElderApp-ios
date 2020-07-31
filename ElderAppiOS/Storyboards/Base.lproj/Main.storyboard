@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -400,7 +400,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBL-sh-31Q">
-                                                                <rect key="frame" x="52" y="0.0" width="7" height="56"/>
+                                                                <rect key="frame" x="52" y="0.0" width="9.5" height="56"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="-">
                                                                         <attributes>
@@ -2534,8 +2534,8 @@
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJP-dF-3hS">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="234" height="47"/>
-                                                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                                                        <nil key="textColor"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
@@ -4035,10 +4035,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lly-I7-8Z4">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="990"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="802.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mNX-vG-4Bz">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="990"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="802.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70f-NO-icG">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -4171,7 +4171,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-e3-dcd">
-                                                                <rect key="frame" x="267" y="12" width="96" height="56"/>
+                                                                <rect key="frame" x="265" y="12" width="98" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="F0c-XI-ezU"/>
                                                                 </constraints>
@@ -4315,7 +4315,7 @@
                                                             <constraint firstItem="sPk-Mp-4Xh" firstAttribute="top" secondItem="YR8-H5-8bH" secondAttribute="top" id="nY1-SU-NAG"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17i-hd-X9F">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17i-hd-X9F">
                                                         <rect key="frame" x="0.0" y="615" width="375" height="187.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIS-IR-sq3">
@@ -4339,7 +4339,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mt4-dY-Nc8">
-                                                        <rect key="frame" x="0.0" y="802.5" width="375" height="187.5"/>
+                                                        <rect key="frame" x="0.0" y="615" width="375" height="187.5"/>
                                                         <subviews>
                                                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brt-ls-2Cg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
@@ -4754,6 +4754,9 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
             <point key="canvasLocation" x="-1281" y="-1945"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ooL-OO-cGq"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="academy_min" width="20" height="20"/>
         <image name="account_min" width="20" height="20"/>
@@ -4768,7 +4771,4 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
         <image name="take" width="393" height="400"/>
         <image name="trans" width="393" height="400"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ooL-OO-cGq"/>
-    </inferredMetricsTieBreakers>
 </document>

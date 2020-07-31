@@ -42,6 +42,11 @@ class IndexPageVC: UIViewController {
         let urlRequest:URLRequest = URLRequest(url: url)
         bannerWebView.load(urlRequest)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMyData), name: Notification.Name("updateMyData"), object: nil)
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +54,7 @@ class IndexPageVC: UIViewController {
     }
     
     
-    private func updateMyData(){
+    @objc private func updateMyData(){
         
         AD.service.MeRequest(completion: {
             result in switch result{
@@ -98,6 +103,14 @@ class IndexPageVC: UIViewController {
                     print("access_token : \(response["access_token"] as! String)")
                     UserHelper.storeUser(response: response)
                     self.updateMyData()
+                }else if(response["ios_update_url"] != nil){
+                    let ios_update_url = response["ios_update_url"] as? String ?? ""
+                    guard let url = URL(string: ios_update_url) else { return }
+                    Common.SystemAlert(Title: "訊息", Body: "您目前的版本過舊，請進行更新", SingleBtn: "OK", viewController: self, handler: {_ in
+                        UIApplication.shared.open(url,completionHandler: {_ in
+                            self.autoLogout()
+                        })
+                    })
                 }else{
                     print("response 沒有回來 token, Server fucked up")
                     self.autoLogout()

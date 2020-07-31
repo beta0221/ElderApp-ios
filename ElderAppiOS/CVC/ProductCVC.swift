@@ -23,7 +23,7 @@ class ProductCVC: UICollectionViewCell {
         
         let imgUrl = product["imgUrl"] as? String ?? ""
         productImage.loadImageUsingUrlString(urlString: imgUrl)
-        nameLabel.text = "商品：\(product["name"] as? String ?? "")"
+        nameLabel.text = product["name"] as? String
         priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
     }
     

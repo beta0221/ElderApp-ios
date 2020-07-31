@@ -37,9 +37,7 @@ class UpdateAccountPageVC: UIViewController {
         cancelButton.layer.cornerRadius = 5
         
         
-        
-        let service = Service()
-        service.MyAccountRequest(completion: { result in switch result{
+        AD.service.MyAccountRequest(completion: { result in switch result{
             case .success(let res):
                 
             self.nameTextfield.text = res["name"] as? String ?? ""
@@ -74,8 +72,7 @@ class UpdateAccountPageVC: UIViewController {
         let Address = addressTextfield.text ?? ""
         let Id_number = idNumberTextfield.text ?? ""
         
-        let service = Service()
-        service.UpdateAccountRequest(Name: Name, Phone: Phone, Tel: Tel, Address: Address, Id_number: Id_number, completion: {result in
+        AD.service.UpdateAccountRequest(Name: Name, Phone: Phone, Tel: Tel, Address: Address, Id_number: Id_number, completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] as? Int == 1){
