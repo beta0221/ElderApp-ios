@@ -34,13 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 isLogin = true
             }
             if(isLogin == true){
-                let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
-                let rootNC = UINavigationController(rootViewController: rootVC)
-                self.window?.rootViewController = rootNC
+                self.navigateToIndexPage()
             }else{
-                let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageVC")
-                let rootNC = UINavigationController(rootViewController: rootVC)
-                self.window?.rootViewController = rootNC
+                self.navigateToLoginPage()
             }
 //            self.window?.makeKeyAndVisible()
         }
@@ -48,6 +44,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        //支援12.4加上去的
+        if #available(iOS 13.0, *) {
+            // In iOS 13 setup is done in SceneDelegate
+        } else {
+            if(UserDefaults.standard.getAccount() != nil){
+                self.checkIfTokenAlife()
+            }
+        }
+    }
+    private func navigateToIndexPage(){
+        let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+        let rootNC = UINavigationController(rootViewController: rootVC)
+        self.window?.rootViewController = rootNC
+    }
+    private func navigateToLoginPage(){
+        let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageVC")
+        let rootNC = UINavigationController(rootViewController: rootVC)
+        self.window?.rootViewController = rootNC
+    }
+    private func checkIfTokenAlife(){
+        print("check if token alife")
+        AD.service.MeRequest(completion: {result in
+            switch result{
+                case .success(let res):
+                    if(res["user_id"] == nil){
+                        self.autoReLogin()
+                    }
+                case .failure(_):
+                    self.autoReLogin()
+            }
+        })
+    }
+    private func autoReLogin(){
+        
+        print("auto relogin")
+        AD.service.LoginRequest(completion: {result in
+            switch result{
+            case .success(let response):
+                if(response["access_token"] != nil){
+                    
+                    UserHelper.storeUser(response: response)
+                    print("token refreshed")
+                    
+                }else if(response["ios_update_url"] != nil){
+                    
+                    print("ios version out-of-date")
+                    let ios_update_url = response["ios_update_url"] as? String ?? ""
+                    guard let url = URL(string: ios_update_url) else { return }
+                    Common.SystemAlert(Title: "訊息", Body: "您目前的版本過舊，請進行更新", SingleBtn: "OK", viewController: (self.window?.rootViewController)!, handler: {_ in
+                        UIApplication.shared.open(url,completionHandler: {_ in
+                            self.autoLogout()
+                        })
+                    })
+                    
+                }else{
+                    
+                    print("response 沒有回來 token, Server fucked up")
+                    self.autoLogout()
+                    
+                }
+            case .failure(let error):
+                
+                print("An error occured \(error)")
+                self.autoLogout()
+                
+            }
+        })
+    }
+    private func autoLogout(){
+        UserDefaults.standard.removeUserData()
+        self.navigateToLoginPage()
+    }
+    
+    
 
     // MARK: UISceneSession Lifecycle
     @available(iOS 13.0, *)

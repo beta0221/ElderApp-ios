@@ -43,6 +43,8 @@ class IndexPageVC: UIViewController {
         bannerWebView.load(urlRequest)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateMyData), name: Notification.Name("updateMyData"), object: nil)
+        
+        
     }
     
     deinit{
@@ -81,59 +83,55 @@ class IndexPageVC: UIViewController {
                     }else{
                         self.orgRankOutterView.isHidden = true
                     }
-                }else{
-                    print("token 過期 重新登入")
-                    self.autoReLogin()
                 }
             case .failure(let error):
                 print("錯誤:\(error)")
-                self.autoReLogin()
             }
         })
         
     }
     
     
-    private func autoReLogin(){
-        
-        AD.service.LoginRequest(completion: {result in
-            switch result{
-            case .success(let response):
-                if(response["access_token"] != nil){
-                    print("access_token : \(response["access_token"] as! String)")
-                    UserHelper.storeUser(response: response)
-                    self.updateMyData()
-                }else if(response["ios_update_url"] != nil){
-                    let ios_update_url = response["ios_update_url"] as? String ?? ""
-                    guard let url = URL(string: ios_update_url) else { return }
-                    Common.SystemAlert(Title: "訊息", Body: "您目前的版本過舊，請進行更新", SingleBtn: "OK", viewController: self, handler: {_ in
-                        UIApplication.shared.open(url,completionHandler: {_ in
-                            self.autoLogout()
-                        })
-                    })
-                }else{
-                    print("response 沒有回來 token, Server fucked up")
-                    self.autoLogout()
-                }
-            case .failure(let error):
-                print("An error occured \(error)")
-                self.autoLogout()
-            }
-        })
-    }
+//    private func autoReLogin(){
+//
+//        AD.service.LoginRequest(completion: {result in
+//            switch result{
+//            case .success(let response):
+//                if(response["access_token"] != nil){
+//                    print("access_token : \(response["access_token"] as! String)")
+//                    UserHelper.storeUser(response: response)
+//                    self.updateMyData()
+//                }else if(response["ios_update_url"] != nil){
+//                    let ios_update_url = response["ios_update_url"] as? String ?? ""
+//                    guard let url = URL(string: ios_update_url) else { return }
+//                    Common.SystemAlert(Title: "訊息", Body: "您目前的版本過舊，請進行更新", SingleBtn: "OK", viewController: self, handler: {_ in
+//                        UIApplication.shared.open(url,completionHandler: {_ in
+//                            self.autoLogout()
+//                        })
+//                    })
+//                }else{
+//                    print("response 沒有回來 token, Server fucked up")
+//                    self.autoLogout()
+//                }
+//            case .failure(let error):
+//                print("An error occured \(error)")
+//                self.autoLogout()
+//            }
+//        })
+//    }
     
-    private func autoLogout(){
-        print("自動登出")
-        UserDefaults.standard.removeUserData()
-        self.navigateToLoginPage()
-    }
+//    private func autoLogout(){
+//        print("自動登出")
+//        UserDefaults.standard.removeUserData()
+//        self.navigateToLoginPage()
+//    }
     
-    private func navigateToLoginPage(){
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginPageVC") as! LoginPageVC
-        let navigationController = UINavigationController(rootViewController: newViewController)
-        self.view.window?.rootViewController = navigationController
-    }
+//    private func navigateToLoginPage(){
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginPageVC") as! LoginPageVC
+//        let navigationController = UINavigationController(rootViewController: newViewController)
+//        self.view.window?.rootViewController = navigationController
+//    }
     
     
     @IBAction func loadProductList(_ sender: Any) {
