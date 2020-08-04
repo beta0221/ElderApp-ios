@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		9CE3F8F5236FDE4E008B783B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F4236FDE4E008B783B /* Event.swift */; };
 		9CE3F8F7236FE119008B783B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F6236FE119008B783B /* User.swift */; };
 		9CE3F8F9236FE4B5008B783B /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F8236FE4B5008B783B /* Transaction.swift */; };
+		9E8489F1FDDD8A43D8663398 /* Pods_ElderAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E49CEAD27FEF2D2E4E70C555 /* Pods_ElderAppiOS.framework */; };
 		CD071D7923707CCB006B76C5 /* TransPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD071D7823707CCB006B76C5 /* TransPageVC.swift */; };
 		CD071D7B23708381006B76C5 /* UpdateAccountPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */; };
 		CD095BBE238591B700083F1E /* PassPermitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD095BBD238591B700083F1E /* PassPermitVC.swift */; };
@@ -39,6 +40,7 @@
 		CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */; };
 		CD7D7631241FC05C0028FCB5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7D7630241FC05C0028FCB5 /* WebViewController.swift */; };
 		CD96D60024D05E4C005EAC57 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD96D5FF24D05E4C005EAC57 /* Spinner.swift */; };
+		CDBEE0C824D9B2E0005D3848 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDBEE0C724D9B2E0005D3848 /* GoogleService-Info.plist */; };
 		CDC346252371988200E44069 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC346242371988200E44069 /* Common.swift */; };
 		CDC3462723719A7500E44069 /* EventPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3462623719A7500E44069 /* EventPageVC.swift */; };
 		CDC482D72371BB300038AF34 /* EventDetailPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC482D62371BB300038AF34 /* EventDetailPageVC.swift */; };
@@ -56,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElderAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9C10E70A23702F89007E7557 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		9C9B2818236FEEA900C93C2C /* AccountPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageVC.swift; sourceTree = "<group>"; };
 		9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageVC.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		9CE3F8F4236FDE4E008B783B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		9CE3F8F6236FE119008B783B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9CE3F8F8236FE4B5008B783B /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		C131838CC7D97EFDCB4EC296 /* Pods-ElderAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElderAppiOS.release.xcconfig"; path = "Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS.release.xcconfig"; sourceTree = "<group>"; };
 		CD071D7823707CCB006B76C5 /* TransPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransPageVC.swift; sourceTree = "<group>"; };
 		CD071D7A23708381006B76C5 /* UpdateAccountPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountPageVC.swift; sourceTree = "<group>"; };
 		CD095BBD238591B700083F1E /* PassPermitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassPermitVC.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 		CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyVC.swift; sourceTree = "<group>"; };
 		CD7D7630241FC05C0028FCB5 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		CD96D5FF24D05E4C005EAC57 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		CDBEE0C624D9B299005D3848 /* 銀髮學院.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "銀髮學院.entitlements"; sourceTree = "<group>"; };
+		CDBEE0C724D9B2E0005D3848 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CDC346242371988200E44069 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		CDC3462623719A7500E44069 /* EventPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPageVC.swift; sourceTree = "<group>"; };
 		CDC482D62371BB300038AF34 /* EventDetailPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPageVC.swift; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		CDCA63B9236EC932000D054B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CDCA63BC236EE20B000D054B /* IndexPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPageVC.swift; sourceTree = "<group>"; };
 		CDEE2C6A23704C0700C2754E /* TransCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransCVC.swift; sourceTree = "<group>"; };
+		E49CEAD27FEF2D2E4E70C555 /* Pods_ElderAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElderAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD50F1E5239EB83F00360D58 /* WebKit.framework in Frameworks */,
+				9E8489F1FDDD8A43D8663398 /* Pods_ElderAppiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,10 +138,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		9DA53122A6E5C9053915FCE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */,
+				C131838CC7D97EFDCB4EC296 /* Pods-ElderAppiOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CD50F1E3239EB83F00360D58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				CD50F1E4239EB83F00360D58 /* WebKit.framework */,
+				E49CEAD27FEF2D2E4E70C555 /* Pods_ElderAppiOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -144,6 +162,7 @@
 				CDCA639D236EC3B4000D054B /* ElderAppiOS */,
 				CDCA639C236EC3B4000D054B /* Products */,
 				CD50F1E3239EB83F00360D58 /* Frameworks */,
+				9DA53122A6E5C9053915FCE8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +177,7 @@
 		CDCA639D236EC3B4000D054B /* ElderAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				CDBEE0C624D9B299005D3848 /* 銀髮學院.entitlements */,
 				CDEE2C6923704BE300C2754E /* CVC */,
 				9CE3F8EF236FDCBE008B783B /* Models */,
 				CDCA63BB236EDFE8000D054B /* ViewController */,
@@ -168,6 +188,7 @@
 				CDCA63AA236EC3B5000D054B /* Assets.xcassets */,
 				CDCA63AC236EC3B5000D054B /* LaunchScreen.storyboard */,
 				CDCA63AF236EC3B5000D054B /* Info.plist */,
+				CDBEE0C724D9B2E0005D3848 /* GoogleService-Info.plist */,
 				CDCA63A7236EC3B4000D054B /* ElderAppiOS.xcdatamodeld */,
 			);
 			path = ElderAppiOS;
@@ -243,9 +264,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDCA63B2236EC3B5000D054B /* Build configuration list for PBXNativeTarget "ElderAppiOS" */;
 			buildPhases = (
+				2496D099FC459BBA567F8C86 /* [CP] Check Pods Manifest.lock */,
 				CDCA6397236EC3B4000D054B /* Sources */,
 				CDCA6398236EC3B4000D054B /* Frameworks */,
 				CDCA6399236EC3B4000D054B /* Resources */,
+				01A472E785D69F6B1588E506 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,10 +323,53 @@
 				CD10C812237124E500029C90 /* EventCVC.xib in Resources */,
 				CDCA63AB236EC3B5000D054B /* Assets.xcassets in Resources */,
 				CDCA63A6236EC3B4000D054B /* Main.storyboard in Resources */,
+				CDBEE0C824D9B2E0005D3848 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01A472E785D69F6B1588E506 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2496D099FC459BBA567F8C86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ElderAppiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CDCA6397236EC3B4000D054B /* Sources */ = {
@@ -490,8 +556,10 @@
 		};
 		CDCA63B3236EC3B5000D054B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
@@ -511,8 +579,10 @@
 		};
 		CDCA63B4236EC3B5000D054B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C131838CC7D97EFDCB4EC296 /* Pods-ElderAppiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;

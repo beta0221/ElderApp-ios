@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = window
 
             var isLogin = false
-
             if(UserDefaults.standard.getAccount() != nil){
                 isLogin = true
             }
