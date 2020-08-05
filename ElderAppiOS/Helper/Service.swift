@@ -907,6 +907,35 @@ struct Service {
         dataTask.resume()
     }
     
+    //回傳 push token
+    func SetPushToken(push_token:String,completion:@escaping(Result<String,APIError>)->Void){
+        print("set push token request")
+        let requestString = "\(host)/api/auth/set_pushtoken"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let postString = "pushtoken=\(push_token)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let jsonData = data else {
+                completion(.failure(.responseProblem))
+                return
+            }
+            
+            self.printJsonData(jsonData: jsonData)
+            let json = String(data: jsonData, encoding: .utf8)
+            DispatchQueue.main.async{
+                completion(.success(json!))
+            }
+        }.resume()
+        
+    }
+    
     
     
     

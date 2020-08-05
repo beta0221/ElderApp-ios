@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import UserNotifications
+import Firebase
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -24,6 +26,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
+        
+        
+        
+        // Initiazlie Firebase
+        FirebaseApp.configure()
+        // Set Firebase messaging delegate
+        Messaging.messaging().delegate = AD
+        // Register for remote notifications. This shows a permission dialog on first run, to
+        // show the dialog at a more appropriate time move this registration accordingly.
+        
+        UNUserNotificationCenter.current().delegate = AD
+         
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (state, error) in
+        }
+        
+        //application.registerForRemoteNotifications()
+        UIApplication.shared.registerForRemoteNotifications()
+        
+        
+        
+        
         
         if(UserDefaults.standard.getAccount() != nil){
             self.navigateToIndexPage()
