@@ -28,12 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let window = UIWindow(frame: UIScreen.main.bounds)
             self.window = window
 
-            var isLogin = false
             if(UserDefaults.standard.getAccount() != nil){
-                isLogin = true
-            }
-            if(isLogin == true){
                 self.navigateToIndexPage()
+                self.autoReLogin()
             }else{
                 self.navigateToLoginPage()
             }
@@ -73,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if(res["user_id"] == nil){
                         self.autoReLogin()
                     }
+                    
+                    UserHelper.storeUser(res: res)
                 case .failure(_):
                     self.autoReLogin()
             }
@@ -86,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case .success(let response):
                 if(response["access_token"] != nil){
                     
-                    UserHelper.storeUser(response: response)
+                    UserHelper.storeUser(res: response)
                     print("token refreshed")
                     
                 }else if(response["ios_update_url"] != nil){

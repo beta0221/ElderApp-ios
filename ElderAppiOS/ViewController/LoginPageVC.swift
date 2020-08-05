@@ -53,7 +53,7 @@ class LoginPageVC: UIViewController {
                 DispatchQueue.main.async {Spinner.stop()}
                 if(response["access_token"] != nil){
                     
-                    UserHelper.storeUser(response: response, password: password)
+                    UserHelper.storeUser(res: response, password: password)
                     self.navigateToIndexPage()
                     
                 }else if(response["ios_update_url"] != nil){

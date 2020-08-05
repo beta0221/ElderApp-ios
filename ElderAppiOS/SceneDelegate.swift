@@ -25,12 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        var isLogin = false
         if(UserDefaults.standard.getAccount() != nil){
-            isLogin = true
-        }
-        if(isLogin == true){
             self.navigateToIndexPage()
+            self.autoReLogin()
         }else{
             self.navigateToLoginPage()
         }
@@ -97,6 +94,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     if(res["user_id"] == nil){
                         self.autoReLogin()
                     }
+                    
+                    UserHelper.storeUser(res: res)
                 case .failure(_):
                     self.autoReLogin()
             }
@@ -111,7 +110,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             case .success(let response):
                 if(response["access_token"] != nil){
                     
-                    UserHelper.storeUser(response: response)
+                    UserHelper.storeUser(res: response)
                     print("token refreshed")
                     
                 }else if(response["ios_update_url"] != nil){

@@ -44,46 +44,54 @@ class IndexPageVC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateMyData), name: Notification.Name("updateMyData"), object: nil)
         
-        
+        self.loadUserData()
     }
     
     deinit{
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        updateMyData()
+    private func loadUserData(){
+        
+        self.orgRankOutterView.isHidden = true
+        self.myNameLabel.text = nil
+        self.myWalletLabel.text = nil
+        self.myLevelLabel.text = nil
+        self.orgRankLabel.text = nil
+        
+        self.myNameLabel.text = UserDefaults.standard.getUserName()
+        
+        if let wallet = UserDefaults.standard.getWallet(){
+            self.myWalletLabel.text = wallet.description
+        }
+        if let rank = UserDefaults.standard.getRank(){
+            self.myLevelLabel.text = rank.description
+        }
+        if let org_rank = UserDefaults.standard.getOrgRank(){
+            if(org_rank >= 3){
+                self.orgRankOutterView.isHidden = false
+                switch org_rank {
+                case 3:
+                    self.orgRankLabel.text = "大天使"
+                case 4:
+                    self.orgRankLabel.text = "守護天使"
+                case 5:
+                    self.orgRankLabel.text = "領航天使"
+                default:
+                    break
+                }
+            }
+        }
+        
     }
-    
     
     @objc private func updateMyData(){
         
         AD.service.MeRequest(completion: {
             result in switch result{
             case .success(let response):
-                if(response["user_id"] != nil){
-                    self.myNameLabel.text = response["name"] as? String
-                    self.myWalletLabel.text = "\(response["wallet"] as? Int ?? 0)"
-                    self.myLevelLabel.text = "\(response["rank"] as? Int ?? 0)"
-                    
-                    if let org_rank = response["org_rank"] as? Int{
-                        if(org_rank >= 3){
-                            self.orgRankOutterView.isHidden = false
-                            switch org_rank {
-                            case 3:
-                                self.orgRankLabel.text = "大天使"
-                            case 4:
-                                self.orgRankLabel.text = "守護天使"
-                            case 5:
-                                self.orgRankLabel.text = "領航天使"
-                            default:
-                                break
-                            }
-                        }
-                    }else{
-                        self.orgRankOutterView.isHidden = true
-                    }
-                }
+                UserHelper.storeUser(res: response)
+                self.loadUserData()
             case .failure(let error):
                 print("錯誤:\(error)")
             }
@@ -91,47 +99,6 @@ class IndexPageVC: UIViewController {
         
     }
     
-    
-//    private func autoReLogin(){
-//
-//        AD.service.LoginRequest(completion: {result in
-//            switch result{
-//            case .success(let response):
-//                if(response["access_token"] != nil){
-//                    print("access_token : \(response["access_token"] as! String)")
-//                    UserHelper.storeUser(response: response)
-//                    self.updateMyData()
-//                }else if(response["ios_update_url"] != nil){
-//                    let ios_update_url = response["ios_update_url"] as? String ?? ""
-//                    guard let url = URL(string: ios_update_url) else { return }
-//                    Common.SystemAlert(Title: "訊息", Body: "您目前的版本過舊，請進行更新", SingleBtn: "OK", viewController: self, handler: {_ in
-//                        UIApplication.shared.open(url,completionHandler: {_ in
-//                            self.autoLogout()
-//                        })
-//                    })
-//                }else{
-//                    print("response 沒有回來 token, Server fucked up")
-//                    self.autoLogout()
-//                }
-//            case .failure(let error):
-//                print("An error occured \(error)")
-//                self.autoLogout()
-//            }
-//        })
-//    }
-    
-//    private func autoLogout(){
-//        print("自動登出")
-//        UserDefaults.standard.removeUserData()
-//        self.navigateToLoginPage()
-//    }
-    
-//    private func navigateToLoginPage(){
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginPageVC") as! LoginPageVC
-//        let navigationController = UINavigationController(rootViewController: newViewController)
-//        self.view.window?.rootViewController = navigationController
-//    }
     
     
     @IBAction func loadProductList(_ sender: Any) {

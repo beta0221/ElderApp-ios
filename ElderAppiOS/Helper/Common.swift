@@ -138,6 +138,7 @@ extension UIView{
 
 
 extension UserDefaults{
+    //user_id
     func setUserId(value:Int){
         set(value,forKey: "user_id")
         synchronize()
@@ -145,6 +146,7 @@ extension UserDefaults{
     func getUserId()->Int?{
         return integer(forKey: "user_id")
     }
+    //email
     func setAccount(value:String){
         set(value,forKey: "email")
         synchronize()
@@ -152,6 +154,7 @@ extension UserDefaults{
     func getAccount()->String?{
         return string(forKey: "email")
     }
+    //password
     func setPassword(value:String){
         set(value,forKey: "password")
         synchronize()
@@ -159,19 +162,49 @@ extension UserDefaults{
     func getPassword()->String?{
         return string(forKey: "password")
     }
-    func setUserName(value:String){
+    //userName
+    func setUserName(value:String?){
+        if(value==nil){return}
         set(value,forKey: "userName")
         synchronize()
     }
     func getUserName()->String?{
         return string(forKey: "userName")
     }
+    //token
     func setToken(value:String){
         set(value,forKey: "token")
         synchronize()
     }
     func getToken()->String?{
         return string(forKey: "token")
+    }
+    //wallet
+    func setWallet(value:Int?){
+        if(value==nil){return}
+        set(value!,forKey: "wallet")
+        synchronize()
+    }
+    func getWallet()->Int?{
+        return integer(forKey: "wallet")
+    }
+    //rank
+    func setRank(value:Int?){
+        if(value==nil){return}
+        set(value!,forKey: "rank")
+        synchronize()
+    }
+    func getRank()->Int?{
+        return integer(forKey: "rank")
+    }
+    //org_rank
+    func setOrgRank(value:Int?){
+        if(value==nil){return}
+        set(value!,forKey: "org_rank")
+        synchronize()
+    }
+    func getOrgRank()->Int?{
+        return integer(forKey: "org_rank")
     }
     
     func removeUserData(){
@@ -180,6 +213,9 @@ extension UserDefaults{
         removeObject(forKey: "password")
         removeObject(forKey: "userName")
         removeObject(forKey: "token")
+        removeObject(forKey: "wallet")
+        removeObject(forKey: "rank")
+        removeObject(forKey: "org_rank")
     }
     
 }

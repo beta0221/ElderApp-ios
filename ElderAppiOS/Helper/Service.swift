@@ -128,7 +128,7 @@ struct Service {
     
     
     //使用者登入
-    func LoginRequest(Email:String = "",Password:String = "",completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
+    func LoginRequest(Email:String = "",Password:String = "",completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
         //core data access email and password if no input
         var _email = ""
@@ -156,7 +156,8 @@ struct Service {
             return
             }
             do{
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? NSDictionary
                 DispatchQueue.main.async{
                     completion(.success(json!))
                 }
@@ -459,7 +460,7 @@ struct Service {
     
     
     //get 使用者 資料 首頁用拿的資料比較少
-    func MeRequest(completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
+    func MeRequest(completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
         let requestString = "\(host)/api/auth/me"
         guard let requestURL = URL(string:requestString) else{fatalError()}
@@ -476,7 +477,7 @@ struct Service {
             return
             }
             do{
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? NSDictionary
                 DispatchQueue.main.async{
                     completion(.success(json!))
                 }
