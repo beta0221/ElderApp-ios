@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
               let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
               application.registerUserNotificationSettings(settings)
             }
-            application.registerForRemoteNotifications()
+            //application.registerForRemoteNotifications()
             
 
             if(UserDefaults.standard.getAccount() != nil){

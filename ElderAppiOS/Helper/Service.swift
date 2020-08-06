@@ -16,9 +16,16 @@ enum APIError:Error{
     case decodingProblem
     case encodingProblem
 }
-    
+
+enum RunningMode{
+    case Production
+    case Develope
+    case LocalDevelope
+}
 
 struct Service {
+    
+    let runningMode:RunningMode = .Production
     
     static var hostName:String = "https://www.happybi.com.tw"
     
@@ -90,7 +97,7 @@ struct Service {
     
     
     //使用者登出
-    func LogoutRequest(completion:@escaping(Result<String,APIError>)->Void){
+    func LogoutRequest(completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
         let requestString = "\(host)/api/auth/logout"
         guard let requestURL = URL(string:requestString) else{fatalError()}
@@ -98,23 +105,19 @@ struct Service {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postString = "token="
-        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
-        
-        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
-            return
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200,
+                let jsonData = data else {
+                completion(.failure(.responseProblem))
+                return
             }
             do{
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
-                if(json?["s"] as! Int == 1){
-                    DispatchQueue.main.async{
-                        completion(.success("登出成功"))
-                    }
-                }else{
-                    DispatchQueue.main.async{
-                        completion(.failure(.responseProblem))
-                    }
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json!))
                 }
             }catch{
                 DispatchQueue.main.async{
@@ -122,8 +125,7 @@ struct Service {
                     completion(.failure(.decodingProblem))
                 }
             }
-        }
-        dataTask.resume()
+        }.resume()
     }
     
     

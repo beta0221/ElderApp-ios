@@ -55,6 +55,7 @@ class LoginPageVC: UIViewController {
                     
                     UserHelper.storeUser(res: response, password: password)
                     self.navigateToIndexPage()
+                    UIApplication.shared.registerForRemoteNotifications()
                     
                 }else if(response["ios_update_url"] != nil){
                     

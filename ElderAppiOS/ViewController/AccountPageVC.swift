@@ -115,8 +115,19 @@ class AccountPageVC: UIViewController {
     
     
     @IBAction func logout(_ sender: Any) {
-        UserDefaults.standard.removeUserData()
-        self.navigateToLoginPage()
+        Spinner.start()
+        AD.service.LogoutRequest(completion: {result in
+            switch result{
+            case .success(_):
+                DispatchQueue.main.async {Spinner.stop()}
+                UserDefaults.standard.removeUserData()
+                self.navigateToLoginPage()
+            case .failure(let error):
+                print(error)
+                DispatchQueue.main.async {Spinner.stop()}
+            }
+        })
+        
     }
     
     private func navigateToLoginPage(){

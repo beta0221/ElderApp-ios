@@ -42,8 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (state, error) in
         }
         
-        //application.registerForRemoteNotifications()
-        UIApplication.shared.registerForRemoteNotifications()
+        //UIApplication.shared.registerForRemoteNotifications()
         
         
         
