@@ -27,6 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
+        //disable 深夜模式
+        window?.overrideUserInterfaceStyle = .light
         
         
         // Initiazlie Firebase

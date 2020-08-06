@@ -38,7 +38,7 @@ class IndexPageVC: UIViewController {
 
         bannerView.translatesAutoresizingMaskIntoConstraints=false
         
-        let url:URL = URL(string: "\(Service.hostName)/slider.html")!
+        let url:URL = URL(string: "\(Service.host)/slider.html")!
         let urlRequest:URLRequest = URLRequest(url: url)
         bannerWebView.load(urlRequest)
         

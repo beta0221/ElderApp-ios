@@ -19,17 +19,21 @@ enum APIError:Error{
 
 enum RunningMode{
     case Production
-    case Develope
     case LocalDevelope
 }
 
 struct Service {
     
-    let runningMode:RunningMode = .Production
+    static let runningMode:RunningMode = .Production
     
-    static var hostName:String = "https://www.happybi.com.tw"
-    
-    let host:String = "https://www.happybi.com.tw"
+    static var host:String{
+        switch runningMode {
+        case .Production:
+            return "https://www.happybi.com.tw"
+        case .LocalDevelope:
+            return "http://localhost:8000"
+        }
+    }
     
     var iOSVer:Int{
         get{
@@ -61,7 +65,7 @@ struct Service {
     //會員申請續會
     func ExtandRequest(completion:@escaping(Result<String,APIError>)->Void){
         
-        let requestString = "\(host)/api/extendMemberShip"
+        let requestString = "\(Service.host)/api/extendMemberShip"
         guard let requestURL = URL(string: requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -99,7 +103,7 @@ struct Service {
     //使用者登出
     func LogoutRequest(completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
-        let requestString = "\(host)/api/auth/logout"
+        let requestString = "\(Service.host)/api/auth/logout"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -144,7 +148,7 @@ struct Service {
             _password = Password
         }
         
-        let requestString = "\(host)/api/auth/login"
+        let requestString = "\(Service.host)/api/auth/login"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -177,7 +181,7 @@ struct Service {
     //註冊
     func SignUpRequest(Email:String,Password:String,Name:String,Phone:String,Tel:String,GenderVal:Int,Birthdate:String,Id_number:String,DistrictId:Int,Address:String,Pay_mathodVal:Int,Inviter_id_code:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
-        let requestString = "\(host)/api/member/join"
+        let requestString = "\(Service.host)/api/member/join"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -213,7 +217,7 @@ struct Service {
     //檢查 推薦人
     func CheckInviterRequest(inviter_id_code:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
-        let requestString = "\(host)/api/inviterCheck?inviter_id_code=\(inviter_id_code)"
+        let requestString = "\(Service.host)/api/inviterCheck?inviter_id_code=\(inviter_id_code)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -244,7 +248,7 @@ struct Service {
     //get 地區
     func GetDistrict(completion:@escaping(Result<District,APIError>)->Void){
         
-        let requestString = "\(host)/api/district"
+        let requestString = "\(Service.host)/api/district"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -273,7 +277,7 @@ struct Service {
     //get 活動類別
     func GetCategory(completion:@escaping(Result<EventCategory,APIError>)->Void){
         
-        let requestString = "\(host)/api/category"
+        let requestString = "\(Service.host)/api/category"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -302,7 +306,7 @@ struct Service {
     //get EventList
     func GetEventList(page:Int=1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("GetEventList")
-        let requestString = "\(host)/api/event/eventList?page=\(page.description)"
+        let requestString = "\(Service.host)/api/event/eventList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -333,7 +337,7 @@ struct Service {
     //get 使用者參加的 Events
     func GetMyEventList(page:Int=1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("GetMyEventList")
-        let requestString = "\(host)/api/event/myEventList?page=\(page.description)"
+        let requestString = "\(Service.host)/api/event/myEventList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -362,7 +366,7 @@ struct Service {
     //活動內頁 api
     func GetEventDetail(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("GetEventDetail")
-        let requestString = "\(host)/api/event/eventDetail/\(slug)"
+        let requestString = "\(Service.host)/api/event/eventDetail/\(slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -390,23 +394,25 @@ struct Service {
     
     
     //上傳圖片
-    func UploadImageRequest(image:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
+    func UploadImageRequest(image:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
-        let requestString = "\(host)/api/auth/uploadImage"
+        let requestString = "\(Service.host)/api/auth/uploadImage"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        let postString = "token=\()&id=\()&name=\()&image=\()"
-        //        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
+        let postString = "image=\(image)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            
             completion(.failure(.responseProblem))
             return
             }
             do{
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? Dictionary<String,Any>
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? NSDictionary
                 DispatchQueue.main.async{
                     completion(.success(json!))
                 }
@@ -416,8 +422,7 @@ struct Service {
                     completion(.failure(.decodingProblem))
                 }
             }
-        }
-        dataTask.resume()
+        }.resume()
     }
     
     
@@ -425,15 +430,13 @@ struct Service {
     //get 使用者 資料
     func MyAccountRequest(completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
-        let requestString = "\(host)/api/auth/myAccount"
+        let requestString = "\(Service.host)/api/auth/myAccount"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let token = UserDefaults.standard.getToken() ?? ""
-        let postString = "token=\(token)"
-        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
         
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
             DispatchQueue.main.async {
@@ -464,7 +467,7 @@ struct Service {
     //get 使用者 資料 首頁用拿的資料比較少
     func MeRequest(completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
-        let requestString = "\(host)/api/auth/me"
+        let requestString = "\(Service.host)/api/auth/me"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -499,7 +502,7 @@ struct Service {
     //更新使用者資料
     func UpdateAccountRequest(Name:String,Phone:String,Tel:String,Address:String,Id_number:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
-        let requestString = "\(host)/api/auth/updateAccount"
+        let requestString = "\(Service.host)/api/auth/updateAccount"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -533,7 +536,7 @@ struct Service {
     //參加活動
     func JoinEventRequest(event_slug:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
-        let requestString = "\(host)/api/joinevent/\(event_slug)"
+        let requestString = "\(Service.host)/api/joinevent/\(event_slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -568,7 +571,7 @@ struct Service {
     //取消參加活動
     func CancelEventRequest(event_slug:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
-        let requestString = "\(host)/api/cancelevent/\(event_slug)"
+        let requestString = "\(Service.host)/api/cancelevent/\(event_slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -603,7 +606,7 @@ struct Service {
     //Get 交易紀錄
     func GetTransHistory(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         // access from core data
-        let requestString = "\(host)/api/transaction/myTransactionHistory?page=\(page.description)"
+        let requestString = "\(Service.host)/api/transaction/myTransactionHistory?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -637,7 +640,7 @@ struct Service {
     //領取 活動獎勵
     func RrawEventReward(event_slug:String,completion:@escaping(Result<Dictionary<String,Any>,APIError>)->Void){
         
-        let requestString = "\(host)/api/drawEventReward/\(event_slug)"
+        let requestString = "\(Service.host)/api/drawEventReward/\(event_slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -672,7 +675,7 @@ struct Service {
     //付錢
     func TransactionRequest(take_id:Int,take_email:String,amount:Int,eventName:String,completion:@escaping(Result<String,APIError>)->Void){
         
-        let requestString = "\(host)/api/transaction"
+        let requestString = "\(Service.host)/api/transaction"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -707,7 +710,7 @@ struct Service {
     //檢查是否報到
     func IsUserArrive(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
-        let requestString = "\(host)/api/isUserArrive/\(slug)"
+        let requestString = "\(Service.host)/api/isUserArrive/\(slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "GET"
@@ -741,7 +744,7 @@ struct Service {
     //掃描報到
     func ArriveEvent(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         
-        let requestString = "\(host)/api/arriveEvent/\(slug)"
+        let requestString = "\(Service.host)/api/arriveEvent/\(slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -772,7 +775,7 @@ struct Service {
     
     //所有商品
     func GetProductList(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        let requestString = "\(host)/api/productList?page=\(page.description)"
+        let requestString = "\(Service.host)/api/productList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -800,7 +803,7 @@ struct Service {
     
     //產品內頁
     func GetProductDetail(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        let requestString = "\(host)/api/product/productDetail/\(slug)"
+        let requestString = "\(Service.host)/api/product/productDetail/\(slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -827,7 +830,7 @@ struct Service {
     
     //所有經銷據點
     func GetLocation(completion:@escaping(Result<[NSDictionary],APIError>)->Void){
-        let requestString = "\(host)/api/location"
+        let requestString = "\(Service.host)/api/location"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -854,7 +857,7 @@ struct Service {
     
     //購買商品
     func PurchaseProduct(location_id:Int,product_slug:String,completion:@escaping(Result<String,APIError>)->Void){
-        let requestString = "\(host)/api/purchase/\(product_slug)"
+        let requestString = "\(Service.host)/api/purchase/\(product_slug)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
@@ -882,7 +885,7 @@ struct Service {
     
     //我的兌換清單
     func MyOrderList(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        let requestString = "\(host)/api/order/myOrderList?page=\(page.description)"
+        let requestString = "\(Service.host)/api/order/myOrderList?page=\(page.description)"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -912,7 +915,7 @@ struct Service {
     //回傳 push token
     func SetPushToken(push_token:String,completion:@escaping(Result<String,APIError>)->Void){
         print("set push token request")
-        let requestString = "\(host)/api/auth/set_pushtoken"
+        let requestString = "\(Service.host)/api/auth/set_pushtoken"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"

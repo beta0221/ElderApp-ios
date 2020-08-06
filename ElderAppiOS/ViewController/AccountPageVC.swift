@@ -11,6 +11,7 @@ import CoreData
 
 class AccountPageVC: UIViewController {
 
+    @IBOutlet weak var updateImageButtonOutterView: UIView!
     
     @IBOutlet weak var imageOutterView: UIView!
     
@@ -51,13 +52,14 @@ class AccountPageVC: UIViewController {
         
         imageOutterView.layer.cornerRadius = imageOutterView.frame.size.width / 2
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
+        updateImageButtonOutterView.layer.cornerRadius = updateImageButtonOutterView.frame.size.width / 2
+        
         updateRequestButton.layer.cornerRadius = 5
         extendRequestButton.layer.cornerRadius = 5
         
+        loadAccountData()
     }
     override func viewWillAppear(_ animated: Bool) {
-        loadAccountData()
-        print("loadAccountData")
     }
     
     private func loadAccountData(){
@@ -65,11 +67,9 @@ class AccountPageVC: UIViewController {
             AD.service.MyAccountRequest(completion: { result in switch result{
                 case .success(let res):
                     
-                if((res["img"] as? String ?? "null") == "null"){
-                    self.userImage.image = UIImage(named: "user_default")
-                }else{
-                    let img_url = "\(Service.hostName)/images/users/\(res["id"] as! Int)/\(res["img"] as! String)"
-                    self.userImage.loadImageUsingUrlString(urlString: img_url)
+                self.userImage.image = UIImage(named: "user_default")
+                if let img =  res["img"] as? String{
+                    self.userImage.loadImageUsingUrlString(urlString: img)
                 }
                     
                 self.userNameLabel.text = res["name"] as? String ?? ""
@@ -176,7 +176,7 @@ class AccountPageVC: UIViewController {
     
     
     @IBAction func uploadImage(_ sender: Any) {
-        Common.SystemAlert(Title: "非常抱歉", Body: "此功能尚未開放", SingleBtn: "確定", viewController: self)
+        showImagePickerControlActionSheet()
     }
     
 
@@ -188,7 +188,6 @@ extension UIImageView{
     
     func loadImageUsingUrlString(urlString:String){
         
-    
         let url = NSURL(string: urlString)
         
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage{
@@ -198,31 +197,19 @@ extension UIImageView{
         
         let urlRequest = URLRequest(url: url! as URL)
         let dataTask = URLSession.shared.dataTask(with: urlRequest){(data,response,error) in
-            
             if error != nil{
                 print(error!)
                 return
             }
-            
             DispatchQueue.main.async {
                 if let imageToCache = UIImage(data: data!){
                     imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
                     self.image = imageToCache
                 }   
             }
-            
         }
-        
         dataTask.resume()
-        
-        
-        
-        
     }
-    
-    
-    
-    
 }
 
 extension AccountPageVC:UpdateDelegate{
@@ -236,4 +223,67 @@ extension AccountPageVC:UpdateDelegate{
 
 protocol UpdateDelegate {
     func update()->Void
+}
+
+extension AccountPageVC:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
+    func showImagePickerControlActionSheet(){
+        let photoLibraryAction = UIAlertAction(title: "從檔案",style: .default, handler: {(action)in
+            self.showImagePickerController(sourceType: .photoLibrary)
+        })
+        let takePhotoAction = UIAlertAction(title: "拍照",style: .default, handler: {(action)in
+            self.showImagePickerController(sourceType: .camera)
+        })
+        let cancelAction = UIAlertAction(title: "取消",style: .cancel, handler: nil)
+        Common.ActionAlert(title: "上傳相片", message: "請選擇取用圖片方式", actions: [photoLibraryAction,takePhotoAction,cancelAction], viewController: self)
+        
+    }
+    
+    func showImagePickerController(sourceType:UIImagePickerController.SourceType){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = sourceType
+        present(imagePickerController,animated: true,completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        var selectedImage:UIImage?
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+//            userImage.image = editedImage
+            selectedImage = editedImage
+        }else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+//            userImage.image = originalImage
+            selectedImage = originalImage
+        }
+        
+        self.dismiss(animated:true,completion: {
+            if(selectedImage == nil){ return }
+            guard let imageData = selectedImage?.pngData() else { return }
+            let imageString = imageData.base64EncodedString()
+            Spinner.start()
+            AD.service.UploadImageRequest(image: imageString, completion: {result in
+                switch result{
+                case .success(let res):
+                    if let imgUrl = res["imgUrl"] as? String{
+                        print("success")
+                        DispatchQueue.main.async {
+                            self.userImage.loadImageUsingUrlString(urlString: imgUrl)
+                            Common.SystemAlert(Title: "訊息", Body: "上傳成功", SingleBtn: "確定", viewController: self)
+                        }
+                    }
+                    DispatchQueue.main.async { Spinner.stop() }
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {
+                        Common.SystemAlert(Title: "錯誤", Body: "上傳失敗", SingleBtn: "確定", viewController: self)
+                        Spinner.stop()
+                    }
+                }
+            })
+            
+        })
+        
+    }
 }

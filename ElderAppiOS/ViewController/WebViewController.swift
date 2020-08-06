@@ -22,7 +22,7 @@ class WebViewController: UIViewController {
     
     func loadProductList(){
         titleLabel.text = "銀髮商城"
-        let urlString = "\(Service.hostName)/product/list?token=\(UserDefaults.standard.getToken() ?? "")"
+        let urlString = "\(Service.host)/product/list?token=\(UserDefaults.standard.getToken() ?? "")"
         guard let url = URL(string: urlString) else { return }
         let urlRequest = URLRequest(url: url)
         webview.load(urlRequest)
@@ -30,7 +30,7 @@ class WebViewController: UIViewController {
     
     func loadMyGroupMember(){
         titleLabel.text = "我的組織"
-        let urlString = "\(Service.hostName)/memberGroupMembers?token=\(UserDefaults.standard.getToken() ?? "")"
+        let urlString = "\(Service.host)/memberGroupMembers?token=\(UserDefaults.standard.getToken() ?? "")"
         guard let url = URL(string: urlString) else { return }
         let urlRequest = URLRequest(url: url)
         webview.load(urlRequest)

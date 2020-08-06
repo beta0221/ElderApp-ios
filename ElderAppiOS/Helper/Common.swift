@@ -11,6 +11,15 @@ import UIKit
 
 class Common{
     
+    static func ActionAlert(title:String,message:String,actions:[UIAlertAction],viewController:UIViewController){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        for action in actions{
+            alert.addAction(action)
+        }
+        viewController.present(alert,animated: true)
+        
+    }
+    
     static func SystemAlert(Title:String,Body:String,SingleBtn:String,viewController:UIViewController){
         let controller = UIAlertController(title: Title, message:Body , preferredStyle: .alert)
         let okAction = UIAlertAction(title: SingleBtn, style: .default, handler: nil)
