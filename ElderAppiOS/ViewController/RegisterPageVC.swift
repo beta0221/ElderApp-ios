@@ -168,26 +168,26 @@ class RegisterPageVC: UIViewController {
             nameAlert.isHidden = false
             result = false
         }
-        if(genderField.text!.isEmpty || genderField.text == "請選擇性別"){
-            genderAlert.isHidden = false
-            result = false
-        }
-        if(birthdateField.text!.isEmpty){
-            birthdateAlert.isHidden = false
-            result = false
-        }
-        if(idNumberField.text!.isEmpty){
-            idNumberAlert.isHidden = false
-            result = false
-        }
+//        if(genderField.text!.isEmpty || genderField.text == "請選擇性別"){
+//            genderAlert.isHidden = false
+//            result = false
+//        }
+//        if(birthdateField.text!.isEmpty){
+//            birthdateAlert.isHidden = false
+//            result = false
+//        }
+//        if(idNumberField.text!.isEmpty){
+//            idNumberAlert.isHidden = false
+//            result = false
+//        }
          if(districtField.text!.isEmpty || districtField.text == "請選擇地區"){
             districtAlert.isHidden = false
             result = false
         }
-        if(addressField.text!.isEmpty){
-            addressAlert.isHidden = false
-            result = false
-        }
+//        if(addressField.text!.isEmpty){
+//            addressAlert.isHidden = false
+//            result = false
+//        }
         if(payTypeField.text!.isEmpty || payTypeField.text! == "請選擇付款方式"){
             payTypeAlert.isHidden = false
             result = false
