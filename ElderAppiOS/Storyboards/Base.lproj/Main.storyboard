@@ -3131,15 +3131,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1580"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBz-va-h9K">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1880"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1840"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jRH-yA-01a">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1880"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1840"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1oa-Y4-h9a">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="桃園市銀髮族協會" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70e-o2-PRE">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="會員註冊" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70e-o2-PRE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="80" id="agi-Qk-SSA"/>
@@ -3158,27 +3158,8 @@
                                                             <constraint firstAttribute="trailing" secondItem="70e-o2-PRE" secondAttribute="trailing" id="vbM-8u-MTU"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8z-xl-wEg">
-                                                        <rect key="frame" x="0.0" y="80" width="375" height="56"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="會員註冊" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOX-Ix-kRT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="56" id="HGG-hn-Gp6"/>
-                                                            <constraint firstItem="LOX-Ix-kRT" firstAttribute="top" secondItem="T8z-xl-wEg" secondAttribute="top" id="Jjh-OU-XYR"/>
-                                                            <constraint firstItem="LOX-Ix-kRT" firstAttribute="leading" secondItem="T8z-xl-wEg" secondAttribute="leading" id="X7Q-vi-stK"/>
-                                                            <constraint firstAttribute="trailing" secondItem="LOX-Ix-kRT" secondAttribute="trailing" id="YyA-RR-9q3"/>
-                                                            <constraint firstAttribute="bottom" secondItem="LOX-Ix-kRT" secondAttribute="bottom" id="jdk-IP-E4g"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZd-Ew-5a8">
-                                                        <rect key="frame" x="0.0" y="136" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="80" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帳號(建議使用手機或Email)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obd-EJ-bsT">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3197,7 +3178,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYP-He-rFi">
-                                                        <rect key="frame" x="0.0" y="192" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="136" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LU4-ws-34f">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3215,7 +3196,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vr4-eH-IaZ">
-                                                        <rect key="frame" x="0.0" y="248" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="192" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此欄位必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUM-z9-Kr1">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3234,7 +3215,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEM-sW-Msf">
-                                                        <rect key="frame" x="0.0" y="248" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="192" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密碼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcf-Tj-Myo">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3253,7 +3234,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxd-3g-42D">
-                                                        <rect key="frame" x="0.0" y="304" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="248" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BzR-SR-QZ1">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3271,7 +3252,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gz6-zC-pso">
-                                                        <rect key="frame" x="0.0" y="360" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="304" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此欄位必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhF-ac-hXh">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3290,7 +3271,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frn-Ol-jw7">
-                                                        <rect key="frame" x="0.0" y="360" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="304" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="確認密碼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMj-t8-DcQ">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3309,7 +3290,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgf-71-EMJ">
-                                                        <rect key="frame" x="0.0" y="416" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="360" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="確認密碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igd-CQ-5qZ">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3327,7 +3308,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-dU-1lh">
-                                                        <rect key="frame" x="0.0" y="472" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="416" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="與密碼不符" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pD1-hU-loh">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3346,7 +3327,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mgs-IM-dDc">
-                                                        <rect key="frame" x="0.0" y="472" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="416" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yi-2q-SMC">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3365,7 +3346,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ym-QX-q4O">
-                                                        <rect key="frame" x="0.0" y="528" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="472" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o6k-GM-3qW">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3383,7 +3364,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hY-WW-TBJ">
-                                                        <rect key="frame" x="0.0" y="584" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="528" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此欄位必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ges-9s-uus">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3402,7 +3383,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVM-mI-UUv">
-                                                        <rect key="frame" x="0.0" y="584" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="528" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手機" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reT-MK-68I">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3421,7 +3402,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJw-7h-Jgg">
-                                                        <rect key="frame" x="0.0" y="640" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="584" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手機" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PbS-To-rup">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3439,7 +3420,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLd-N5-ESu">
-                                                        <rect key="frame" x="0.0" y="696" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="640" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHa-j6-nBw">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3458,9 +3439,9 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-My-Q3t">
-                                                        <rect key="frame" x="0.0" y="696" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="640" width="375" height="56"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家用電話" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwZ-ng-tBF">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家用電話 (選填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwZ-ng-tBF">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <nil key="textColor"/>
@@ -3477,7 +3458,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssF-7S-5iw">
-                                                        <rect key="frame" x="0.0" y="752" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="696" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="家用電話" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-FD-9tO">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3495,7 +3476,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9v-Y9-VdP">
-                                                        <rect key="frame" x="0.0" y="808" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="752" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9f-Nj-h2P">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3514,9 +3495,9 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htT-6K-Fvz">
-                                                        <rect key="frame" x="0.0" y="808" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="752" width="375" height="56"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRt-qV-rb9">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別 (選填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRt-qV-rb9">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <nil key="textColor"/>
@@ -3533,7 +3514,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-n4-0bT">
-                                                        <rect key="frame" x="0.0" y="864" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="808" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請選擇性別" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ys-bg-AG1">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3551,7 +3532,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkd-et-B8g">
-                                                        <rect key="frame" x="0.0" y="920" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="864" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請選擇性別" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-La-KVC">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3570,10 +3551,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwF-SS-TAY">
-                                                        <rect key="frame" x="0.0" y="920" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="864" width="375" height="40"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出生年月日(生日將收到獎勵)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iw-10-qk3">
-                                                                <rect key="frame" x="12" y="0.0" width="351" height="56"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出生年月日 (選填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iw-10-qk3">
+                                                                <rect key="frame" x="12" y="0.0" width="351" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -3581,15 +3562,33 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="56" id="1Gh-Zh-CMR"/>
+                                                            <constraint firstAttribute="height" constant="40" id="1Gh-Zh-CMR"/>
                                                             <constraint firstItem="6iw-10-qk3" firstAttribute="top" secondItem="lwF-SS-TAY" secondAttribute="top" id="1QG-KJ-0FX"/>
                                                             <constraint firstAttribute="trailing" secondItem="6iw-10-qk3" secondAttribute="trailing" constant="12" id="7WE-a1-5Ki"/>
                                                             <constraint firstItem="6iw-10-qk3" firstAttribute="leading" secondItem="lwF-SS-TAY" secondAttribute="leading" constant="12" id="vF7-T8-m4G"/>
                                                             <constraint firstAttribute="bottom" secondItem="6iw-10-qk3" secondAttribute="bottom" id="xTW-kW-AXJ"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bn-dE-BlD">
+                                                        <rect key="frame" x="0.0" y="904" width="375" height="32"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生日將收到獎勵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cd6-VR-6Ow">
+                                                                <rect key="frame" x="12" y="0.0" width="114.5" height="32"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="Cd6-VR-6Ow" firstAttribute="leading" secondItem="4bn-dE-BlD" secondAttribute="leading" constant="12" id="CvY-a0-Jpu"/>
+                                                            <constraint firstItem="Cd6-VR-6Ow" firstAttribute="top" secondItem="4bn-dE-BlD" secondAttribute="top" id="QUl-YL-Abf"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Cd6-VR-6Ow" secondAttribute="bottom" id="R4K-xR-FOb"/>
+                                                            <constraint firstAttribute="height" constant="32" id="tUR-ZF-dnX"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLW-e1-0cp">
-                                                        <rect key="frame" x="0.0" y="976" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="936" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請選擇出生日期" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ET7-gG-J7f">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3607,7 +3606,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zM-MA-OcJ">
-                                                        <rect key="frame" x="0.0" y="1032" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="992" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請選擇出生年月日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6a-kZ-0fz">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3626,9 +3625,9 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ji6-e1-Bh7">
-                                                        <rect key="frame" x="0.0" y="1032" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="992" width="375" height="56"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生份證字號" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZO-sE-ECc">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生份證字號 (選填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZO-sE-ECc">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <nil key="textColor"/>
@@ -3645,7 +3644,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfw-tm-HNz">
-                                                        <rect key="frame" x="0.0" y="1088" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1048" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="生份證字號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8VC-N3-v8t">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3663,7 +3662,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24H-JH-NDD">
-                                                        <rect key="frame" x="0.0" y="1144" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="1104" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此欄位必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-S2-FxE">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3682,7 +3681,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tv7-AQ-GUU">
-                                                        <rect key="frame" x="0.0" y="1144" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1104" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地區" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwQ-vl-MDb">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3701,7 +3700,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sq8-JT-BUJ">
-                                                        <rect key="frame" x="0.0" y="1200" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1160" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請選擇地區" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a5f-tI-kDZ">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3719,7 +3718,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilc-30-2uk">
-                                                        <rect key="frame" x="0.0" y="1256" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="1216" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請選擇地區" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1k-lQ-htx">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3738,9 +3737,9 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-Tf-HIt">
-                                                        <rect key="frame" x="0.0" y="1256" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1216" width="375" height="56"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-qB-jDe">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址 (選填)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-qB-jDe">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <nil key="textColor"/>
@@ -3757,7 +3756,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wp-qs-IaO">
-                                                        <rect key="frame" x="0.0" y="1312" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1272" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syc-gG-EcR">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3775,7 +3774,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxw-R5-Fl1">
-                                                        <rect key="frame" x="0.0" y="1368" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="1328" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此欄位必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4SL-b7-lel">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3794,7 +3793,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uno-ci-NU8">
-                                                        <rect key="frame" x="0.0" y="1368" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1328" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="付款方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOt-Ox-yR4">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3813,7 +3812,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5x-zT-Xsy">
-                                                        <rect key="frame" x="0.0" y="1424" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1384" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請選擇付款方式" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-1y-i1Y">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3831,7 +3830,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sF3-OI-3mG">
-                                                        <rect key="frame" x="0.0" y="1480" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="1440" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="請選擇付款方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv6-vq-DAo">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3850,7 +3849,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9J1-Ll-OQP">
-                                                        <rect key="frame" x="0.0" y="1480" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1440" width="375" height="56"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推薦人手機或會員編號" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kv7-fx-ToQ">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3869,7 +3868,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jQ-uk-GQ6">
-                                                        <rect key="frame" x="0.0" y="1480" width="375" height="56"/>
+                                                        <rect key="frame" x="0.0" y="1440" width="375" height="56"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="推薦人手機或會員編號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Xc-5E-Wqr">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3887,7 +3886,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ex-r5-BPt">
-                                                        <rect key="frame" x="0.0" y="1480" width="375" height="64"/>
+                                                        <rect key="frame" x="0.0" y="1440" width="375" height="64"/>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmH-yy-kBm">
                                                                 <rect key="frame" x="12" y="4" width="351" height="56"/>
@@ -3911,7 +3910,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXQ-Oj-lcd">
-                                                        <rect key="frame" x="0.0" y="1480" width="375" height="32"/>
+                                                        <rect key="frame" x="0.0" y="1440" width="375" height="32"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此欄位必填" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXT-wI-Uvx">
                                                                 <rect key="frame" x="12" y="0.0" width="351" height="32"/>
@@ -3930,7 +3929,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t00-zd-M87">
-                                                        <rect key="frame" x="0.0" y="1480" width="375" height="400"/>
+                                                        <rect key="frame" x="0.0" y="1440" width="375" height="400"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="400" id="X7Z-qz-938"/>
