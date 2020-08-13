@@ -46,7 +46,7 @@ class ProductDetailPageVC: UIViewController {
                 self.productImage.loadImageUsingUrlString(urlString: urlString)
                 self.nameLabel.text = "商品：\(product["name"] as? String ?? "")"
                 self.priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
-                self.infoLabel.text = product["info"] as? String ?? ""
+                self.infoLabel.attributedText = (product["info"] as? String ?? "").convertToAttributedFromHTML()
                 
                 let locationList = res["locationList"] as? [NSDictionary] ?? []
                 self.loadLocation(locationList: locationList)

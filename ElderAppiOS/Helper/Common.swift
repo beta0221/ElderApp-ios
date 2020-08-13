@@ -229,6 +229,23 @@ extension UserDefaults{
     
 }
 
+extension String {
+    func convertToAttributedFromHTML(fontName: String = "Arial", fontSize: Float = 32) -> NSAttributedString? {
+        
+        let style = "<style>body { font-family: '\(fontName)'; font-size:\(fontSize)px; }</style>"
+        var attributedText: NSAttributedString?
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue,
+        ]
+        if let data = (self + style).data(using: .unicode, allowLossyConversion: true), let attrStr = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
+            attributedText = attrStr
+        }
+        
+        return attributedText
+    }
+}
+
 class MyTapGesture:UITapGestureRecognizer{
     var tapView:UIView?
     var int:Int?
