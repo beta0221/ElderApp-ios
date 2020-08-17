@@ -10,6 +10,8 @@
 		9C10E70B23702F89007E7557 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10E70A23702F89007E7557 /* UserHelper.swift */; };
 		9C9B2819236FEEA900C93C2C /* AccountPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B2818236FEEA900C93C2C /* AccountPageVC.swift */; };
 		9C9B281B236FEF1700C93C2C /* LoginPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */; };
+		9C9D36E124EA85C300AA1069 /* PostPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D36E024EA85C300AA1069 /* PostPageVC.swift */; };
+		9C9D36E324EA8BCE00AA1069 /* PostCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D36E224EA8BCE00AA1069 /* PostCVC.swift */; };
 		9C9E5BCC23726BE6008F29BC /* RegisterPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E5BCB23726BE6008F29BC /* RegisterPageVC.swift */; };
 		9C9E5BCE2372962A008F29BC /* InviterScannerPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E5BCD2372962A008F29BC /* InviterScannerPageVC.swift */; };
 		9CE3F8F1236FDCD2008B783B /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F0236FDCD2008B783B /* District.swift */; };
@@ -62,6 +64,8 @@
 		9C10E70A23702F89007E7557 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		9C9B2818236FEEA900C93C2C /* AccountPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageVC.swift; sourceTree = "<group>"; };
 		9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageVC.swift; sourceTree = "<group>"; };
+		9C9D36E024EA85C300AA1069 /* PostPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPageVC.swift; sourceTree = "<group>"; };
+		9C9D36E224EA8BCE00AA1069 /* PostCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCVC.swift; sourceTree = "<group>"; };
 		9C9E5BCB23726BE6008F29BC /* RegisterPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageVC.swift; sourceTree = "<group>"; };
 		9C9E5BCD2372962A008F29BC /* InviterScannerPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviterScannerPageVC.swift; sourceTree = "<group>"; };
 		9CE3F8F0236FDCD2008B783B /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 				CD0F5968239CAE3500ED495A /* ProductDetailPageVC.swift */,
 				CD0F5970239CDE5100ED495A /* LocationDetailVC.swift */,
 				CD7D7630241FC05C0028FCB5 /* WebViewController.swift */,
+				9C9D36E024EA85C300AA1069 /* PostPageVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				CDEE2C6A23704C0700C2754E /* TransCVC.swift */,
 				CD736855239CA2CC00B7690A /* ProductCVC.swift */,
 				CD0F5972239D03B000ED495A /* MyOrderCVC.swift */,
+				9C9D36E224EA8BCE00AA1069 /* PostCVC.swift */,
 			);
 			path = CVC;
 			sourceTree = "<group>";
@@ -391,7 +397,9 @@
 				CDCA63A9236EC3B4000D054B /* ElderAppiOS.xcdatamodeld in Sources */,
 				CDCA63B7236EC6A9000D054B /* Service.swift in Sources */,
 				CD736854239CA29C00B7690A /* ShopPageVC.swift in Sources */,
+				9C9D36E124EA85C300AA1069 /* PostPageVC.swift in Sources */,
 				CD0F5969239CAE3500ED495A /* ProductDetailPageVC.swift in Sources */,
+				9C9D36E324EA8BCE00AA1069 /* PostCVC.swift in Sources */,
 				9C9B281B236FEF1700C93C2C /* LoginPageVC.swift in Sources */,
 				CDEE2C6B23704C0700C2754E /* TransCVC.swift in Sources */,
 				CD10C811237124E500029C90 /* EventCVC.swift in Sources */,
