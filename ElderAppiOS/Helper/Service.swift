@@ -24,7 +24,7 @@ enum RunningMode{
 
 struct Service {
     
-    static let runningMode:RunningMode = .Production
+    static let runningMode:RunningMode = .LocalDevelope
     
     static var host:String{
         switch runningMode {
@@ -944,7 +944,7 @@ struct Service {
     //文章列表
     func getPostList(page:Int,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("getPostList request")
-        let requestString = "\(Service.host)/api/post/list?page=\(page.description)"
+        let requestString = "\(Service.host)/api/post/list?page=\(page.description)&descending=1"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -970,7 +970,7 @@ struct Service {
     
     func getMyPostList(page:Int,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("getMyPostList request")
-        let requestString = "\(Service.host)/api/post/myPostList?page=\(page.description)"
+        let requestString = "\(Service.host)/api/post/myPostList?page=\(page.description)&descending=1"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         let token = UserDefaults.standard.getToken() ?? ""
@@ -996,7 +996,39 @@ struct Service {
         }.resume()
     }
     
-    
+    //發布文章
+    func makeNewPost(title:String,body:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("makeNewPost request")
+        let requestString = "\(Service.host)/api/post/makeNewPost"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let postString = "title=\(title)&body=\(body)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
+            completion(.failure(.responseProblem))
+            return
+            }
+            do{
+                self.printJsonData(jsonData: jsonData)
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }.resume()
+    }
     
     
     

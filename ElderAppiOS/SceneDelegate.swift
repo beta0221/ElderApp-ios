@@ -106,8 +106,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     @available(iOS 13.0, *)
     private func navigateToLoginPage(){
-        //let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageVC")
-        let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostPageVC")
+        let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginPageVC")
+        //let rootVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostPageVC")
         let rootNC = UINavigationController(rootViewController: rootVC)
         self.window?.rootViewController = rootNC
     }

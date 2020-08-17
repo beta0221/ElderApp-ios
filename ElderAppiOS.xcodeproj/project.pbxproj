@@ -47,6 +47,7 @@
 		CDC3462723719A7500E44069 /* EventPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3462623719A7500E44069 /* EventPageVC.swift */; };
 		CDC482D72371BB300038AF34 /* EventDetailPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC482D62371BB300038AF34 /* EventDetailPageVC.swift */; };
 		CDC482D92371E4C70038AF34 /* EventRewardScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC482D82371E4C70038AF34 /* EventRewardScannerVC.swift */; };
+		CDC6FA0624EAB9F500D7E4D1 /* NewPostPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC6FA0524EAB9F500D7E4D1 /* NewPostPageVC.swift */; };
 		CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA639E236EC3B4000D054B /* AppDelegate.swift */; };
 		CDCA63A1236EC3B4000D054B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCA63A0236EC3B4000D054B /* SceneDelegate.swift */; };
 		CDCA63A6236EC3B4000D054B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCA63A4236EC3B4000D054B /* Main.storyboard */; };
@@ -102,6 +103,7 @@
 		CDC3462623719A7500E44069 /* EventPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPageVC.swift; sourceTree = "<group>"; };
 		CDC482D62371BB300038AF34 /* EventDetailPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailPageVC.swift; sourceTree = "<group>"; };
 		CDC482D82371E4C70038AF34 /* EventRewardScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRewardScannerVC.swift; sourceTree = "<group>"; };
+		CDC6FA0524EAB9F500D7E4D1 /* NewPostPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostPageVC.swift; sourceTree = "<group>"; };
 		CDCA639B236EC3B4000D054B /* 銀髮學院.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "銀髮學院.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCA639E236EC3B4000D054B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDCA63A0236EC3B4000D054B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				CD0F5970239CDE5100ED495A /* LocationDetailVC.swift */,
 				CD7D7630241FC05C0028FCB5 /* WebViewController.swift */,
 				9C9D36E024EA85C300AA1069 /* PostPageVC.swift */,
+				CDC6FA0524EAB9F500D7E4D1 /* NewPostPageVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				CD6397622379A8FD00794788 /* StatementVC.swift in Sources */,
 				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
 				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
+				CDC6FA0624EAB9F500D7E4D1 /* NewPostPageVC.swift in Sources */,
 				CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */,
 				9C10E70B23702F89007E7557 /* UserHelper.swift in Sources */,
 				CD0F5973239D03B000ED495A /* MyOrderCVC.swift in Sources */,
