@@ -33,6 +33,9 @@ class PostPageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        navigationController?.navigationBar.barTintColor = .lightGray
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.gray]
+        
         allPostButton.clipsToBounds=true
         myPostButton.clipsToBounds=true
         allPostButton.layer.cornerRadius = 4

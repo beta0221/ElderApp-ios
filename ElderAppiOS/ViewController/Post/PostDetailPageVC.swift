@@ -24,7 +24,15 @@ class PostDetailPageVC: UIViewController {
     var slug = ""
     var page:Int = 1
     var hasNextPage:Bool = false
-    var commentViewList:[CommentView] = []
+    var isLoading:Bool = false
+    //var commentViewList:[CommentView] = []
+    @IBOutlet weak var notFoundOutterView: UIView!
+    
+    
+    @IBOutlet weak var textViewBottomConstrait: NSLayoutConstraint!
+    @IBOutlet weak var textViewHeightConstrait: NSLayoutConstraint!
+    @IBOutlet weak var commentTextview: UITextView!
+    @IBOutlet weak var submitButtonOutterView: UIView!
     
     
     override func viewDidLoad() {
@@ -33,26 +41,34 @@ class PostDetailPageVC: UIViewController {
         if(slug.isEmpty){ return }
         getPostDetail()
         getCommentList()
+        keyboardDissmissable()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     private func getCommentList(){
+        isLoading = true
         AD.service.getCommentList(slug: self.slug,page:self.page, completion: {result in
             switch result{
             case .success(let res):
-                if let hasNextPage = res["hasNextPage"] as? Bool{
-                    self.hasNextPage = hasNextPage
-                }
-                
+                self.isLoading = false
                 if let commentList = res["commentList"] as? [NSDictionary]{
+                    if(self.page == 1 && commentList.count == 0){self.notFoundOutterView.isHidden = false}
                     for comment in commentList{
                         //self.commentViewList.append(CommentView(comment: comment))
                         self.commentStackview.addArrangedSubview(CommentView(comment:comment))
                     }
                 }
-                print("done")
+                if let hasNextPage = res["hasNextPage"] as? Bool{
+                    self.hasNextPage = hasNextPage
+                    if(hasNextPage){
+                        self.page += 1
+                    }
+                }
                 //DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
                 print(error)
+                self.isLoading = false
                 //DispatchQueue.main.async {Spinner.stop()}
             }
         })
@@ -98,6 +114,30 @@ class PostDetailPageVC: UIViewController {
         })
     }
     
+    @IBAction func submitComment(_ sender: Any) {
+        if(self.slug.isEmpty){ return }
+        if(self.commentTextview.text.isEmpty){ return }
+        Spinner.start()
+        AD.service.commentOnPost(slug: self.slug, comment: self.commentTextview.text, completion: { result in
+            switch result{
+            case .success(let res):
+                if(!self.hasNextPage){
+                    if let comment = res["comment"] as? NSDictionary{
+                        self.commentStackview.addArrangedSubview(CommentView(comment: comment))
+                    }
+                }
+                self.commentsInscrease()
+                self.notFoundOutterView.isHidden = true
+                DispatchQueue.main.async {
+                    self.commentTextview.text = ""
+                    Spinner.stop()
+                }
+            case .failure(let error):
+                print(error)
+                DispatchQueue.main.async {Spinner.stop()}
+            }
+        })
+    }
     
     @IBAction func clickLikeButton(_ sender: LikeButton) {
         if(sender.hasLiked){
@@ -161,6 +201,56 @@ class PostDetailPageVC: UIViewController {
         self.commentsLabel.text = comments.description
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            self.textViewHeightConstrait.constant = 112.0
+            self.textViewBottomConstrait.constant = keyboardHeight - self.view.safeAreaInsets.bottom
+            self.view.layoutIfNeeded()
+            self.submitButtonOutterView.isHidden = true
+        }
+    }
+    @objc func keyboardWillHide(_ sender:Any){
+        self.textViewHeightConstrait.constant = 56.0
+        self.textViewBottomConstrait.constant = 0
+        self.view.layoutIfNeeded()
+        self.submitButtonOutterView.isHidden = false
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
 
 
+extension PostDetailPageVC:UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        var isBottom = false
+        if(scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)){
+            isBottom = true
+        }
+        
+        if(isBottom && !self.isLoading && self.hasNextPage){
+            self.getCommentList()
+        }
+        
+    }
+}
+
+
+extension PostDetailPageVC:UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.text == "留言..." {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "留言..."
+            textView.textColor = UIColor.lightGray
+        }
+    }
 }

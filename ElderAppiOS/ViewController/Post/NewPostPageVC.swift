@@ -19,6 +19,7 @@ class NewPostPageVC: UIViewController {
         super.viewDidLoad()
 
         addDismissButton()
+        keyboardDissmissable()
     }
     
     @IBAction func submitPost(_ sender: Any) {

@@ -24,7 +24,7 @@ enum RunningMode{
 
 struct Service {
     
-    static let runningMode:RunningMode = .LocalDevelope
+    static let runningMode:RunningMode = .Production
     
     static var host:String{
         switch runningMode {
@@ -1047,7 +1047,20 @@ struct Service {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
-    
+    //在文章中留言
+    func commentOnPost(slug:String,comment:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("commentOnPost request")
+        let requestString = "\(Service.host)/api/post/commentOnPost/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        let postString = "comment=\(comment)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
     
     
     

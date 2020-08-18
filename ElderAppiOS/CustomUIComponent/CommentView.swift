@@ -12,6 +12,8 @@ class CommentView: UIView {
 
    @IBOutlet var contentView: UIView!
 
+    @IBOutlet weak var outterBoxView: UIView!
+    @IBOutlet weak var innerBoxView: UIView!
     @IBOutlet weak var userImage: RoundImage!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -24,9 +26,12 @@ class CommentView: UIView {
         addSubview(contentView)
         contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-//        self.contentView.backgroundColor = .black
+        innerBoxView.clipsToBounds = true
+        innerBoxView.layer.cornerRadius = 6
+        outterBoxView.layer.cornerRadius = 6
+        outterBoxView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        outterBoxView.layer.shadowOpacity = 0.4
+
         
         if let user_name = comment["user_name"] as? String {
             self.userNameLabel.text = user_name

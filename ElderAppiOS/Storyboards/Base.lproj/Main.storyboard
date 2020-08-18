@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -400,7 +400,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBL-sh-31Q">
-                                                                <rect key="frame" x="52" y="0.0" width="9.5" height="56"/>
+                                                                <rect key="frame" x="52" y="0.0" width="7" height="56"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="-">
                                                                         <attributes>
@@ -1285,10 +1285,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="85B-tY-Awr">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="679"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="743"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7eu-D6-7QN">
-                                                <rect key="frame" x="8" y="0.0" width="359" height="679"/>
+                                                <rect key="frame" x="8" y="0.0" width="359" height="743"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ua-Wc-46e">
                                                         <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
@@ -1326,8 +1326,27 @@
                                                             <constraint firstItem="nSe-5f-X7d" firstAttribute="leading" secondItem="Dit-FE-dzf" secondAttribute="leading" id="sWI-ou-IU2"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElM-en-GOk">
+                                                        <rect key="frame" x="0.0" y="128" width="359" height="56"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文章內容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O16-8B-bX3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="8SO-xM-vay"/>
+                                                            <constraint firstAttribute="bottom" secondItem="O16-8B-bX3" secondAttribute="bottom" id="IdD-Un-2Dc"/>
+                                                            <constraint firstItem="O16-8B-bX3" firstAttribute="leading" secondItem="ElM-en-GOk" secondAttribute="leading" id="VdL-QX-cRu"/>
+                                                            <constraint firstItem="O16-8B-bX3" firstAttribute="top" secondItem="ElM-en-GOk" secondAttribute="top" id="sC9-Yf-keu"/>
+                                                            <constraint firstAttribute="trailing" secondItem="O16-8B-bX3" secondAttribute="trailing" id="xND-Bi-zbK"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOK-Nf-asz">
-                                                        <rect key="frame" x="0.0" y="128" width="359" height="475"/>
+                                                        <rect key="frame" x="0.0" y="192" width="359" height="475"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LdY-Cv-TIX">
                                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="475"/>
@@ -1370,7 +1389,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPd-wx-SbH">
-                                                        <rect key="frame" x="0.0" y="611" width="359" height="68"/>
+                                                        <rect key="frame" x="0.0" y="675" width="359" height="68"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unA-fd-dDH">
                                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
@@ -4699,7 +4718,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-e3-dcd">
-                                                                <rect key="frame" x="265" y="12" width="98" height="56"/>
+                                                                <rect key="frame" x="267" y="12" width="96" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="F0c-XI-ezU"/>
                                                                 </constraints>
@@ -5386,7 +5405,7 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                                                         <rect key="frame" x="0.0" y="156.5" width="375" height="128"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg9-8n-AAd">
-                                                                <rect key="frame" x="8" y="8" width="359" height="120"/>
+                                                                <rect key="frame" x="8" y="8" width="359" height="104"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -5394,7 +5413,7 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="fg9-8n-AAd" secondAttribute="bottom" id="Elf-Af-6V2"/>
+                                                            <constraint firstAttribute="bottom" secondItem="fg9-8n-AAd" secondAttribute="bottom" constant="16" id="Elf-Af-6V2"/>
                                                             <constraint firstAttribute="trailing" secondItem="fg9-8n-AAd" secondAttribute="trailing" constant="8" id="YcQ-R9-VZZ"/>
                                                             <constraint firstItem="fg9-8n-AAd" firstAttribute="leading" secondItem="Bkd-p2-BpG" secondAttribute="leading" constant="8" id="YzU-nr-qlE"/>
                                                             <constraint firstItem="fg9-8n-AAd" firstAttribute="top" secondItem="Bkd-p2-BpG" secondAttribute="top" constant="8" id="vKc-pj-wea"/>
@@ -5476,17 +5495,36 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                                                             <constraint firstItem="bkJ-t6-pVS" firstAttribute="centerY" secondItem="cwk-Hx-ai6" secondAttribute="centerY" id="tJD-6z-Djj"/>
                                                         </constraints>
                                                     </view>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNl-dy-q2p">
+                                                        <rect key="frame" x="0.0" y="340.5" width="375" height="80"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前無人回應(留言搶頭香)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZT-Br-dmy">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="fZT-Br-dmy" firstAttribute="leading" secondItem="hNl-dy-q2p" secondAttribute="leading" id="5dc-Cs-ZKe"/>
+                                                            <constraint firstAttribute="bottom" secondItem="fZT-Br-dmy" secondAttribute="bottom" id="RH9-7C-i7Q"/>
+                                                            <constraint firstItem="fZT-Br-dmy" firstAttribute="top" secondItem="hNl-dy-q2p" secondAttribute="top" id="cVC-eH-rpn"/>
+                                                            <constraint firstAttribute="height" constant="80" id="clv-kT-uc6"/>
+                                                            <constraint firstAttribute="trailing" secondItem="fZT-Br-dmy" secondAttribute="trailing" id="puC-0L-2Bv"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-kX-L1D">
                                                         <rect key="frame" x="0.0" y="340.5" width="375" height="128"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s6E-oE-ac8">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                                                <rect key="frame" x="0.0" y="4" width="375" height="120"/>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="s6E-oE-ac8" secondAttribute="bottom" id="D6V-Du-fue"/>
-                                                            <constraint firstItem="s6E-oE-ac8" firstAttribute="top" secondItem="0hc-kX-L1D" secondAttribute="top" id="Rk5-LX-Pc0"/>
+                                                            <constraint firstAttribute="bottom" secondItem="s6E-oE-ac8" secondAttribute="bottom" constant="4" id="D6V-Du-fue"/>
+                                                            <constraint firstItem="s6E-oE-ac8" firstAttribute="top" secondItem="0hc-kX-L1D" secondAttribute="top" constant="4" id="Rk5-LX-Pc0"/>
                                                             <constraint firstAttribute="trailing" secondItem="s6E-oE-ac8" secondAttribute="trailing" id="ZPa-dT-xRQ"/>
                                                             <constraint firstItem="s6E-oE-ac8" firstAttribute="leading" secondItem="0hc-kX-L1D" secondAttribute="leading" id="xFv-ww-HhD"/>
                                                         </constraints>
@@ -5516,24 +5554,72 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                                     <constraint firstAttribute="trailing" secondItem="UNK-mE-ol6" secondAttribute="trailing" id="ofR-5c-yju"/>
                                     <constraint firstAttribute="bottom" secondItem="UNK-mE-ol6" secondAttribute="bottom" id="uft-po-zQg"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="664-d9-fgr" id="ODI-tg-31v"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-nW-JUG">
                                 <rect key="frame" x="0.0" y="562" width="375" height="56"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AMA-zz-KPz">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="56"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTa-3T-eqe">
+                                        <rect key="frame" x="1" y="1" width="373" height="54"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rhG-kF-mNZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="309" height="54"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="留言..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AMA-zz-KPz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="309" height="54"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="664-d9-fgr" id="i0x-gu-MjF"/>
+                                                        </connections>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="AMA-zz-KPz" firstAttribute="top" secondItem="rhG-kF-mNZ" secondAttribute="top" id="IYR-b5-yIy"/>
+                                                    <constraint firstAttribute="bottom" secondItem="AMA-zz-KPz" secondAttribute="bottom" id="MUL-fH-T5d"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AMA-zz-KPz" secondAttribute="trailing" id="cTB-ND-veM"/>
+                                                    <constraint firstItem="AMA-zz-KPz" firstAttribute="leading" secondItem="rhG-kF-mNZ" secondAttribute="leading" id="ict-7k-9Xv"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdb-xq-mCE">
+                                                <rect key="frame" x="309" y="0.0" width="64" height="54"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyh-Gq-g4Y">
+                                                        <rect key="frame" x="0.0" y="0.0" width="64" height="56"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="FlR-8E-50m"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <state key="normal" title="發布">
+                                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="submitComment:" destination="664-d9-fgr" eventType="touchUpInside" id="gHp-u7-Zyb"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="nyh-Gq-g4Y" secondAttribute="trailing" id="Jnc-NS-6ah"/>
+                                                    <constraint firstItem="nyh-Gq-g4Y" firstAttribute="leading" secondItem="zdb-xq-mCE" secondAttribute="leading" id="Ktt-wT-gfX"/>
+                                                    <constraint firstItem="nyh-Gq-g4Y" firstAttribute="top" secondItem="zdb-xq-mCE" secondAttribute="top" id="Oo0-4U-Ac9"/>
+                                                    <constraint firstAttribute="width" constant="64" id="Xem-fy-4Di"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="AMA-zz-KPz" firstAttribute="leading" secondItem="jKJ-nW-JUG" secondAttribute="leading" constant="8" id="IS6-rj-7d6"/>
-                                    <constraint firstItem="AMA-zz-KPz" firstAttribute="top" secondItem="jKJ-nW-JUG" secondAttribute="top" id="TMc-6n-Lh2"/>
-                                    <constraint firstAttribute="bottom" secondItem="AMA-zz-KPz" secondAttribute="bottom" id="pPc-kx-rje"/>
-                                    <constraint firstAttribute="trailing" secondItem="AMA-zz-KPz" secondAttribute="trailing" constant="8" id="uw6-vJ-yuv"/>
+                                    <constraint firstAttribute="trailing" secondItem="yTa-3T-eqe" secondAttribute="trailing" constant="1" id="BMk-Ye-yem"/>
+                                    <constraint firstAttribute="bottom" secondItem="yTa-3T-eqe" secondAttribute="bottom" constant="1" id="QGE-fH-U6b"/>
+                                    <constraint firstItem="yTa-3T-eqe" firstAttribute="top" secondItem="jKJ-nW-JUG" secondAttribute="top" constant="1" id="TnM-3W-cOV"/>
+                                    <constraint firstItem="yTa-3T-eqe" firstAttribute="leading" secondItem="jKJ-nW-JUG" secondAttribute="leading" constant="1" id="goF-cB-k9i"/>
                                     <constraint firstAttribute="height" constant="56" id="zOg-jg-uP2"/>
                                 </constraints>
                             </view>
@@ -5556,10 +5642,15 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                     <connections>
                         <outlet property="bodyLabel" destination="fg9-8n-AAd" id="E9w-EG-gqp"/>
                         <outlet property="commentStackview" destination="s6E-oE-ac8" id="BD8-PS-cIC"/>
+                        <outlet property="commentTextview" destination="AMA-zz-KPz" id="McY-CY-7t6"/>
                         <outlet property="commentsLabel" destination="NsX-HZ-gXb" id="0Al-0c-LpA"/>
                         <outlet property="dateLabel" destination="hGZ-X4-P0y" id="hd7-KZ-IcR"/>
                         <outlet property="likeButton" destination="bkJ-t6-pVS" id="9fL-2n-vMo"/>
                         <outlet property="likesLabel" destination="0x1-gZ-d9w" id="mB4-rW-6BZ"/>
+                        <outlet property="notFoundOutterView" destination="hNl-dy-q2p" id="qfv-9T-SEK"/>
+                        <outlet property="submitButtonOutterView" destination="zdb-xq-mCE" id="g7l-ch-5eF"/>
+                        <outlet property="textViewBottomConstrait" destination="JbH-iG-igW" id="XvJ-Qg-g8c"/>
+                        <outlet property="textViewHeightConstrait" destination="zOg-jg-uP2" id="mQY-3w-IuX"/>
                         <outlet property="titleLabel" destination="ibY-P2-uUa" id="KrU-Ms-TlY"/>
                         <outlet property="userImage" destination="rbe-Xc-cqu" id="WT3-dl-jed"/>
                         <outlet property="userNameLabel" destination="aVT-r6-mhW" id="HTn-wL-oMf"/>
@@ -5570,15 +5661,12 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
             <point key="canvasLocation" x="-998" y="3047"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ooL-OO-cGq"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="academy_min" width="20" height="20"/>
         <image name="account_min" width="20" height="20"/>
         <image name="coin" width="100" height="100"/>
         <image name="configure" width="25" height="25"/>
-        <image name="doc.richtext" catalog="system" width="115" height="128"/>
+        <image name="doc.richtext" catalog="system" width="56" height="64"/>
         <image name="give" width="393" height="400"/>
         <image name="home_min" width="24" height="24"/>
         <image name="icon_like" width="25" height="25"/>
@@ -5592,4 +5680,7 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
         <image name="take" width="393" height="400"/>
         <image name="trans" width="393" height="400"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ooL-OO-cGq"/>
+    </inferredMetricsTieBreakers>
 </document>
