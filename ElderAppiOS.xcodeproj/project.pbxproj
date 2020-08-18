@@ -12,6 +12,11 @@
 		9C9B281B236FEF1700C93C2C /* LoginPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */; };
 		9C9D36E124EA85C300AA1069 /* PostPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D36E024EA85C300AA1069 /* PostPageVC.swift */; };
 		9C9D36E324EA8BCE00AA1069 /* PostCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D36E224EA8BCE00AA1069 /* PostCVC.swift */; };
+		9C9D65C424EBB5DE007434C3 /* PostDetailPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D65C324EBB5DE007434C3 /* PostDetailPageVC.swift */; };
+		9C9D65C724EBBE55007434C3 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D65C624EBBE55007434C3 /* RoundImage.swift */; };
+		9C9D65C924EBC5BC007434C3 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D65C824EBC5BC007434C3 /* LikeButton.swift */; };
+		9C9D65CB24EBE07D007434C3 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9D65CA24EBE07C007434C3 /* CommentView.xib */; };
+		9C9D65CD24EBE0E3007434C3 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D65CC24EBE0E3007434C3 /* CommentView.swift */; };
 		9C9E5BCC23726BE6008F29BC /* RegisterPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E5BCB23726BE6008F29BC /* RegisterPageVC.swift */; };
 		9C9E5BCE2372962A008F29BC /* InviterScannerPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E5BCD2372962A008F29BC /* InviterScannerPageVC.swift */; };
 		9CE3F8F1236FDCD2008B783B /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3F8F0236FDCD2008B783B /* District.swift */; };
@@ -67,6 +72,11 @@
 		9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageVC.swift; sourceTree = "<group>"; };
 		9C9D36E024EA85C300AA1069 /* PostPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPageVC.swift; sourceTree = "<group>"; };
 		9C9D36E224EA8BCE00AA1069 /* PostCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCVC.swift; sourceTree = "<group>"; };
+		9C9D65C324EBB5DE007434C3 /* PostDetailPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailPageVC.swift; sourceTree = "<group>"; };
+		9C9D65C624EBBE55007434C3 /* RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
+		9C9D65C824EBC5BC007434C3 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		9C9D65CA24EBE07C007434C3 /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
+		9C9D65CC24EBE0E3007434C3 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		9C9E5BCB23726BE6008F29BC /* RegisterPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPageVC.swift; sourceTree = "<group>"; };
 		9C9E5BCD2372962A008F29BC /* InviterScannerPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviterScannerPageVC.swift; sourceTree = "<group>"; };
 		9CE3F8F0236FDCD2008B783B /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
@@ -132,6 +142,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C9D65C224EBB570007434C3 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				9C9D36E024EA85C300AA1069 /* PostPageVC.swift */,
+				CDC6FA0524EAB9F500D7E4D1 /* NewPostPageVC.swift */,
+				9C9D65C324EBB5DE007434C3 /* PostDetailPageVC.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		9C9D65C524EBBE1C007434C3 /* CustomUIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				9C9D65C624EBBE55007434C3 /* RoundImage.swift */,
+				9C9D65C824EBC5BC007434C3 /* LikeButton.swift */,
+				9C9D65CA24EBE07C007434C3 /* CommentView.xib */,
+				9C9D65CC24EBE0E3007434C3 /* CommentView.swift */,
+			);
+			path = CustomUIComponent;
+			sourceTree = "<group>";
+		};
 		9CE3F8EF236FDCBE008B783B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CDBEE0C624D9B299005D3848 /* 銀髮學院.entitlements */,
+				9C9D65C524EBBE1C007434C3 /* CustomUIComponent */,
 				CDEE2C6923704BE300C2754E /* CVC */,
 				9CE3F8EF236FDCBE008B783B /* Models */,
 				CDCA63BB236EDFE8000D054B /* ViewController */,
@@ -230,6 +262,7 @@
 		CDCA63BB236EDFE8000D054B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9C9D65C224EBB570007434C3 /* Post */,
 				CD071D7823707CCB006B76C5 /* TransPageVC.swift */,
 				CDCA63BC236EE20B000D054B /* IndexPageVC.swift */,
 				CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */,
@@ -249,8 +282,6 @@
 				CD0F5968239CAE3500ED495A /* ProductDetailPageVC.swift */,
 				CD0F5970239CDE5100ED495A /* LocationDetailVC.swift */,
 				CD7D7630241FC05C0028FCB5 /* WebViewController.swift */,
-				9C9D36E024EA85C300AA1069 /* PostPageVC.swift */,
-				CDC6FA0524EAB9F500D7E4D1 /* NewPostPageVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -332,6 +363,7 @@
 				CD10C812237124E500029C90 /* EventCVC.xib in Resources */,
 				CDCA63AB236EC3B5000D054B /* Assets.xcassets in Resources */,
 				CDCA63A6236EC3B4000D054B /* Main.storyboard in Resources */,
+				9C9D65CB24EBE07D007434C3 /* CommentView.xib in Resources */,
 				CDBEE0C824D9B2E0005D3848 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +421,7 @@
 				9CE3F8F5236FDE4E008B783B /* Event.swift in Sources */,
 				CD0F5971239CDE5100ED495A /* LocationDetailVC.swift in Sources */,
 				CD10C8142371254000029C90 /* EventList.swift in Sources */,
+				9C9D65CD24EBE0E3007434C3 /* CommentView.swift in Sources */,
 				CD96D60024D05E4C005EAC57 /* Spinner.swift in Sources */,
 				CD071D7B23708381006B76C5 /* UpdateAccountPageVC.swift in Sources */,
 				CD0F596D239CB69400ED495A /* LocationCell.swift in Sources */,
@@ -398,6 +431,8 @@
 				CDC482D92371E4C70038AF34 /* EventRewardScannerVC.swift in Sources */,
 				CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */,
 				CDCA63A9236EC3B4000D054B /* ElderAppiOS.xcdatamodeld in Sources */,
+				9C9D65C424EBB5DE007434C3 /* PostDetailPageVC.swift in Sources */,
+				9C9D65C724EBBE55007434C3 /* RoundImage.swift in Sources */,
 				CDCA63B7236EC6A9000D054B /* Service.swift in Sources */,
 				CD736854239CA29C00B7690A /* ShopPageVC.swift in Sources */,
 				9C9D36E124EA85C300AA1069 /* PostPageVC.swift in Sources */,
@@ -411,6 +446,7 @@
 				CD6397622379A8FD00794788 /* StatementVC.swift in Sources */,
 				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
 				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
+				9C9D65C924EBC5BC007434C3 /* LikeButton.swift in Sources */,
 				CDC6FA0624EAB9F500D7E4D1 /* NewPostPageVC.swift in Sources */,
 				CDCA639F236EC3B4000D054B /* AppDelegate.swift in Sources */,
 				9C10E70B23702F89007E7557 /* UserHelper.swift in Sources */,

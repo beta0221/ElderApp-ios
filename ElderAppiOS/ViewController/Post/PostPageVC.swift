@@ -174,6 +174,19 @@ extension PostPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         return postCVC
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "show_post_detail"){
+            let slug = sender as? String ?? ""
+            guard let vc = segue.destination as? PostDetailPageVC else { return }
+            vc.slug = slug
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = postList[indexPath.row]
+        guard let slug = post["slug"] as? String else { return }
+        self.performSegue(withIdentifier:"show_post_detail",sender:slug)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.postCollectionView.frame.size.width
         return CGSize(width: width, height: 192.0)

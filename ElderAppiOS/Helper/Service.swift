@@ -59,7 +59,30 @@ struct Service {
         let string = String(data: jsonData, encoding: String.Encoding.utf8) as String?
         print(string ?? "")
     }
-    
+    private func DefaultResume(urlRequest:URLRequest,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200,
+            let jsonData = data else {
+                DispatchQueue.main.async{
+                    completion(.failure(.responseProblem))
+                }
+                return
+            }
+            self.printJsonData(jsonData: jsonData)
+            do{
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }.resume()
+    }
         
     
     //會員申請續會
@@ -949,25 +972,9 @@ struct Service {
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
-            return
-            }
-            do{
-                self.printJsonData(jsonData: jsonData)
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
-                DispatchQueue.main.async{
-                    completion(.success(json))
-                }
-            }catch{
-                DispatchQueue.main.async{
-                    print(error)
-                    completion(.failure(.decodingProblem))
-                }
-            }
-        }.resume()
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
-    
+    //我發佈的文章
     func getMyPostList(page:Int,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("getMyPostList request")
         let requestString = "\(Service.host)/api/post/myPostList?page=\(page.description)&descending=1"
@@ -977,32 +984,14 @@ struct Service {
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
-            return
-            }
-            do{
-                self.printJsonData(jsonData: jsonData)
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
-                DispatchQueue.main.async{
-                    completion(.success(json))
-                }
-            }catch{
-                DispatchQueue.main.async{
-                    print(error)
-                    completion(.failure(.decodingProblem))
-                }
-            }
-        }.resume()
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
-    
     //發布文章
     func makeNewPost(title:String,body:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("makeNewPost request")
         let requestString = "\(Service.host)/api/post/makeNewPost"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
-        
         urlRequest.httpMethod = "POST"
         let token = UserDefaults.standard.getToken() ?? ""
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -1010,28 +999,54 @@ struct Service {
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         let postString = "title=\(title)&body=\(body)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
-        
-        URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,let jsonData = data else {
-            completion(.failure(.responseProblem))
-            return
-            }
-            do{
-                self.printJsonData(jsonData: jsonData)
-                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! NSDictionary
-                DispatchQueue.main.async{
-                    completion(.success(json))
-                }
-            }catch{
-                DispatchQueue.main.async{
-                    print(error)
-                    completion(.failure(.decodingProblem))
-                }
-            }
-        }.resume()
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
-    
-    
-    
+    //文章內頁
+    func getPostDetail(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("getPostDetail request")
+        let requestString = "\(Service.host)/api/post/detail/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    //按讚
+    func likePost(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("likePost request")
+        let requestString = "\(Service.host)/api/post/likePost/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    //收回讚
+    func unlikePost(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("unlikePost request")
+        let requestString = "\(Service.host)/api/post/unLikePost/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    //文章內的留言
+    func getCommentList(slug:String,page:Int,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("getCommentList request")
+        let requestString = "\(Service.host)/api/post/commentList/\(slug)?page=\(page.description)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
     
     
     
