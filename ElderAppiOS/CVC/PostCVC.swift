@@ -60,4 +60,9 @@ class PostCVC: UICollectionViewCell {
         }
         
     }
+    
+    func updateData(likes:String,comments:String){
+        likesLabel.text = likes
+        commentsLabel.text = comments
+    }
 }

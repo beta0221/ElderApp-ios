@@ -11,6 +11,8 @@ import UIKit
 class PostDetailPageVC: UIViewController {
 
     
+    var delegate:PostDetailDelegate?
+    
     @IBOutlet weak var userImage: RoundImage!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -217,6 +219,11 @@ class PostDetailPageVC: UIViewController {
         self.submitButtonOutterView.isHidden = false
     }
 
+    override func didMove(toParent parent: UIViewController?) {
+        if !(parent?.isEqual(self.parent) ?? false) {
+            self.delegate?.updatePost(likes: self.likesLabel.text ?? "", comments: self.commentsLabel.text ?? "")
+        }
+    }
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

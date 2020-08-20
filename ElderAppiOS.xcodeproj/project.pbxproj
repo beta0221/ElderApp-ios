@@ -43,6 +43,8 @@
 		CD6397622379A8FD00794788 /* StatementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6397612379A8FD00794788 /* StatementVC.swift */; };
 		CD736854239CA29C00B7690A /* ShopPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD736853239CA29C00B7690A /* ShopPageVC.swift */; };
 		CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD736855239CA2CC00B7690A /* ProductCVC.swift */; };
+		CD7A21F924EEB4BF002427F8 /* RoundCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A21F824EEB4BF002427F8 /* RoundCornerView.swift */; };
+		CD7A21FB24EEB6EE002427F8 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7A21FA24EEB6EE002427F8 /* ShadowView.swift */; };
 		CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */; };
 		CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */; };
 		CD7D7631241FC05C0028FCB5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7D7630241FC05C0028FCB5 /* WebViewController.swift */; };
@@ -103,6 +105,8 @@
 		CD6397612379A8FD00794788 /* StatementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatementVC.swift; sourceTree = "<group>"; };
 		CD736853239CA29C00B7690A /* ShopPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPageVC.swift; sourceTree = "<group>"; };
 		CD736855239CA2CC00B7690A /* ProductCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCVC.swift; sourceTree = "<group>"; };
+		CD7A21F824EEB4BF002427F8 /* RoundCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornerView.swift; sourceTree = "<group>"; };
+		CD7A21FA24EEB6EE002427F8 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		CD7B9082236F366E0032AE63 /* TakeMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMoneyVC.swift; sourceTree = "<group>"; };
 		CD7B9084236F3C430032AE63 /* GiveMoneyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMoneyVC.swift; sourceTree = "<group>"; };
 		CD7D7630241FC05C0028FCB5 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				9C9D65C824EBC5BC007434C3 /* LikeButton.swift */,
 				9C9D65CA24EBE07C007434C3 /* CommentView.xib */,
 				9C9D65CC24EBE0E3007434C3 /* CommentView.swift */,
+				CD7A21F824EEB4BF002427F8 /* RoundCornerView.swift */,
+				CD7A21FA24EEB6EE002427F8 /* ShadowView.swift */,
 			);
 			path = CustomUIComponent;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				CDC482D72371BB300038AF34 /* EventDetailPageVC.swift in Sources */,
 				CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */,
 				CDC482D92371E4C70038AF34 /* EventRewardScannerVC.swift in Sources */,
+				CD7A21FB24EEB6EE002427F8 /* ShadowView.swift in Sources */,
 				CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */,
 				CDCA63A9236EC3B4000D054B /* ElderAppiOS.xcdatamodeld in Sources */,
 				9C9D65C424EBB5DE007434C3 /* PostDetailPageVC.swift in Sources */,
@@ -456,6 +463,7 @@
 				CD4152392370641200377091 /* GiveMoneyFormVC.swift in Sources */,
 				CDC346252371988200E44069 /* Common.swift in Sources */,
 				CD071D7923707CCB006B76C5 /* TransPageVC.swift in Sources */,
+				CD7A21F924EEB4BF002427F8 /* RoundCornerView.swift in Sources */,
 				9C9B2819236FEEA900C93C2C /* AccountPageVC.swift in Sources */,
 				9CE3F8F7236FE119008B783B /* User.swift in Sources */,
 				9C9E5BCC23726BE6008F29BC /* RegisterPageVC.swift in Sources */,
@@ -609,7 +617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -632,7 +640,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;

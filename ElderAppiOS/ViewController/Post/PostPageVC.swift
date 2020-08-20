@@ -17,6 +17,7 @@ class PostPageVC: UIViewController {
 
     @IBOutlet weak var postCollectionView: UICollectionView!
     var postList:[NSDictionary] = []
+    var showPostIndex:Int?
     
     var page:Int = 1
     var rows:Int = 0
@@ -157,13 +158,31 @@ class PostPageVC: UIViewController {
 protocol NewPostPageDelegate {
     func reload()->Void
 }
-
 extension PostPageVC:NewPostPageDelegate{
     func reload() {
         self.page = 1
         self.getPostList()
     }
 }
+
+
+protocol  PostDetailDelegate {
+    func updatePost(likes:String,comments:String)->Void
+}
+extension PostPageVC:PostDetailDelegate{
+    func updatePost(likes: String, comments: String) {
+        if (self.showPostIndex == nil){ return }
+        let post = self.postList[self.showPostIndex!]
+        let _post = post.mutableCopy() as! NSMutableDictionary
+        _post.setValue(Int(likes) ?? 0, forKey: "likes")
+        _post.setValue(Int(comments) ?? 0, forKey: "comments")
+        let newPost = NSDictionary(dictionary: _post)
+        self.postList[self.showPostIndex!] = newPost
+        self.postCollectionView.reloadData()
+        self.showPostIndex = nil
+    }
+}
+
 
 extension PostPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -181,12 +200,14 @@ extension PostPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         if(segue.identifier == "show_post_detail"){
             let slug = sender as? String ?? ""
             guard let vc = segue.destination as? PostDetailPageVC else { return }
+            vc.delegate = self
             vc.slug = slug
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = postList[indexPath.row]
         guard let slug = post["slug"] as? String else { return }
+        self.showPostIndex = indexPath.row
         self.performSegue(withIdentifier:"show_post_detail",sender:slug)
     }
     
@@ -196,3 +217,6 @@ extension PostPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     }
     
 }
+
+
+
