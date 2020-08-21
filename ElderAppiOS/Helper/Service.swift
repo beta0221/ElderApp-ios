@@ -24,7 +24,7 @@ enum RunningMode{
 
 struct Service {
     
-    static let runningMode:RunningMode = .LocalDevelope
+    static let runningMode:RunningMode = .Production
     
     static var host:String{
         switch runningMode {
@@ -64,6 +64,10 @@ struct Service {
             guard let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200,
             let jsonData = data else {
+                if(data != nil){
+                    self.printJsonData(jsonData: data!)
+                }
+                
                 DispatchQueue.main.async{
                     completion(.failure(.responseProblem))
                 }
@@ -987,7 +991,7 @@ struct Service {
         self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
     //發布文章
-    func makeNewPost(title:String,body:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+    func makeNewPost(title:String,body:String,image:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         print("makeNewPost request")
         let requestString = "\(Service.host)/api/post/makeNewPost"
         guard let requestURL = URL(string:requestString) else{fatalError()}
@@ -997,7 +1001,7 @@ struct Service {
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postString = "title=\(title)&body=\(body)"
+        let postString = "title=\(title)&body=\(body)&image=\(image)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }

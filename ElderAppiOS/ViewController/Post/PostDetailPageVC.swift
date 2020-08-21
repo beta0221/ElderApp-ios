@@ -16,6 +16,8 @@ class PostDetailPageVC: UIViewController {
     @IBOutlet weak var userImage: RoundImage!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleImage: UIImageView!
+    @IBOutlet weak var titleImageOutterView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var likeButton: LikeButton!
@@ -91,6 +93,12 @@ class PostDetailPageVC: UIViewController {
                     }
                     if let user_name = post["user_name"] as? String{
                         self.userNameLabel.text = user_name
+                    }
+                    if let post_image = post["post_image"] as? String{
+                        if(!post_image.isEmpty){
+                            self.titleImageOutterView.isHidden = false
+                            self.titleImage.loadImageUsingUrlString(urlString: post_image)
+                        }
                     }
                     if let title = post["title"] as? String{
                         self.titleLabel.text = title

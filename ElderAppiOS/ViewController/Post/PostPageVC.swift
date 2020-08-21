@@ -213,6 +213,11 @@ extension PostPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.postCollectionView.frame.size.width
+        
+//        let attributedString = NSAttributedString(string: "123123", attributes: [NSAttributedString.Key.font:UIFont(name: "San Francisco", size: 18.0) ?? UIFont()])
+//        let cgRect = attributedString.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, context: nil)
+//        return CGSize(width: width, height: cgRect.size.height)
+        
         return CGSize(width: width, height: 192.0)
     }
     
