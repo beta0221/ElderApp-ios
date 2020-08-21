@@ -214,11 +214,22 @@ extension PostPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.postCollectionView.frame.size.width
         
+        let post = postList[indexPath.row]
+        if let post_image = post["post_image"] as? String {
+            if(!post_image.isEmpty){
+                return CGSize(width: width, height: 240.0)
+            }
+        }
+        
+        return CGSize(width: width, height: 192.0)
+        
+        
+        
 //        let attributedString = NSAttributedString(string: "123123", attributes: [NSAttributedString.Key.font:UIFont(name: "San Francisco", size: 18.0) ?? UIFont()])
 //        let cgRect = attributedString.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, context: nil)
 //        return CGSize(width: width, height: cgRect.size.height)
         
-        return CGSize(width: width, height: 192.0)
+        
     }
     
 }

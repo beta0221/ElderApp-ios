@@ -13,6 +13,8 @@ class PostCVC: UICollectionViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var postImageOutterView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var likeOutterView: UIView!
@@ -20,6 +22,8 @@ class PostCVC: UICollectionViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     
     func setCVC(post:NSDictionary){
+        
+        postImageOutterView.isHidden = true
         
         self.contentView.clipsToBounds = true
         self.contentView.layer.cornerRadius = 6
@@ -37,6 +41,13 @@ class PostCVC: UICollectionViewCell {
         
         if let user_name = post["user_name"] as? String{
             userNameLabel.text = user_name
+        }
+        
+        if let post_image = post["post_image"] as? String {
+            if(!post_image.isEmpty){
+                postImageOutterView.isHidden = false
+                self.postImage.loadImageUsingUrlString(urlString: post_image)
+            }
         }
         
         if let title = post["title"] as? String{
