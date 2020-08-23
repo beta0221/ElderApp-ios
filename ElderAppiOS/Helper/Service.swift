@@ -24,7 +24,7 @@ enum RunningMode{
 
 struct Service {
     
-    static let runningMode:RunningMode = .Production
+    static let runningMode:RunningMode = .LocalDevelope
     
     static var host:String{
         switch runningMode {
@@ -206,18 +206,16 @@ struct Service {
     
     
     //註冊
-    func SignUpRequest(Email:String,Password:String,Name:String,Phone:String,Tel:String,GenderVal:Int,Birthdate:String,Id_number:String,DistrictId:Int,Address:String,Pay_mathodVal:Int,Inviter_id_code:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        
+    func SignUpRequest(Email:String,Password:String,association_id:String,Name:String,Phone:String,Tel:String,GenderVal:Int,Birthdate:String,Id_number:String,DistrictId:Int,Address:String,Pay_mathodVal:Int,Inviter_id_code:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         let requestString = "\(Service.host)/api/member/join"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postString = "email=\(Email)&password=\(Password)&name=\(Name)&phone=\(Phone)&tel=\(Tel)&gender=\(GenderVal)&birthdate=\(Birthdate)&id_number=\(Id_number)&district_id=\(DistrictId)&address=\(Address)&pay_method=\(Pay_mathodVal)&inviter_id_code=\(Inviter_id_code)&app=1"
-
+        let postString = "email=\(Email)&password=\(Password)&association_id=\(association_id)&name=\(Name)&phone=\(Phone)&tel=\(Tel)&gender=\(GenderVal)&birthdate=\(Birthdate)&id_number=\(Id_number)&district_id=\(DistrictId)&address=\(Address)&pay_method=\(Pay_mathodVal)&inviter_id_code=\(Inviter_id_code)&app=1"
+        print(postString)
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
-        
         let dataTask = URLSession.shared.dataTask(with: urlRequest){data,response, _ in guard let _ = response as? HTTPURLResponse,let jsonData = data else {
                 DispatchQueue.main.async {
                     completion(.failure(.responseProblem))
@@ -230,7 +228,6 @@ struct Service {
                 DispatchQueue.main.async{
                     completion(.success(json!))
                 }
-                
             }catch{
                 DispatchQueue.main.async{
                     print(error)
@@ -270,7 +267,39 @@ struct Service {
         dataTask.resume()
     }
     
-    
+    //get 組織
+    func GetAssociation(completion:@escaping(Result<[NSDictionary],APIError>)->Void){
+        let requestString = "\(Service.host)/api/getAllAssociation"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200,
+            let jsonData = data else {
+                if(data != nil){
+                    self.printJsonData(jsonData: data!)
+                }
+                DispatchQueue.main.async{
+                    completion(.failure(.responseProblem))
+                }
+                return
+            }
+            self.printJsonData(jsonData: jsonData)
+            do{
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! [NSDictionary]
+                DispatchQueue.main.async{
+                    completion(.success(json))
+                }
+            }catch{
+                DispatchQueue.main.async{
+                    print(error)
+                    completion(.failure(.decodingProblem))
+                }
+            }
+        }.resume()
+    }
     
     //get 地區
     func GetDistrict(completion:@escaping(Result<District,APIError>)->Void){

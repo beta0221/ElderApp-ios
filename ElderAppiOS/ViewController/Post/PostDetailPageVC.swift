@@ -131,6 +131,14 @@ class PostDetailPageVC: UIViewController {
         AD.service.commentOnPost(slug: self.slug, comment: self.commentTextview.text, completion: { result in
             switch result{
             case .success(let res):
+                if let alert = res["alert"] as? String{
+                    DispatchQueue.main.async {
+                        Spinner.stop()
+                        Common.SystemAlert(Title: "訊息", Body: alert, SingleBtn: "確定", viewController: self)
+                    }
+                    return
+                }
+                
                 if(!self.hasNextPage){
                     if let comment = res["comment"] as? NSDictionary{
                         self.commentStackview.addArrangedSubview(CommentView(comment: comment))
@@ -161,11 +169,18 @@ class PostDetailPageVC: UIViewController {
         Spinner.start()
         AD.service.likePost(slug: self.slug, completion: {result in
             switch result{
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.likeButton.like()
-                    self.likesInscrease()
-                    Spinner.stop()
+            case .success(let res):
+                if let alert = res["alert"] as? String{
+                    DispatchQueue.main.async {
+                        Spinner.stop()
+                        Common.SystemAlert(Title: "訊息", Body: alert, SingleBtn: "確定", viewController: self)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.likeButton.like()
+                        self.likesInscrease()
+                        Spinner.stop()
+                    }
                 }
             case .failure(_):
                 DispatchQueue.main.async {Spinner.stop()}

@@ -43,14 +43,21 @@ class NewPostPageVC: UIViewController {
         Spinner.start()
         AD.service.makeNewPost(title: titleTextfield.text!, body: bodyTextView.text!,image:imageString ,completion: {result in
             switch result{
-            case .success(_):
-                DispatchQueue.main.async {
-                    Spinner.stop()
-                    Common.SystemAlert(Title: "訊息", Body: "發布成功", SingleBtn: "確定", viewController: self,handler: {_ in
-                        self.dismiss(animated: true,completion: {
-                            self.delegate?.reload()
+            case .success(let res):
+                if let alert = res["alert"] as? String{
+                    DispatchQueue.main.async {
+                        Spinner.stop()
+                        Common.SystemAlert(Title: "訊息", Body: alert, SingleBtn: "確定", viewController: self)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        Spinner.stop()
+                        Common.SystemAlert(Title: "訊息", Body: "發布成功", SingleBtn: "確定", viewController: self,handler: {_ in
+                            self.dismiss(animated: true,completion: {
+                                self.delegate?.reload()
+                            })
                         })
-                    })
+                    }
                 }
             case .failure(let error):
                 print(error)

@@ -21,6 +21,10 @@ class RegisterPageVC: UIViewController {
     @IBOutlet weak var conPasswordField: UITextField!
     @IBOutlet weak var conPasswordAlert: UIView!
     
+    @IBOutlet weak var associationField: UITextField!
+    @IBOutlet weak var associationAlert: UIView!
+    var selectAssociationId:Int?
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var nameAlert: UIView!
     
@@ -58,6 +62,7 @@ class RegisterPageVC: UIViewController {
     
     
     var genderArray = ["請選擇性別","男","女"]
+    var associationArray:[NSDictionary] = []
     var districtArray:District?
     var payTypeArray = ["請選擇付款方式","推薦人代收","自行繳費"]
     
@@ -78,13 +83,28 @@ class RegisterPageVC: UIViewController {
         
         serialQue.sync {
             getDistrict()
+            getAssociation()
         }
         serialQue.sync {
             initPicker()
         }
         
     }
-    func getDistrict(){
+    private func getAssociation(){
+        AD.service.GetAssociation(completion: {result in
+            switch result{
+            case .success(let res):
+                self.associationArray = res
+                let defaultAss = NSMutableDictionary()
+                defaultAss["id"] = 0
+                defaultAss["name"] = "請選擇組織"
+                self.associationArray.insert(NSDictionary(dictionary: defaultAss), at: 0)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    private func getDistrict(){
         AD.service.GetDistrict(completion: {result in
             switch result{
             case .success(let res):
@@ -110,6 +130,12 @@ class RegisterPageVC: UIViewController {
         GenderPicker.delegate = self
         genderField.inputView = GenderPicker
         genderField.inputAccessoryView = toolBar
+        
+        let AssociationPicker = UIPickerView()
+        AssociationPicker.restorationIdentifier = "AssociationPicker"
+        AssociationPicker.delegate = self
+        associationField.inputView = AssociationPicker
+        associationField.inputAccessoryView = toolBar
         
         let DistrictPicker = UIPickerView()
         DistrictPicker.restorationIdentifier = "DistrictPicker"
@@ -144,6 +170,7 @@ class RegisterPageVC: UIViewController {
         passwordAlert.isHidden = true
         conPasswordAlert.isHidden = true
         nameAlert.isHidden = true
+        associationAlert.isHidden = true
         genderAlert.isHidden = true
         birthdateAlert.isHidden = true
         idNumberAlert.isHidden = true
@@ -162,6 +189,10 @@ class RegisterPageVC: UIViewController {
         }
         if(passwordField.text != conPasswordField.text){
             conPasswordAlert.isHidden = false
+            result = false
+        }
+        if(selectAssociationId == nil || selectAssociationId == 0){
+            associationAlert.isHidden = false
             result = false
         }
         if(nameField.text!.isEmpty){
@@ -240,6 +271,7 @@ class RegisterPageVC: UIViewController {
         let Name = nameField.text ?? ""
         let Phone = phoneField.text ?? ""
         let Tel = telField.text ?? ""
+        let association_id = (selectAssociationId ?? 0).description
         var GenderVal = 1
         if(genderField.text == "女"){
             GenderVal = 0
@@ -252,7 +284,7 @@ class RegisterPageVC: UIViewController {
         let Inviter_id_code = inviterField.text ?? ""
         
         
-        AD.service.SignUpRequest(Email: Email, Password: Password, Name: Name, Phone: Phone, Tel: Tel, GenderVal: GenderVal, Birthdate: Birthdate, Id_number: Id_number, DistrictId: DistrictId!, Address: Address, Pay_mathodVal: Pay_mathodVal!, Inviter_id_code: Inviter_id_code, completion: {result in
+        AD.service.SignUpRequest(Email: Email, Password: Password,association_id:association_id, Name: Name, Phone: Phone, Tel: Tel, GenderVal: GenderVal, Birthdate: Birthdate, Id_number: Id_number, DistrictId: DistrictId!, Address: Address, Pay_mathodVal: Pay_mathodVal!, Inviter_id_code: Inviter_id_code, completion: {result in
             switch result{
             case .success(let res):
                 if(res["s"] != nil){
@@ -310,12 +342,12 @@ extension RegisterPageVC:UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if(pickerView.restorationIdentifier == "GenderPicker"){
             return genderArray.count
-        }
-        if(pickerView.restorationIdentifier == "DistrictPicker"){
+        }else if(pickerView.restorationIdentifier == "DistrictPicker"){
             return districtArray?.count ?? 0
-        }
-        if(pickerView.restorationIdentifier == "PayTypePicker"){
+        }else if(pickerView.restorationIdentifier == "PayTypePicker"){
             return payTypeArray.count
+        }else if(pickerView.restorationIdentifier == "AssociationPicker"){
+            return associationArray.count
         }
         return 0
     }
@@ -323,12 +355,16 @@ extension RegisterPageVC:UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if(pickerView.restorationIdentifier == "GenderPicker"){
             return genderArray[row]
-        }
-        if(pickerView.restorationIdentifier == "DistrictPicker"){
+        }else if(pickerView.restorationIdentifier == "DistrictPicker"){
             return districtArray?[row].name ?? ""
-        }
-        if(pickerView.restorationIdentifier == "PayTypePicker"){
+        }else if(pickerView.restorationIdentifier == "PayTypePicker"){
             return payTypeArray[row]
+        }else if(pickerView.restorationIdentifier == "AssociationPicker"){
+            let association = associationArray[row]
+            if let association_name = association["name"] as? String{
+                return association_name
+            }
+            return ""
         }
         return ""
     }
@@ -336,12 +372,10 @@ extension RegisterPageVC:UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView.restorationIdentifier == "GenderPicker"){
             genderField.text = genderArray[row]
-        }
-        if(pickerView.restorationIdentifier == "DistrictPicker"){
+        }else if(pickerView.restorationIdentifier == "DistrictPicker"){
             districtField.text = districtArray?[row].name ?? ""
             selectDistrictId = districtArray?[row].id
-        }
-        if(pickerView.restorationIdentifier == "PayTypePicker"){
+        }else if(pickerView.restorationIdentifier == "PayTypePicker"){
             payTypeField.text = payTypeArray[row]
             if(row == 1){
                 self.inviterTitle_view.isHidden = false
@@ -354,6 +388,13 @@ extension RegisterPageVC:UIPickerViewDelegate,UIPickerViewDataSource{
                 self.inviterScanBtn_view.isHidden = true
                 self.inviterAlert.isHidden = true
                 selectPayType = 0
+            }
+        }else if(pickerView.restorationIdentifier == "AssociationPicker"){
+            let association = associationArray[row]
+            if let association_id = association["id"] as? Int,
+                let association_name = association["name"] as? String{
+                self.associationField.text = association_name
+                self.selectAssociationId = association_id
             }
         }
     }
