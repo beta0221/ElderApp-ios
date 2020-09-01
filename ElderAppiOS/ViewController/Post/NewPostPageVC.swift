@@ -26,8 +26,8 @@ class NewPostPageVC: UIViewController {
 
         addDismissButton()
         keyboardDissmissable()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func submitPost(_ sender: Any) {
@@ -90,11 +90,11 @@ class NewPostPageVC: UIViewController {
 //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 //            let keyboardHeight = keyboardSize.height
 //
-//            self.contentScrollview.setContentOffset(CGPoint(x: 0, y: keyboardHeight), animated: true)
+            self.contentScrollview.setContentOffset(CGPoint(x: 0, y: 160), animated: true)
 //        }
     }
     @objc func keyboardWillHide(_ sender:Any){
-        //self.contentScrollview.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        self.contentScrollview.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     deinit {

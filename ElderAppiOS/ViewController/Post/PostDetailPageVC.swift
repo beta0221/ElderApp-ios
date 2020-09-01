@@ -12,6 +12,7 @@ class PostDetailPageVC: UIViewController {
 
     
     var delegate:PostDetailDelegate?
+    @IBOutlet weak var contentScrollView: UIScrollView!
     
     @IBOutlet weak var userImage: RoundImage!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -45,7 +46,10 @@ class PostDetailPageVC: UIViewController {
         if(slug.isEmpty){ return }
         getPostDetail()
         getCommentList()
-        keyboardDissmissable()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.donePressed))
+        tap.cancelsTouchesInView = false
+        contentScrollView.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -97,7 +101,13 @@ class PostDetailPageVC: UIViewController {
                     if let post_image = post["post_image"] as? String{
                         if(!post_image.isEmpty){
                             self.titleImageOutterView.isHidden = false
-                            self.titleImage.loadImageUsingUrlString(urlString: post_image)
+                            self.titleImage.loadImageUsingUrlString(urlString: post_image,completion: {
+                                guard let imageWidth = self.titleImage.image?.size.width else {return}
+                                guard let imageHeight = self.titleImage.image?.size.height else {return}
+                                let p = imageWidth / UIScreen.main.bounds.width
+                                let height = imageHeight * p
+                                self.titleImageOutterView.heightAnchor.constraint(equalToConstant: height).isActive = true
+                            })
                         }
                     }
                     if let title = post["title"] as? String{
@@ -125,6 +135,7 @@ class PostDetailPageVC: UIViewController {
     }
     
     @IBAction func submitComment(_ sender: Any) {
+        self.donePressed()
         if(self.slug.isEmpty){ return }
         if(self.commentTextview.text.isEmpty){ return }
         Spinner.start()
@@ -149,6 +160,10 @@ class PostDetailPageVC: UIViewController {
                 DispatchQueue.main.async {
                     self.commentTextview.text = ""
                     Spinner.stop()
+                    
+                    let bottomOffset:CGPoint = CGPoint(x: 0, y: self.contentScrollView.contentSize.height - self.contentScrollView.bounds.size.height + self.contentScrollView.contentInset.bottom)
+                    self.contentScrollView.setContentOffset(bottomOffset, animated: true)
+                    
                 }
             case .failure(let error):
                 print(error)
@@ -232,14 +247,14 @@ class PostDetailPageVC: UIViewController {
             self.textViewHeightConstrait.constant = 112.0
             self.textViewBottomConstrait.constant = keyboardHeight - self.view.safeAreaInsets.bottom
             self.view.layoutIfNeeded()
-            self.submitButtonOutterView.isHidden = true
+            //self.submitButtonOutterView.isHidden = true
         }
     }
     @objc func keyboardWillHide(_ sender:Any){
         self.textViewHeightConstrait.constant = 56.0
         self.textViewBottomConstrait.constant = 0
         self.view.layoutIfNeeded()
-        self.submitButtonOutterView.isHidden = false
+        //self.submitButtonOutterView.isHidden = false
     }
 
     override func didMove(toParent parent: UIViewController?) {

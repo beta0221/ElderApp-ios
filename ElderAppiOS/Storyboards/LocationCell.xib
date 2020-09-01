@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,10 +48,20 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z89-5c-plv">
-                            <rect key="frame" x="48" y="0.0" width="227" height="108"/>
+                            <rect key="frame" x="48" y="0.0" width="327" height="108"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMn-GH-3bp">
-                                    <rect key="frame" x="4" y="0.0" width="223" height="108"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anB-7D-Tip">
+                                    <rect key="frame" x="0.0" y="0.0" width="327" height="108"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="showLocationDetail:" destination="-1" eventType="touchUpInside" id="fKY-nj-hbt"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMn-GH-3bp">
+                                    <rect key="frame" x="4" y="0.0" width="323" height="108"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -62,30 +72,11 @@
                                 <constraint firstAttribute="bottom" secondItem="BMn-GH-3bp" secondAttribute="bottom" id="E3c-QX-4Iz"/>
                                 <constraint firstItem="BMn-GH-3bp" firstAttribute="top" secondItem="z89-5c-plv" secondAttribute="top" id="Gwa-h6-9Or"/>
                                 <constraint firstAttribute="trailing" secondItem="BMn-GH-3bp" secondAttribute="trailing" id="OJl-Jd-XBz"/>
+                                <constraint firstAttribute="bottom" secondItem="anB-7D-Tip" secondAttribute="bottom" id="cw4-AI-mi7"/>
                                 <constraint firstItem="BMn-GH-3bp" firstAttribute="leading" secondItem="z89-5c-plv" secondAttribute="leading" constant="4" id="ei2-Tl-aJ8"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZx-Le-6pg">
-                            <rect key="frame" x="275" y="0.0" width="100" height="108"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anB-7D-Tip">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="108"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    <state key="normal" title="詳細資訊">
-                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="showLocationDetail:" destination="-1" eventType="touchUpInside" id="fKY-nj-hbt"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="anB-7D-Tip" secondAttribute="bottom" id="aSa-9b-zJQ"/>
-                                <constraint firstAttribute="trailing" secondItem="anB-7D-Tip" secondAttribute="trailing" id="frw-DQ-xdY"/>
-                                <constraint firstItem="anB-7D-Tip" firstAttribute="top" secondItem="IZx-Le-6pg" secondAttribute="top" id="gH7-z6-cgq"/>
-                                <constraint firstItem="anB-7D-Tip" firstAttribute="leading" secondItem="IZx-Le-6pg" secondAttribute="leading" id="lLx-1C-hlJ"/>
-                                <constraint firstAttribute="width" constant="100" id="xYi-m1-xeZ"/>
+                                <constraint firstAttribute="trailing" secondItem="anB-7D-Tip" secondAttribute="trailing" id="ijD-hL-7Qc"/>
+                                <constraint firstItem="anB-7D-Tip" firstAttribute="leading" secondItem="z89-5c-plv" secondAttribute="leading" id="qKU-wd-URx"/>
+                                <constraint firstItem="anB-7D-Tip" firstAttribute="top" secondItem="z89-5c-plv" secondAttribute="top" id="vmQ-B6-NSF"/>
                             </constraints>
                         </view>
                     </subviews>

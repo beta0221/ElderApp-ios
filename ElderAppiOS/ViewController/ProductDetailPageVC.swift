@@ -74,7 +74,7 @@ class ProductDetailPageVC: UIViewController {
             locationCell.delegate = self
             locationCell.translatesAutoresizingMaskIntoConstraints = false
             self.LocationStack.addArrangedSubview(locationCell)
-            locationCell.heightAnchor.constraint(equalToConstant: 56.0).isActive=true
+            locationCell.heightAnchor.constraint(equalToConstant: 64.0).isActive=true
             
         }
     }

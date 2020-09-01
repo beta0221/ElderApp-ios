@@ -186,7 +186,7 @@ let imageCache = NSCache<AnyObject, AnyObject>()
 
 extension UIImageView{
     
-    func loadImageUsingUrlString(urlString:String){
+    func loadImageUsingUrlString(urlString:String,completion:(()->Void)? = nil){
         
         let url = NSURL(string: urlString)
         
@@ -205,6 +205,9 @@ extension UIImageView{
                 if let imageToCache = UIImage(data: data!){
                     imageCache.setObject(imageToCache, forKey: urlString as AnyObject)
                     self.image = imageToCache
+                    if(completion != nil){
+                        completion!()
+                    }
                 }   
             }
         }

@@ -12,6 +12,7 @@ import CoreData
 class LoginPageVC: UIViewController {
 
     
+    @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
@@ -28,14 +29,14 @@ class LoginPageVC: UIViewController {
 
         loginButton.layer.cornerRadius = 5
     
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "StatementVC") as? StatementVC{            
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "StatementVC") as? StatementVC{
             self.present(controller, animated: true, completion: nil)
         }
 
+        keyboardDissmissable()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
@@ -83,6 +84,18 @@ class LoginPageVC: UIViewController {
     }
     
     
-
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 160), animated: true)
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            let keyboardHeight = keyboardSize.height
+//        }
+    }
+    
+    @objc func keyboardWillHide(_ sender:Any){
+        self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
 
 }
+
+
+

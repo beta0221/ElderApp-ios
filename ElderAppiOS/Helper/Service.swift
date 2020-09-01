@@ -24,7 +24,7 @@ enum RunningMode{
 
 struct Service {
     
-    static let runningMode:RunningMode = .LocalDevelope
+    static let runningMode:RunningMode = .Production
     
     static var host:String{
         switch runningMode {

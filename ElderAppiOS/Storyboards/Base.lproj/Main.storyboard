@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -400,7 +400,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBL-sh-31Q">
-                                                                <rect key="frame" x="52" y="0.0" width="7" height="56"/>
+                                                                <rect key="frame" x="52" y="0.0" width="9.5" height="56"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment content="-">
                                                                         <attributes>
@@ -1366,7 +1366,7 @@
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Je9-aG-1qg">
                                                         <rect key="frame" x="0.0" y="124" width="359" height="269.5"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uTX-ou-yDJ">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uTX-ou-yDJ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="269.5"/>
                                                             </imageView>
                                                         </subviews>
@@ -3656,76 +3656,94 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdY-Kz-5vN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DYs-cb-G4Q">
-                                <rect key="frame" x="12" y="233.5" width="351" height="260"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qc3-iV-BQX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkB-Xn-qoZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="56"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPF-ih-ujH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DYs-cb-G4Q">
+                                                <rect key="frame" x="20" y="203.5" width="335" height="260"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="帳號" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkB-Xn-qoZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="56"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="F7W-Ja-aya"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-Do-jLd">
+                                                        <rect key="frame" x="0.0" y="68" width="335" height="56"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="UgF-2R-ShY"/>
+                                                        </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    </textField>
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-cZ-aO0">
+                                                        <rect key="frame" x="0.0" y="136" width="335" height="56"/>
+                                                        <color key="backgroundColor" red="0.99607843139999996" green="0.65490196079999996" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="vhK-NR-Nl0"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <state key="normal" title="登入">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="login:" destination="ZkP-vZ-X6E" eventType="touchUpInside" id="Uya-XO-NgW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7y-Ub-lcO">
+                                                        <rect key="frame" x="0.0" y="204" width="335" height="56"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="56" id="Zs7-Ps-m93"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <state key="normal" title="註冊">
+                                                            <color key="titleColor" red="0.99607843139999996" green="0.65490196079999996" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <segue destination="wdg-oL-onZ" kind="show" id="Enl-0n-pkP"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="F7W-Ja-aya"/>
+                                            <constraint firstItem="DYs-cb-G4Q" firstAttribute="centerY" secondItem="xPF-ih-ujH" secondAttribute="centerY" id="Tsr-Ev-aU3"/>
+                                            <constraint firstAttribute="trailing" secondItem="DYs-cb-G4Q" secondAttribute="trailing" constant="20" id="UId-qu-K8A"/>
+                                            <constraint firstItem="DYs-cb-G4Q" firstAttribute="leading" secondItem="xPF-ih-ujH" secondAttribute="leading" constant="20" id="ZlA-PP-mWM"/>
                                         </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密碼" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-Do-jLd">
-                                        <rect key="frame" x="0.0" y="68" width="351" height="56"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="UgF-2R-ShY"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                    </textField>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-cZ-aO0">
-                                        <rect key="frame" x="0.0" y="136" width="351" height="56"/>
-                                        <color key="backgroundColor" red="0.99607843139999996" green="0.65490196079999996" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="vhK-NR-Nl0"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="登入">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="login:" destination="ZkP-vZ-X6E" eventType="touchUpInside" id="Uya-XO-NgW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7y-Ub-lcO">
-                                        <rect key="frame" x="0.0" y="204" width="351" height="56"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="Zs7-Ps-m93"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="註冊">
-                                            <color key="titleColor" red="0.99607843139999996" green="0.65490196079999996" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="wdg-oL-onZ" kind="show" id="Enl-0n-pkP"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="xPF-ih-ujH" firstAttribute="top" secondItem="qc3-iV-BQX" secondAttribute="top" id="1IK-61-4D6"/>
+                                    <constraint firstAttribute="trailing" secondItem="xPF-ih-ujH" secondAttribute="trailing" id="CuI-NG-KSd"/>
+                                    <constraint firstAttribute="bottom" secondItem="xPF-ih-ujH" secondAttribute="bottom" id="eJC-T4-IBu"/>
+                                    <constraint firstItem="xPF-ih-ujH" firstAttribute="leading" secondItem="qc3-iV-BQX" secondAttribute="leading" id="s7T-WN-53a"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Ysc-Yw-0CY" firstAttribute="trailing" secondItem="DYs-cb-G4Q" secondAttribute="trailing" constant="12" id="4gM-bA-jU1"/>
-                            <constraint firstItem="EdY-Kz-5vN" firstAttribute="leading" secondItem="Ysc-Yw-0CY" secondAttribute="leading" id="gpy-Rh-1ic"/>
-                            <constraint firstItem="DYs-cb-G4Q" firstAttribute="top" secondItem="EdY-Kz-5vN" secondAttribute="bottom" id="hgy-el-Klc"/>
-                            <constraint firstItem="EdY-Kz-5vN" firstAttribute="height" secondItem="bPh-wW-H31" secondAttribute="height" multiplier="0.35" id="jp7-2o-czR"/>
-                            <constraint firstItem="Ysc-Yw-0CY" firstAttribute="trailing" secondItem="EdY-Kz-5vN" secondAttribute="trailing" id="mrf-h7-jzV"/>
-                            <constraint firstItem="EdY-Kz-5vN" firstAttribute="top" secondItem="Ysc-Yw-0CY" secondAttribute="top" id="wAb-VA-EgA"/>
-                            <constraint firstItem="DYs-cb-G4Q" firstAttribute="leading" secondItem="Ysc-Yw-0CY" secondAttribute="leading" constant="12" id="x5Y-Ln-cmE"/>
+                            <constraint firstItem="xPF-ih-ujH" firstAttribute="width" secondItem="Ysc-Yw-0CY" secondAttribute="width" id="2M2-5G-pmF"/>
+                            <constraint firstItem="Ysc-Yw-0CY" firstAttribute="bottom" secondItem="qc3-iV-BQX" secondAttribute="bottom" id="4bM-DY-dSu"/>
+                            <constraint firstItem="Ysc-Yw-0CY" firstAttribute="trailing" secondItem="qc3-iV-BQX" secondAttribute="trailing" id="9Vt-wU-bCg"/>
+                            <constraint firstItem="xPF-ih-ujH" firstAttribute="height" secondItem="Ysc-Yw-0CY" secondAttribute="height" priority="250" id="GTT-pB-z03"/>
+                            <constraint firstItem="qc3-iV-BQX" firstAttribute="leading" secondItem="Ysc-Yw-0CY" secondAttribute="leading" id="YKH-Hv-Sg3"/>
+                            <constraint firstItem="qc3-iV-BQX" firstAttribute="top" secondItem="Ysc-Yw-0CY" secondAttribute="top" id="dbN-aE-Jox"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ysc-Yw-0CY"/>
                     </view>
                     <connections>
+                        <outlet property="contentScrollView" destination="qc3-iV-BQX" id="T8n-6b-Uwu"/>
                         <outlet property="emailTextfield" destination="FkB-Xn-qoZ" id="jat-y1-gwg"/>
                         <outlet property="loginButton" destination="DaG-cZ-aO0" id="5CL-pP-T75"/>
                         <outlet property="passwordTextfield" destination="RhO-Do-jLd" id="sZV-Gt-avH"/>
@@ -4869,7 +4887,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPa-e3-dcd">
-                                                                <rect key="frame" x="267" y="12" width="96" height="56"/>
+                                                                <rect key="frame" x="265" y="12" width="98" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="F0c-XI-ezU"/>
                                                                 </constraints>
@@ -5574,10 +5592,10 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5q-BK-uMg">
-                                                        <rect key="frame" x="0.0" y="156.5" width="375" height="281.5"/>
+                                                        <rect key="frame" x="0.0" y="156.5" width="375" height="0.0"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uaV-86-ZkR">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="281.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -5586,7 +5604,6 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                                                             <constraint firstItem="uaV-86-ZkR" firstAttribute="leading" secondItem="g5q-BK-uMg" secondAttribute="leading" id="Hfa-JG-6Bp"/>
                                                             <constraint firstItem="uaV-86-ZkR" firstAttribute="top" secondItem="g5q-BK-uMg" secondAttribute="top" id="N0T-zs-ri3"/>
                                                             <constraint firstAttribute="trailing" secondItem="uaV-86-ZkR" secondAttribute="trailing" id="UzA-fc-8XK"/>
-                                                            <constraint firstAttribute="width" secondItem="g5q-BK-uMg" secondAttribute="height" multiplier="4:3" id="iXv-VJ-1oh"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bkd-p2-BpG">
@@ -5832,6 +5849,7 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
                         <outlet property="commentStackview" destination="s6E-oE-ac8" id="BD8-PS-cIC"/>
                         <outlet property="commentTextview" destination="AMA-zz-KPz" id="McY-CY-7t6"/>
                         <outlet property="commentsLabel" destination="NsX-HZ-gXb" id="0Al-0c-LpA"/>
+                        <outlet property="contentScrollView" destination="WNa-Ml-yAT" id="Tci-h1-nwP"/>
                         <outlet property="dateLabel" destination="hGZ-X4-P0y" id="hd7-KZ-IcR"/>
                         <outlet property="likeButton" destination="bkJ-t6-pVS" id="9fL-2n-vMo"/>
                         <outlet property="likesLabel" destination="0x1-gZ-d9w" id="mB4-rW-6BZ"/>
@@ -5851,12 +5869,15 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
             <point key="canvasLocation" x="-809" y="2478"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ooL-OO-cGq"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="academy_min" width="20" height="20"/>
         <image name="account_min" width="20" height="20"/>
         <image name="coin" width="100" height="100"/>
         <image name="configure" width="25" height="25"/>
-        <image name="doc.richtext" catalog="system" width="56" height="64"/>
+        <image name="doc.richtext" catalog="system" width="115" height="128"/>
         <image name="give" width="393" height="400"/>
         <image name="home_min" width="24" height="24"/>
         <image name="icon_like" width="25" height="25"/>
@@ -5873,7 +5894,4 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
         <image name="trans" width="393" height="400"/>
         <image name="user_default" width="100" height="100"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ooL-OO-cGq"/>
-    </inferredMetricsTieBreakers>
 </document>
