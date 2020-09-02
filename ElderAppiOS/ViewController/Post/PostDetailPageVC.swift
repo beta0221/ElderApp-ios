@@ -102,11 +102,13 @@ class PostDetailPageVC: UIViewController {
                         if(!post_image.isEmpty){
                             self.titleImageOutterView.isHidden = false
                             self.titleImage.loadImageUsingUrlString(urlString: post_image,completion: {
-                                guard let imageWidth = self.titleImage.image?.size.width else {return}
-                                guard let imageHeight = self.titleImage.image?.size.height else {return}
-                                let p = imageWidth / UIScreen.main.bounds.width
-                                let height = imageHeight * p
-                                self.titleImageOutterView.heightAnchor.constraint(equalToConstant: height).isActive = true
+                                if let imageWidth = self.titleImage.image?.size.width,
+                                   let imageHeight = self.titleImage.image?.size.height{
+                                    
+                                    let p = UIScreen.main.bounds.width / imageWidth
+                                    let height = imageHeight * p
+                                    self.titleImageOutterView.heightAnchor.constraint(equalToConstant: height).isActive = true
+                                }
                             })
                         }
                     }

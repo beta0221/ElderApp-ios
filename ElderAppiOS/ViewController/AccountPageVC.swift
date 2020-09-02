@@ -192,6 +192,9 @@ extension UIImageView{
         
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage{
             self.image = imageFromCache
+            if(completion != nil){
+                completion!()
+            }
             return
         }
         
