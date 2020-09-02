@@ -140,6 +140,7 @@ class PostDetailPageVC: UIViewController {
         self.donePressed()
         if(self.slug.isEmpty){ return }
         if(self.commentTextview.text.isEmpty){ return }
+        if(self.commentTextview.text == "留言..."){ return }
         Spinner.start()
         AD.service.commentOnPost(slug: self.slug, comment: self.commentTextview.text, completion: { result in
             switch result{
