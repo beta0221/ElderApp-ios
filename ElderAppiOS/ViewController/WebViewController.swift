@@ -28,6 +28,13 @@ class WebViewController: UIViewController {
         webview.load(urlRequest)
     }
     
+    func loadUrl(urlString:String,title:String){
+        titleLabel.text = title
+        guard let url = URL(string: urlString) else { return }
+        let urlRequest = URLRequest(url: url)
+        webview.load(urlRequest)
+    }
+    
     func loadMyGroupMember(){
         titleLabel.text = "我的組織"
         let urlString = "\(Service.host)/memberGroupMembers?token=\(UserDefaults.standard.getToken() ?? "")"

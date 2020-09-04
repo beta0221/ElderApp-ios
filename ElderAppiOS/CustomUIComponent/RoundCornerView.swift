@@ -16,3 +16,9 @@ class RoundCornerView: UIImageView {
     }
 
 }
+class RoundButton:UIButton{
+    override func awakeFromNib() {
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 6
+    }
+}

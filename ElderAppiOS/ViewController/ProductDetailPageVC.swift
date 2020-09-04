@@ -12,6 +12,7 @@ class ProductDetailPageVC: UIViewController {
 
     
     var slug:String?
+    var buynowUrl:String = ""
     @IBOutlet weak var productImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -43,6 +44,7 @@ class ProductDetailPageVC: UIViewController {
                 guard let product = res["product"] as? NSDictionary else{ return }
                 
                 let urlString = product["imgUrl"] as? String ?? ""
+                self.buynowUrl = product["buynowUrl"] as? String ?? ""
                 self.productImage.loadImageUsingUrlString(urlString: urlString)
                 self.nameLabel.text = "商品：\(product["name"] as? String ?? "")"
                 self.priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
@@ -77,6 +79,17 @@ class ProductDetailPageVC: UIViewController {
             locationCell.heightAnchor.constraint(equalToConstant: 64.0).isActive=true
             
         }
+    }
+    
+    @IBAction func buynow(_ sender:Any){
+        if(self.buynowUrl.isEmpty){ return }
+        let urlString = "\(self.buynowUrl)?token=\(UserDefaults.standard.getToken() ?? "")"
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc,animated: true,completion: {
+            vc.loadUrl(urlString: urlString, title: "銀髮商城")
+        })
     }
     
     @IBAction func SubmitPurchaseRequest(_ sender: Any) {
