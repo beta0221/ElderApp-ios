@@ -170,5 +170,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.navigateToLoginPage()
     }
 
+    @available(iOS 13.0, *)
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL,
+            let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+            let path = components.path else {
+                return
+        }
+        print("path = \(path)")
+        AD.handleUniversalLinks(path: path)
+    }
 }
 
