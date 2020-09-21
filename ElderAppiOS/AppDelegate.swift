@@ -155,31 +155,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func handleUniversalLinks(path:String){
-        
-        if(path == "/app/product"){
+        var vc:UIViewController?
+        if(path.contains("/app/product/")){
+            let url = path.components(separatedBy: "/")
+            if url.count < 3 { return }
+            let slug = url[2]
             
             let board = UIStoryboard(name: "Main", bundle: nil)
-            guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC else{
-                return
-            }
-            vc.slug = "P1586574141"
+            guard let _vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC else {return}
+            _vc.slug = slug
+            vc = _vc
+        }else if(path.contains("/app/event/")){
+            let url = path.components(separatedBy: "/")
+            if url.count < 3 { return }
+            let slug = url[2]
             
-            var topController:UIViewController?
-            if #available(iOS 13.0, *) {
-                let sceneDelegate = UIApplication.shared.connectedScenes
-                .first!.delegate as! SceneDelegate
-                topController = sceneDelegate.window?.rootViewController
-            } else {
-                topController = self.window?.rootViewController
-            }
-            
-            if topController != nil{
-                while let presentedViewController = topController!.presentedViewController {
-                    topController = presentedViewController
-                }
-                topController!.present(vc,animated: true)
-            }
+        }else{
+            return
         }
+        
+        
+        if(vc == nil){ return }
+        var topController:UIViewController?
+        if #available(iOS 13.0, *) {
+            let sceneDelegate = UIApplication.shared.connectedScenes
+            .first!.delegate as! SceneDelegate
+            topController = sceneDelegate.window?.rootViewController
+        } else {
+            topController = self.window?.rootViewController
+        }
+        
+        if topController != nil{
+            while let presentedViewController = topController!.presentedViewController {
+                topController = presentedViewController
+            }
+            topController!.present(vc!,animated: true)
+        }
+        
     }
 
     // MARK: UISceneSession Lifecycle
