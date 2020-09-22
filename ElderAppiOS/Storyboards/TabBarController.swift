@@ -35,8 +35,18 @@ class TabBarController: UITabBarController {
 //        tabBarItem.selectedImage = selectedImage3
 //        tabBarItem.badgeValue = "?"
         
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(showEventDetail), name: Notification.Name("showEventDetail"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showPostDetail), name: Notification.Name("showPostDetail"), object: nil)
+    }
+    
+    @objc func showEventDetail(){
+        print("hello 1")
+        self.selectedIndex = 1
+    }
+    
+    @objc func showPostDetail(){
+        print("hello 2")
+        self.selectedIndex = 2
     }
     
 
