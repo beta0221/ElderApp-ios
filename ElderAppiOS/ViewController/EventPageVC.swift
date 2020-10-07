@@ -45,7 +45,22 @@ class EventPageVC: UIViewController {
         eventCollectionView.delegate = self
         
         getEventList()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showEventDetail), name: Notification.Name("showEventDetail"), object: nil)
     }
+    
+    private func presentEventDetail(slug:String){
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = board.instantiateViewController(withIdentifier: "EventDetailPageVC") as? EventDetailPageVC else{ return }
+        vc.slug = slug
+        vc.updateEventDelegate = self
+        self.present(vc,animated: true)
+    }
+    @objc private func showEventDetail(_ notification:NSNotification){
+        guard let slug = notification.userInfo?["slug"] as? String else { return }
+        self.presentEventDetail(slug: slug)
+    }
+    
     
     func getMyEventList() {
         Spinner.start()
@@ -155,6 +170,9 @@ class EventPageVC: UIViewController {
 //        },completion: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
 }
 
@@ -291,12 +309,10 @@ extension EventPageVC:UICollectionViewDataSource, UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let board = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = board.instantiateViewController(withIdentifier: "EventDetailPageVC") as? EventDetailPageVC else{ return }
         let event = self.eventList[indexPath.row]
-        vc.slug = event["slug"] as? String ?? ""
-        vc.updateEventDelegate = self
-        self.present(vc,animated: true)
+        if let slug = event["slug"] as? String{
+            self.presentEventDetail(slug: slug)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

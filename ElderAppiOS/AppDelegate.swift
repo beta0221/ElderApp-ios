@@ -157,41 +157,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleUniversalLinks(path:String){
         
         if(path.contains("/app/product/")){
-            let url = path.components(separatedBy: "/")
-            if url.count < 3 { return }
-            let slug = url[2]
-            
             let board = UIStoryboard(name: "Main", bundle: nil)
-            guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC else {return}
+            guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC,
+                let slug = self.getSlugIn(path: path) else { return }
             vc.slug = slug
-            var topController:UIViewController?
-            if #available(iOS 13.0, *) {
-                let sceneDelegate = UIApplication.shared.connectedScenes
-                .first!.delegate as! SceneDelegate
-                topController = sceneDelegate.window?.rootViewController
-            } else {
-                topController = self.window?.rootViewController
-            }
-            if topController != nil{
-                while let presentedViewController = topController!.presentedViewController {
-                    topController = presentedViewController
-                }
-                topController!.present(vc,animated: true)
+            if let topController = self.topController(){
+                topController.present(vc,animated: true)
             }
         }else if(path.contains("/app/event/")){
-//            let url = path.components(separatedBy: "/")
-//            if url.count < 3 { return }
-//            let slug = url[2]
-            print("hello 11")
-            NotificationCenter.default.post(name: Notification.Name("showEventDetail"), object: nil, userInfo: nil)
-            
+            guard let slug = self.getSlugIn(path: path) else { return }
+            NotificationCenter.default.post(name: Notification.Name("showEventDetail"), object: nil, userInfo: ["slug":slug])
         }else if(path.contains("/app/post/")){
-            print("hello 22")
-            NotificationCenter.default.post(name: Notification.Name("showPostDetail"), object: nil, userInfo: nil)
+            let board = UIStoryboard(name: "Main", bundle: nil)
+            guard let vc = board.instantiateViewController(withIdentifier: "PostDetailPageVC") as? PostDetailPageVC,
+                let slug = self.getSlugIn(path: path) else { return }
+            
+            vc.slug = slug
+            if let topController = self.topController(){
+                topController.present(vc,animated: true)
+            }
+//            NotificationCenter.default.post(name: Notification.Name("showPostDetail"), object: nil, userInfo: ["slug":slug])
         }
         
     }
+    
+    private func getSlugIn(path:String)->String?{
+        let url = path.components(separatedBy: "/")
+        if url.count < 3 { return nil }
+        return url[3]
+    }
+    
+    private func topController()->UIViewController?{
+        var topController:UIViewController?
+        if #available(iOS 13.0, *) {
+            let sceneDelegate = UIApplication.shared.connectedScenes
+            .first!.delegate as! SceneDelegate
+            topController = sceneDelegate.window?.rootViewController
+        } else {
+            topController = self.window?.rootViewController
+        }
+        if topController != nil{
+            while let presentedViewController = topController!.presentedViewController {
+                topController = presentedViewController
+            }
+        }
+        return topController
+    }
 
+    
+    
     // MARK: UISceneSession Lifecycle
     @available(iOS 13.0, *)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

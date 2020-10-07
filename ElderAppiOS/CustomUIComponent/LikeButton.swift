@@ -16,6 +16,7 @@ class LikeButton: UIButton {
     var hasLiked = false
     override func awakeFromNib() {
         self.setImage(unlikeImage, for: .normal)
+        self.imageView?.contentMode = .scaleToFill
     }
     
     func like(){
