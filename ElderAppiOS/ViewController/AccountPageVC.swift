@@ -47,6 +47,10 @@ class AccountPageVC: UIViewController {
     
     var qrcodeImage:CIImage!
     
+    var locationUrl:String?
+    @IBOutlet weak var locationUrlOutterView: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,6 +108,12 @@ class AccountPageVC: UIViewController {
                 guard let qrcodeImage = qrFilter.outputImage else { return }
                 let scaledQrImage = qrcodeImage.transformed(by: CGAffineTransform(scaleX: 10, y: 10))
                 self.userQrCodeImage.image = UIImage(ciImage:scaledQrImage)
+                    
+                if let locationUrl = res["locationUrl"] as? String{
+                    self.locationUrl = locationUrl
+                    self.locationUrlOutterView.isHidden = false
+                }
+                    
                 DispatchQueue.main.async {Spinner.stop()}
                 case .failure(let error):
                     print(error)
@@ -113,6 +123,15 @@ class AccountPageVC: UIViewController {
             })
     }
     
+    @IBAction func locationUrlAction(_ sender: Any) {
+        guard let locationUrl = self.locationUrl else { return }
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadLocationUrl(locationUrl: locationUrl)
+        })
+    }
     
     @IBAction func logout(_ sender: Any) {
         Spinner.start()

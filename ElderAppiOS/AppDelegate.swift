@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 import UserNotifications
 import Firebase
+import FirebaseCore
+import FirebaseCrashlytics
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

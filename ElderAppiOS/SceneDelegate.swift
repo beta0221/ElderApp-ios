@@ -10,6 +10,9 @@ import UIKit
 import CoreData
 import UserNotifications
 import Firebase
+import FirebaseCore
+import FirebaseCrashlytics
+import FirebaseMessaging
 
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -34,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Initiazlie Firebase
         FirebaseApp.configure()
         // Set Firebase messaging delegate
-        Messaging.messaging().delegate = AD
+        Messaging.messaging().delegate = AD as MessagingDelegate
         // Register for remote notifications. This shows a permission dialog on first run, to
         // show the dialog at a more appropriate time move this registration accordingly.
         

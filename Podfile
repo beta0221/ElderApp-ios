@@ -7,6 +7,7 @@ target 'ElderAppiOS' do
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Crashlytics'
 
   # Pods for ElderAppiOS
   

@@ -23,21 +23,27 @@ class WebViewController: UIViewController {
     func loadProductList(){
         titleLabel.text = "銀髮商城"
         let urlString = "\(Service.host)/product/list?token=\(UserDefaults.standard.getToken() ?? "")"
-        guard let url = URL(string: urlString) else { return }
-        let urlRequest = URLRequest(url: url)
-        webview.load(urlRequest)
+        loadWebView(urlString: urlString)
     }
     
     func loadUrl(urlString:String,title:String){
         titleLabel.text = title
-        guard let url = URL(string: urlString) else { return }
-        let urlRequest = URLRequest(url: url)
-        webview.load(urlRequest)
+        loadWebView(urlString: urlString)
     }
     
     func loadMyGroupMember(){
         titleLabel.text = "我的組織"
         let urlString = "\(Service.host)/memberGroupMembers?token=\(UserDefaults.standard.getToken() ?? "")"
+        loadWebView(urlString: urlString)
+    }
+    
+    func loadLocationUrl(locationUrl:String){
+        titleLabel.text = "據點管理"
+        let urlString = "\(Service.host)/\(locationUrl)?token=\(UserDefaults.standard.getToken() ?? "")"
+        loadWebView(urlString: urlString)
+    }
+    
+    private func loadWebView(urlString:String){
         guard let url = URL(string: urlString) else { return }
         let urlRequest = URLRequest(url: url)
         webview.load(urlRequest)
