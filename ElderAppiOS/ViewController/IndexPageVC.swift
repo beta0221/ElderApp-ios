@@ -68,9 +68,11 @@ class IndexPageVC: UIViewController {
             self.myLevelLabel.text = rank.description
         }
         if let org_rank = UserDefaults.standard.getOrgRank(){
-            if(org_rank >= 3){
+            if(org_rank >= 2){
                 self.orgRankOutterView.isHidden = false
                 switch org_rank {
+                case 2:
+                    self.orgRankLabel.text = "小天使"
                 case 3:
                     self.orgRankLabel.text = "大天使"
                 case 4:
