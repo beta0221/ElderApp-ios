@@ -152,15 +152,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return false
         }
         print("path = \(path)")
-        self.handleUniversalLinks(path: path)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+            self.handleUniversalLinks(path: path)
+        }
         return true
     }
     
     
     func handleUniversalLinks(path:String){
-        
+        let board = UIStoryboard(name: "Main", bundle: nil)
         if(path.contains("/app/product/")){
-            let board = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC,
                 let slug = self.getSlugIn(path: path) else { return }
             vc.slug = slug
@@ -168,10 +169,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 topController.present(vc,animated: true)
             }
         }else if(path.contains("/app/event/")){
-            guard let slug = self.getSlugIn(path: path) else { return }
-            NotificationCenter.default.post(name: Notification.Name("showEventDetail"), object: nil, userInfo: ["slug":slug])
+            guard let vc = board.instantiateViewController(withIdentifier: "EventDetailPageVC") as? EventDetailPageVC,
+                let slug = self.getSlugIn(path: path) else { return }
+            vc.slug = slug
+            if let topController = self.topController(){
+                topController.present(vc,animated: true)
+            }
+            //NotificationCenter.default.post(name: Notification.Name("showEventDetail"), object: nil, userInfo: ["slug":slug])
         }else if(path.contains("/app/post/")){
-            let board = UIStoryboard(name: "Main", bundle: nil)
             guard let vc = board.instantiateViewController(withIdentifier: "PostDetailPageVC") as? PostDetailPageVC,
                 let slug = self.getSlugIn(path: path) else { return }
             
@@ -282,20 +287,35 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
     // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
           
-      let userInfo = notification.request.content.userInfo
-      print("willPresent userInfo: \(userInfo)")
+        let userInfo = notification.request.content.userInfo
+        print("willPresent userInfo: \(userInfo)")
+        
+        let application = UIApplication.shared
+        if(application.applicationState == .active){
+            //foreground
+        }
+        
           
-      completionHandler([.badge, .sound, .alert])
+        completionHandler([.badge, .sound, .alert])
     }
-      
+    
+    // This function will be called right after user tap on the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        print("didPresent userInfo: \(userInfo)")
+        
+        if let actionUrl = userInfo["actionUrl"] as? String {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                self.handleUniversalLinks(path: actionUrl)
+            }
+        }
           
-      let userInfo = response.notification.request.content.userInfo
-      print("didPresent userInfo: \(userInfo)")
-          
-      completionHandler()
+        completionHandler()
     }
+    
 }
+
 extension AppDelegate: MessagingDelegate {
     
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {

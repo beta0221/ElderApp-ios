@@ -47,6 +47,21 @@ class IndexPageVC: UIViewController {
         self.loadUserData()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        self.test()
+//    }
+    
+    private func test(){
+        let content = UNMutableNotificationContent()
+        content.title = "訊息抬頭"
+        content.subtitle = "訊息副標題"
+        content.body = "這是訊息的身體"
+        content.userInfo = ["actionUrl":"/app/event/A1609910204"]
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "notification1", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
     deinit{
         NotificationCenter.default.removeObserver(self)
     }

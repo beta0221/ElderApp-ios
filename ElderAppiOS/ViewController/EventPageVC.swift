@@ -57,7 +57,9 @@ class EventPageVC: UIViewController {
         self.present(vc,animated: true)
     }
     @objc private func showEventDetail(_ notification:NSNotification){
+        print("showEventDetail")
         guard let slug = notification.userInfo?["slug"] as? String else { return }
+        print("slug:\(slug)")
         self.presentEventDetail(slug: slug)
     }
     
