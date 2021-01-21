@@ -522,7 +522,7 @@ struct Service {
     
     //get 使用者 資料 首頁用拿的資料比較少
     func MeRequest(completion:@escaping(Result<NSDictionary,APIError>)->Void){
-        
+        print("MeRequest")
         let requestString = "\(Service.host)/api/auth/me"
         guard let requestURL = URL(string:requestString) else{fatalError()}
         var urlRequest = URLRequest(url:requestURL)

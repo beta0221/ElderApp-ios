@@ -293,6 +293,9 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
         let application = UIApplication.shared
         if(application.applicationState == .active){
             //foreground
+            if(userInfo["updateWallet"] != nil){
+                NotificationCenter.default.post(name: Notification.Name("updateMyData"), object: nil)
+            }
         }
         
           
