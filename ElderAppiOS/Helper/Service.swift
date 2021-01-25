@@ -29,7 +29,7 @@ struct Service {
     static var host:String{
         switch runningMode {
         case .Production:
-            return "https://www.happybi.com.tw"
+            return "https://app.happybi.com.tw"
         case .LocalDevelope:
             return "http://localhost:8000"
         }

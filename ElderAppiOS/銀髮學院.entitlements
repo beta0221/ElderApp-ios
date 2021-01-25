@@ -7,6 +7,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:www.happybi.com.tw</string>
+		<string>applinks:app.happybi.com.tw</string>
 	</array>
 </dict>
 </plist>
