@@ -50,6 +50,8 @@ class AccountPageVC: UIViewController {
     var locationUrl:String?
     @IBOutlet weak var locationUrlOutterView: UIView!
     
+    var myCourseUrl:String?
+    @IBOutlet weak var myCourseUrlOutterView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +80,7 @@ class AccountPageVC: UIViewController {
                     
                 self.userNameLabel.text = res["name"] as? String ?? ""
                 self.userEmailLabel.text = res["email"] as? String ?? ""
-                if(res["gender"] as! Int == 1){
+                if(res["gender"] as? Int ?? 1 == 1){
                     self.userGenderLabel.text = "男"
                 }else{
                     self.userGenderLabel.text = "女"
@@ -114,6 +116,11 @@ class AccountPageVC: UIViewController {
                     self.locationUrlOutterView.isHidden = false
                 }
                     
+                if let myCourseUrl = res["myCourseUrl"] as? String{
+                    self.myCourseUrl = myCourseUrl
+                    self.myCourseUrlOutterView.isHidden = false
+                }
+                    
                 DispatchQueue.main.async {Spinner.stop()}
                 case .failure(let error):
                     print(error)
@@ -130,6 +137,15 @@ class AccountPageVC: UIViewController {
         vc.modalPresentationStyle = .currentContext
         self.present(vc,animated: true,completion: {
             vc.loadLocationUrl(locationUrl: locationUrl)
+        })
+    }
+    @IBAction func myCourseUrlAction(_ sender: Any) {
+        guard let myCourseUrl = self.myCourseUrl else { return }
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadMyCourseUrl(myCourseUrl: myCourseUrl)
         })
     }
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Ol-d0-eIJ">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -1637,6 +1637,30 @@
                                                             <constraint firstAttribute="height" constant="80" id="yFY-Ho-5tO"/>
                                                         </constraints>
                                                     </view>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMS-VP-qvY">
+                                                        <rect key="frame" x="0.0" y="200" width="375" height="80"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh8-Bk-90D">
+                                                                <rect key="frame" x="24" y="12" width="327" height="56"/>
+                                                                <color key="backgroundColor" red="0.18056475001450134" green="0.54108143749032134" blue="0.9003371147260274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <state key="normal" title="課程管理">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="myCourseUrlAction:" destination="di1-ja-kES" eventType="touchUpInside" id="51s-RD-t4Q"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="wh8-Bk-90D" secondAttribute="bottom" constant="12" id="5zP-Da-YyK"/>
+                                                            <constraint firstItem="wh8-Bk-90D" firstAttribute="top" secondItem="RMS-VP-qvY" secondAttribute="top" constant="12" id="751-8D-yvx"/>
+                                                            <constraint firstAttribute="height" constant="80" id="SHY-gC-SIq"/>
+                                                            <constraint firstAttribute="trailing" secondItem="wh8-Bk-90D" secondAttribute="trailing" constant="24" id="Zzw-DP-dQI"/>
+                                                            <constraint firstItem="wh8-Bk-90D" firstAttribute="leading" secondItem="RMS-VP-qvY" secondAttribute="leading" constant="24" id="lVx-2s-hAw"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cql-AI-kVy">
                                                         <rect key="frame" x="0.0" y="200" width="375" height="80"/>
                                                         <subviews>
@@ -2316,6 +2340,7 @@
                         <outlet property="extendRequestButton" destination="dc4-7c-otH" id="uHv-Sb-ZQf"/>
                         <outlet property="imageOutterView" destination="ofh-41-OmI" id="gkD-pm-TJl"/>
                         <outlet property="locationUrlOutterView" destination="hy3-qN-ZIR" id="XF7-5o-97m"/>
+                        <outlet property="myCourseUrlOutterView" destination="RMS-VP-qvY" id="u2B-7D-97n"/>
                         <outlet property="updateImageButtonOutterView" destination="1Pl-ea-Rms" id="W1f-sd-Vgz"/>
                         <outlet property="updateRequestButton" destination="MRH-2f-zHg" id="0gs-wZ-GqT"/>
                         <outlet property="userAddressLabel" destination="1G6-Dl-pmK" id="8Ie-7J-F7G"/>

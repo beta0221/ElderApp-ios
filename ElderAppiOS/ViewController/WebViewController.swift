@@ -43,6 +43,12 @@ class WebViewController: UIViewController {
         loadWebView(urlString: urlString)
     }
     
+    func loadMyCourseUrl(myCourseUrl:String){
+        titleLabel.text = "課程管理"
+        let urlString = "\(Service.host)/\(myCourseUrl)?token=\(UserDefaults.standard.getToken() ?? "")"
+        loadWebView(urlString: urlString)
+    }
+    
     private func loadWebView(urlString:String){
         guard let url = URL(string: urlString) else { return }
         let urlRequest = URLRequest(url: url)
