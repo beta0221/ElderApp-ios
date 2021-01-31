@@ -39,13 +39,23 @@ class LoginPageVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    
+    private func errorAlert(){
+        Common.SystemAlert(Title: "錯誤", Body: "帳號或密碼錯誤", SingleBtn: "OK", viewController: self)
+    }
     
     
     @IBAction func login(_ sender: Any) {
         
-        guard let email = emailTextfield.text else {return}
-        guard let password = passwordTextfield.text else {return}
+        guard let email = emailTextfield.text,
+              let password = passwordTextfield.text else {
+            errorAlert()
+            return
+        }
+        
+        if(email.isEmpty || password.isEmpty){
+            errorAlert()
+            return
+        }
         
         Spinner.start()
         AD.service.LoginRequest(Email: email, Password: password,completion: {result in
@@ -65,12 +75,13 @@ class LoginPageVC: UIViewController {
                     UIApplication.shared.open(url)
                     
                 }else{
+                    self.errorAlert()
                     print("帳號密碼錯誤")
-                    Common.SystemAlert(Title: "錯誤", Body: "帳號或密碼錯誤", SingleBtn: "OK", viewController: self)
                 }
             case .failure(let error):
                 print("An error occured \(error)")
                 DispatchQueue.main.async {Spinner.stop()}
+                Common.SystemAlert(Title: "錯誤", Body: "伺服器錯誤", SingleBtn: "OK", viewController: self)
             }
         })
                 
