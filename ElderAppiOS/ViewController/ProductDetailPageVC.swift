@@ -117,6 +117,14 @@ class ProductDetailPageVC: UIViewController {
         
     }
     
+    @IBAction func shareAction(_ sender: Any) {
+        guard let url = URL(string: "\(Service.host)/app/product/\(slug ?? "")") else { return }
+        let ac = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        present(ac, animated: true)
+    }
+    
+    
+    
 }
 
 protocol LocationCellDelegate {
