@@ -348,10 +348,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-8Q-5EY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1268.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="704"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zDK-yf-ptL">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1204.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iH2-OM-ReW">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -509,38 +509,30 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJU-1l-1UQ">
-                                                        <rect key="frame" x="0.0" y="512" width="375" height="564.5"/>
+                                                        <rect key="frame" x="0.0" y="512" width="375" height="0.0"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqI-zA-nhr">
-                                                                <rect key="frame" x="12" y="0.0" width="351" height="436.5"/>
-                                                                <subviews>
-                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="-" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGj-47-4xW">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="351" height="436.5"/>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                        <color key="textColor" systemColor="labelColor"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                                    </textView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-Zb-1Go">
+                                                                <rect key="frame" x="8" y="0.0" width="359" height="0.0"/>
+                                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="hGj-47-4xW" firstAttribute="top" secondItem="cqI-zA-nhr" secondAttribute="top" id="4la-Qe-mKD"/>
-                                                                    <constraint firstItem="hGj-47-4xW" firstAttribute="leading" secondItem="cqI-zA-nhr" secondAttribute="leading" id="8Zq-en-jp5"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="hGj-47-4xW" secondAttribute="bottom" id="kSE-w7-fK6"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="hGj-47-4xW" secondAttribute="trailing" id="oUb-NR-Uvq"/>
+                                                                    <constraint firstAttribute="height" identifier="WKViewHeight" id="nKX-YW-930"/>
                                                                 </constraints>
-                                                            </view>
+                                                                <wkWebViewConfiguration key="configuration">
+                                                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                                    <wkPreferences key="preferences"/>
+                                                                </wkWebViewConfiguration>
+                                                            </wkWebView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="cqI-zA-nhr" secondAttribute="bottom" constant="128" id="11s-td-gpp"/>
-                                                            <constraint firstItem="cqI-zA-nhr" firstAttribute="top" secondItem="wJU-1l-1UQ" secondAttribute="top" id="GsB-aP-FyY"/>
-                                                            <constraint firstAttribute="trailing" secondItem="cqI-zA-nhr" secondAttribute="trailing" constant="12" id="OGs-Ql-1VJ"/>
-                                                            <constraint firstItem="cqI-zA-nhr" firstAttribute="leading" secondItem="wJU-1l-1UQ" secondAttribute="leading" constant="12" id="zP7-Rf-adw"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ZiR-Zb-1Go" secondAttribute="bottom" id="5nY-fc-4to"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ZiR-Zb-1Go" secondAttribute="trailing" constant="8" id="DCW-uZ-WXv"/>
+                                                            <constraint firstItem="ZiR-Zb-1Go" firstAttribute="leading" secondItem="wJU-1l-1UQ" secondAttribute="leading" constant="8" id="n4j-pb-fot"/>
+                                                            <constraint firstItem="ZiR-Zb-1Go" firstAttribute="top" secondItem="wJU-1l-1UQ" secondAttribute="top" id="rAQ-ky-Swf"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ua6-mt-jBv">
-                                                        <rect key="frame" x="0.0" y="1076.5" width="375" height="128"/>
+                                                        <rect key="frame" x="0.0" y="512" width="375" height="128"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     </view>
                                                 </subviews>
@@ -683,7 +675,7 @@
                         <outlet property="cancelEventButton" destination="26q-yo-4Md" id="swe-oN-n3c"/>
                         <outlet property="dateTimeLabel" destination="6Ot-uL-5fC" id="Ujy-Xr-DsM"/>
                         <outlet property="deadLineLabel" destination="2aO-9V-ish" id="Nh3-vu-lN6"/>
-                        <outlet property="eventBodyTextview" destination="hGj-47-4xW" id="T41-PO-4bU"/>
+                        <outlet property="eventBodyWKView" destination="ZiR-Zb-1Go" id="PKX-rx-ZSk"/>
                         <outlet property="eventImageView" destination="7ag-xP-h0D" id="kcX-d8-CsM"/>
                         <outlet property="eventTitleLabel" destination="Pvy-vw-LfW" id="ian-4F-Eeg"/>
                         <outlet property="joinEventButton" destination="v4I-Vc-oYT" id="RbB-CB-hgP"/>

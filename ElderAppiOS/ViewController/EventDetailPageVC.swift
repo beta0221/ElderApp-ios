@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class EventDetailPageVC: UIViewController {
 
@@ -16,7 +17,8 @@ class EventDetailPageVC: UIViewController {
     @IBOutlet weak var rewardLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var deadLineLabel: UILabel!
-    @IBOutlet weak var eventBodyTextview: UITextView!
+    @IBOutlet weak var eventBodyWKView: WKWebView!
+    //    @IBOutlet weak var eventBodyTextview: UITextView!
     
     @IBOutlet weak var cancelEventButton: UIButton!
     @IBOutlet weak var joinEventButton: UIButton!
@@ -34,6 +36,8 @@ class EventDetailPageVC: UIViewController {
         addDismissButton()
         
         eventImageView.image = UIImage(named: "event_default")
+        eventBodyWKView.navigationDelegate = self
+        
         self.getEventDetail()
     }
     
@@ -42,6 +46,17 @@ class EventDetailPageVC: UIViewController {
         rewardAndArriveButton.isHidden = !isParticipated
         joinEventButton.isHidden = isParticipated
         
+    }
+    
+    private func setEventBodyHeight(_ height:CGFloat){
+        for con in eventBodyWKView.constraints{
+            if(con.identifier == "WKViewHeight"){
+                con.constant = height
+            }
+            DispatchQueue.main.async {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     private func getEventDetail(){
@@ -62,7 +77,10 @@ class EventDetailPageVC: UIViewController {
                 
                 self.eventTitleLabel.text = event["title"] as? String ?? ""
                 self.rewardLabel.text = "獎勵\((event["reward"] as? Int ?? 0).description)"
-                self.eventBodyTextview.attributedText = (event["body"] as? String ?? "").convertToAttributedFromHTML()
+//                self.eventBodyTextview.attributedText = (event["body"] as? String ?? "").convertToAttributedFromHTML()
+                let html = "<style>body{font-family:'Arial';font-size:32px;}</style>\(event["body"] as? String ?? "")"
+                self.eventBodyWKView.loadHTMLString(html, baseURL: nil)
+                
                 
                 if let type = event["type"] as? Int{
                     if(type == 1){
@@ -176,4 +194,23 @@ class EventDetailPageVC: UIViewController {
     }
     
     
+}
+
+
+extension EventDetailPageVC:WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    
+                    if let _height = height as? CGFloat{
+                        self.setEventBodyHeight(_height + 100.0)
+                    }
+                    
+                })
+            }
+        })
+        
+    }
 }
