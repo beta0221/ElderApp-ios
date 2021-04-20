@@ -341,7 +341,7 @@
             <objects>
                 <viewController storyboardIdentifier="EventDetailPageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b76-1g-yWa" customClass="EventDetailPageVC" customModule="銀髮學院" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jxd-UW-Fhh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OqP-4x-Sgz">
@@ -3396,10 +3396,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="531"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSP-Bg-Uky">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="824"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="696"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6DA-yK-vHr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="824"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="696"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dav-TW-ggn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
@@ -3533,25 +3533,30 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftS-yC-6X6">
-                                                                        <rect key="frame" x="0.0" y="656" width="375" height="128"/>
+                                                                        <rect key="frame" x="0.0" y="656" width="375" height="0.0"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veW-aj-arS">
-                                                                                <rect key="frame" x="12" y="0.0" width="351" height="128"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
+                                                                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lS5-Ki-i9Z">
+                                                                                <rect key="frame" x="12" y="0.0" width="351" height="0.0"/>
+                                                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" identifier="WKViewHeight" id="ZjD-hv-sff"/>
+                                                                                </constraints>
+                                                                                <wkWebViewConfiguration key="configuration">
+                                                                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                                                    <wkPreferences key="preferences"/>
+                                                                                </wkWebViewConfiguration>
+                                                                            </wkWebView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="veW-aj-arS" firstAttribute="top" secondItem="ftS-yC-6X6" secondAttribute="top" id="bgc-aj-z3f"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="veW-aj-arS" secondAttribute="trailing" constant="12" id="tbe-t2-zzv"/>
-                                                                            <constraint firstItem="veW-aj-arS" firstAttribute="leading" secondItem="ftS-yC-6X6" secondAttribute="leading" constant="12" id="vtI-QP-j65"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="veW-aj-arS" secondAttribute="bottom" id="yR4-hj-SbK"/>
+                                                                            <constraint firstItem="lS5-Ki-i9Z" firstAttribute="leading" secondItem="ftS-yC-6X6" secondAttribute="leading" constant="12" id="9My-XN-gKC"/>
+                                                                            <constraint firstItem="lS5-Ki-i9Z" firstAttribute="top" secondItem="ftS-yC-6X6" secondAttribute="top" id="Z4Y-h9-FRj"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="lS5-Ki-i9Z" secondAttribute="bottom" id="g9e-rF-lDa"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="lS5-Ki-i9Z" secondAttribute="trailing" constant="12" id="jJt-JQ-SIF"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-d2-fMJ">
-                                                                        <rect key="frame" x="0.0" y="784" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="656" width="375" height="40"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="XtO-ty-uWw"/>
@@ -3636,7 +3641,7 @@
                     </view>
                     <connections>
                         <outlet property="LocationStack" destination="5pH-FV-iqa" id="o9k-d8-z4G"/>
-                        <outlet property="infoLabel" destination="veW-aj-arS" id="LNz-6H-cc8"/>
+                        <outlet property="infoWKView" destination="lS5-Ki-i9Z" id="lj5-Jv-Eh9"/>
                         <outlet property="nameLabel" destination="gwN-8t-NHc" id="gbf-pX-FFK"/>
                         <outlet property="priceLabel" destination="j8O-Wn-gH4" id="IQ4-Nx-nvd"/>
                         <outlet property="productImage" destination="KDR-6A-v0H" id="Hws-7Z-ffN"/>
@@ -3906,7 +3911,7 @@
             <objects>
                 <viewController storyboardIdentifier="RegisterPageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wdg-oL-onZ" customClass="RegisterPageVC" customModule="銀髮學院" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Rm-am-oyi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YoZ-mb-gFl">
@@ -5381,7 +5386,7 @@
             <objects>
                 <viewController id="SAD-9b-LQ7" customClass="TakeMoneyVC" customModule="銀髮學院" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nbP-aJ-cc4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFe-gK-0z1">

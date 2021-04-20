@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class ProductDetailPageVC: UIViewController {
 
@@ -17,7 +18,7 @@ class ProductDetailPageVC: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var infoWKView: WKWebView!
     
     @IBOutlet weak var LocationStack: UIStackView!
     var locationCellArray:[LocationCell] = []
@@ -25,6 +26,7 @@ class ProductDetailPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        infoWKView.navigationDelegate = self
         addDismissButton()
         getProductDetail()
     }
@@ -48,7 +50,10 @@ class ProductDetailPageVC: UIViewController {
                 self.productImage.loadImageUsingUrlString(urlString: urlString)
                 self.nameLabel.text = "商品：\(product["name"] as? String ?? "")"
                 self.priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
-                self.infoLabel.attributedText = (product["info"] as? String ?? "").convertToAttributedFromHTML()
+                
+                let html = "<style>body{font-family:'Arial';font-size:32px;}</style>\(product["info"] as? String ?? "")"
+                self.infoWKView.loadHTMLString(html, baseURL: nil)
+                //self.infoLabel.attributedText = (product["info"] as? String ?? "").convertToAttributedFromHTML()
                 
                 let locationList = res["locationList"] as? [NSDictionary] ?? []
                 self.loadLocation(locationList: locationList)
@@ -60,6 +65,17 @@ class ProductDetailPageVC: UIViewController {
             }
         })
         
+    }
+    
+    private func setBodyHeight(_ height:CGFloat){
+        for con in infoWKView.constraints{
+            if(con.identifier == "WKViewHeight"){
+                con.constant = height
+            }
+            DispatchQueue.main.async {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     
@@ -163,4 +179,21 @@ extension ProductDetailPageVC:LocationCellDelegate{
     }
     
     
+}
+
+
+extension ProductDetailPageVC:WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                    if let _height = height as? CGFloat{
+                        self.setBodyHeight(_height + 100.0)
+                    }
+                })
+            }
+        })
+        
+    }
 }
