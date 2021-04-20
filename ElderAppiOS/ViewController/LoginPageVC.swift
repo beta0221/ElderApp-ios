@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LineSDK
 
 class LoginPageVC: UIViewController {
 
@@ -18,6 +19,7 @@ class LoginPageVC: UIViewController {
     
     
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var lineLoginButton: UIButton!
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
@@ -28,6 +30,7 @@ class LoginPageVC: UIViewController {
         super.viewDidLoad()
 
         loginButton.layer.cornerRadius = 5
+        lineLoginButton.layer.cornerRadius = 5
     
         if let controller = storyboard?.instantiateViewController(withIdentifier: "StatementVC") as? StatementVC{
             self.present(controller, animated: true, completion: nil)
@@ -61,22 +64,9 @@ class LoginPageVC: UIViewController {
         AD.service.LoginRequest(Email: email, Password: password,completion: {result in
             switch result{
             case .success(let response):
-                DispatchQueue.main.async {Spinner.stop()}
-                if(response["access_token"] != nil){
-                    
-                    UserHelper.storeUser(res: response, password: password)
-                    self.navigateToIndexPage()
-                    UIApplication.shared.registerForRemoteNotifications()
-                    
-                }else if(response["ios_update_url"] != nil){
-                    
-                    let ios_update_url = response["ios_update_url"] as? String ?? ""
-                    guard let url = URL(string: ios_update_url) else { return }
-                    UIApplication.shared.open(url)
-                    
-                }else{
-                    self.errorAlert()
-                    print("帳號密碼錯誤")
+                DispatchQueue.main.async {
+                    Spinner.stop()
+                    self.handleToken(response: response, password: password)
                 }
             case .failure(let error):
                 print("An error occured \(error)")
@@ -86,6 +76,50 @@ class LoginPageVC: UIViewController {
         })
                 
     }
+    
+    private func handleToken(response:NSDictionary,password:String? = nil,lineId:String? = nil){
+        UserHelper.handleToken(response: response, password: password, lineId: lineId, complition: {
+            self.navigateToIndexPage()
+        })
+    }
+    
+    
+    
+    @IBAction func lineLoginAction(_ sender: Any) {
+        Spinner.start()
+        LoginManager.shared.login(permissions: [.profile], in: self){ result in
+            switch result{
+            case .success(let loginResult):
+                DispatchQueue.main.async {Spinner.stop()}
+                if let profile = loginResult.userProfile {
+                    self.lineLoginRequest(userID: profile.userID)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {Spinner.stop()}
+                print(error)
+            }
+        }
+    }
+    
+    private func lineLoginRequest(userID:String){
+        Spinner.start()
+        AD.service.lineLogin(userID: userID, completion: {result in
+            switch result{
+            case .success(let res):
+                DispatchQueue.main.async {
+                    Spinner.stop()
+                    self.handleToken(response: res, lineId: userID)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    Spinner.stop()
+                    UserHelper.errorAlert()
+                }
+                print(error)
+            }
+        })
+    }
+    
     
     private func navigateToIndexPage(){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

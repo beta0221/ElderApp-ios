@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LineSDK
 
 class AccountPageVC: UIViewController {
 
@@ -52,6 +53,8 @@ class AccountPageVC: UIViewController {
     
     var myCourseUrl:String?
     @IBOutlet weak var myCourseUrlOutterView: UIView!
+    
+    @IBOutlet weak var bindLineOutterView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +124,11 @@ class AccountPageVC: UIViewController {
                     self.myCourseUrlOutterView.isHidden = false
                 }
                     
+                if let isLineAccountBinded = res["isLineAccountBinded"] as? Bool,
+                   isLineAccountBinded == false{
+                    self.bindLineOutterView.isHidden = false
+                }
+                    
                 DispatchQueue.main.async {Spinner.stop()}
                 case .failure(let error):
                     print(error)
@@ -146,6 +154,42 @@ class AccountPageVC: UIViewController {
         vc.modalPresentationStyle = .currentContext
         self.present(vc,animated: true,completion: {
             vc.loadMyCourseUrl(myCourseUrl: myCourseUrl)
+        })
+    }
+    @IBAction func bindLineAccountAction(_ sender:Any){
+        Spinner.start()
+        LoginManager.shared.login(permissions: [.profile], in: self){ result in
+            switch result{
+            case .success(let loginResult):
+                DispatchQueue.main.async {Spinner.stop()}
+                if let profile = loginResult.userProfile {
+                    self.bindLineAccountRequest(userID: profile.userID)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {Spinner.stop()}
+                print(error)
+            }
+        }
+    }
+    
+    private func bindLineAccountRequest(userID:String){
+        Spinner.start()
+        AD.service.bindLineAccount(userID: userID, completion: {result in
+            switch result{
+            case .success(let res):
+                DispatchQueue.main.async {
+                    Spinner.stop()
+                    var msg = "綁定失敗"
+                    if(res == "success"){
+                        msg = "綁定成功"
+                        self.bindLineOutterView.isHidden = true
+                    }
+                    Common.SystemAlert(Title: "訊息", Body: msg, SingleBtn: "確定", viewController: self)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {Spinner.stop()}
+                print(error)
+            }
         })
     }
     

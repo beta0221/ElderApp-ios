@@ -226,6 +226,14 @@ extension UserDefaults{
     func getOrgRank()->Int?{
         return integer(forKey: "org_rank")
     }
+    //line_id
+    func setLineId(value:String){
+        set(value,forKey: "line_id")
+        synchronize()
+    }
+    func getLindId()->String?{
+        return string(forKey: "line_id")
+    }
     
     func removeUserData(){
         removeObject(forKey: "user_id")
@@ -236,6 +244,7 @@ extension UserDefaults{
         removeObject(forKey: "wallet")
         removeObject(forKey: "rank")
         removeObject(forKey: "org_rank")
+        removeObject(forKey: "line_id")
     }
     
 }

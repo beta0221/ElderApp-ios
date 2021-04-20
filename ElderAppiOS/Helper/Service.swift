@@ -1096,9 +1096,44 @@ struct Service {
     }
     
     
+    //綁定Line帳號
+    func bindLineAccount(userID:String,completion:@escaping(Result<String,APIError>)->Void){
+        print("bindLineAccount request")
+        let requestString = "\(Service.host)/api/auth/bind_lineAccount"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        let postString = "userID=\(userID)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let jsonData = data else {
+                completion(.failure(.responseProblem))
+                return
+            }
+            
+            self.printJsonData(jsonData: jsonData)
+            let json = String(data: jsonData, encoding: .utf8)
+            DispatchQueue.main.async{
+                completion(.success(json ?? ""))
+            }
+        }.resume()
+    }
     
-    
-    
+    //Line 登入
+    func lineLogin(userID:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("lineLogin request")
+        let requestString = "\(Service.host)/api/auth/line_login"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        let postString = "userID=\(userID)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
     
     
 }

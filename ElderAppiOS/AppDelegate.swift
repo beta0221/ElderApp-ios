@@ -13,6 +13,7 @@ import Firebase
 import FirebaseCore
 import FirebaseCrashlytics
 import FirebaseMessaging
+import LineSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let window = UIWindow(frame: UIScreen.main.bounds)
             self.window = window
+            
+            //LINE SDK
+            LoginManager.shared.setup(channelID: "1655872039", universalLinkURL: nil)
             
             // Initiazlie Firebase
             FirebaseApp.configure()
@@ -86,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootNC = UINavigationController(rootViewController: rootVC)
         self.window?.rootViewController = rootNC
     }
-    private func checkIfTokenAlife(){
+    func checkIfTokenAlife(){
         print("check if token alife")
         AD.service.MeRequest(completion: {result in
             switch result{
@@ -101,34 +105,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
     }
-    private func autoReLogin(){
-        
+    func autoReLogin(){
         print("auto relogin")
+        if let lineId = UserDefaults.standard.getLindId(){
+            self.lineRelogin(lineId: lineId)
+            return
+        }
+        
         AD.service.LoginRequest(completion: {result in
             switch result{
             case .success(let response):
-                if(response["access_token"] != nil){
-                    
-                    UserHelper.storeUser(res: response)
-                    print("token refreshed")
-                    
-                }else if(response["ios_update_url"] != nil){
-                    
-                    print("ios version out-of-date")
-                    let ios_update_url = response["ios_update_url"] as? String ?? ""
-                    guard let url = URL(string: ios_update_url) else { return }
-                    Common.SystemAlert(Title: "訊息", Body: "您目前的版本過舊，請進行更新", SingleBtn: "OK", viewController: (self.window?.rootViewController)!, handler: {_ in
-                        UIApplication.shared.open(url,completionHandler: {_ in
-                            self.autoLogout()
-                        })
-                    })
-                    
-                }else{
-                    
-                    print("response 沒有回來 token, Server fucked up")
-                    self.autoLogout()
-                    
-                }
+                UserHelper.handleToken(response: response)
             case .failure(let error):
                 
                 print("An error occured \(error)")
@@ -137,7 +124,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
     }
-    private func autoLogout(){
+    
+    func lineRelogin(lineId:String){
+        AD.service.lineLogin(userID: lineId, completion: {result in
+            switch result{
+            case .success(let res):
+                UserHelper.handleToken(response: res, lineId: lineId)
+            case .failure(let error):
+                UserHelper.errorAlert()
+                print(error)
+            }
+        })
+    }
+    
+    func autoLogout(){
         UserDefaults.standard.removeUserData()
         self.navigateToLoginPage()
     }
@@ -156,6 +156,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.handleUniversalLinks(path: path)
         }
         return true
+    }
+    
+    /**
+        Deep Link
+     */
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if(url.absoluteString.contains("line3rdp")){
+            return LoginManager.shared.application(app, open: url,options: options)
+        }
+        return false
     }
     
     

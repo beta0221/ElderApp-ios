@@ -8,6 +8,7 @@ target 'ElderAppiOS' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'Firebase/Crashlytics'
+  pod 'LineSDKSwift'
 
   # Pods for ElderAppiOS
   
