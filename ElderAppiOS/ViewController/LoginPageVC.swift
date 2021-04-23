@@ -113,7 +113,7 @@ class LoginPageVC: UIViewController {
             case .failure(let error):
                 DispatchQueue.main.async {
                     Spinner.stop()
-                    UserHelper.errorAlert()
+                    Common.SystemAlert(Title: "訊息", Body: "尚未綁定此Line帳號。\n若已有會員帳號請先進行綁定\n或先進行註冊", SingleBtn: "確定", viewController: self)
                 }
                 print(error)
             }
