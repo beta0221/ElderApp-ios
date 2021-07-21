@@ -124,10 +124,10 @@ class AccountPageVC: UIViewController {
                     self.myCourseUrlOutterView.isHidden = false
                 }
                     
-                if let isLineAccountBinded = res["isLineAccountBinded"] as? Bool,
-                   isLineAccountBinded == false{
-                    self.bindLineOutterView.isHidden = false
-                }
+//                if let isLineAccountBinded = res["isLineAccountBinded"] as? Bool,
+//                   isLineAccountBinded == false{
+//                    self.bindLineOutterView.isHidden = false
+//                }
                     
                 DispatchQueue.main.async {Spinner.stop()}
                 case .failure(let error):

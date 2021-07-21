@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		957909C726A57D64008D8C6E /* CartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957909C626A57D64008D8C6E /* CartVC.xib */; };
+		957909C926A57DA8008D8C6E /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957909C826A57DA8008D8C6E /* CartVC.swift */; };
 		9C10E70B23702F89007E7557 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10E70A23702F89007E7557 /* UserHelper.swift */; };
 		9C9B2819236FEEA900C93C2C /* AccountPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B2818236FEEA900C93C2C /* AccountPageVC.swift */; };
 		9C9B281B236FEF1700C93C2C /* LoginPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */; };
@@ -69,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElderAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		957909C626A57D64008D8C6E /* CartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartVC.xib; sourceTree = "<group>"; };
+		957909C826A57DA8008D8C6E /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		9C10E70A23702F89007E7557 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		9C9B2818236FEEA900C93C2C /* AccountPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPageVC.swift; sourceTree = "<group>"; };
 		9C9B281A236FEF1700C93C2C /* LoginPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageVC.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				CD0F596A239CB67900ED495A /* LocationCell.xib */,
 				CD0F596C239CB69400ED495A /* LocationCell.swift */,
 				CD0F596E239CBCD600ED495A /* CheckBox.swift */,
+				957909C626A57D64008D8C6E /* CartVC.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				CD0F5968239CAE3500ED495A /* ProductDetailPageVC.swift */,
 				CD0F5970239CDE5100ED495A /* LocationDetailVC.swift */,
 				CD7D7630241FC05C0028FCB5 /* WebViewController.swift */,
+				957909C826A57DA8008D8C6E /* CartVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD0F596B239CB67900ED495A /* LocationCell.xib in Resources */,
+				957909C726A57D64008D8C6E /* CartVC.xib in Resources */,
 				CD10C80E237124B700029C90 /* EventList.xib in Resources */,
 				CDCA63AE236EC3B5000D054B /* LaunchScreen.storyboard in Resources */,
 				CD10C812237124E500029C90 /* EventCVC.xib in Resources */,
@@ -432,7 +439,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/Users/beta/Swift/ElderAppiOS/Pods/FirebaseCrashlytics/run \n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -478,6 +485,7 @@
 				CD0F5973239D03B000ED495A /* MyOrderCVC.swift in Sources */,
 				9C9E5BCE2372962A008F29BC /* InviterScannerPageVC.swift in Sources */,
 				CD0F596F239CBCD600ED495A /* CheckBox.swift in Sources */,
+				957909C926A57DA8008D8C6E /* CartVC.swift in Sources */,
 				CD4152392370641200377091 /* GiveMoneyFormVC.swift in Sources */,
 				CDC346252371988200E44069 /* Common.swift in Sources */,
 				CD071D7923707CCB006B76C5 /* TransPageVC.swift in Sources */,
@@ -635,7 +643,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -658,7 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;

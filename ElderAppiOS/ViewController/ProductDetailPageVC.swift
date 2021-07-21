@@ -11,13 +11,29 @@ import WebKit
 
 class ProductDetailPageVC: UIViewController {
 
-    
+    var type:ListType = .free
     var slug:String?
-    var buynowUrl:String = ""
+    
     @IBOutlet weak var productImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var priceView: UIView!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    @IBOutlet weak var pointCashTitleView: UIView!
+    @IBOutlet weak var pointCashView: UIView!
+    @IBOutlet weak var cashTitleView: UIView!
+    @IBOutlet weak var cashView: UIView!
+    
+    @IBOutlet weak var payCashPriceLabel: UILabel!
+    @IBOutlet weak var payCashPointLabel: UILabel!
+    @IBOutlet weak var cashLabel: UILabel!
+    @IBOutlet weak var originalCashLabel: UILabel!
+    
+    private var cashPerProduct:Int = 0
+    private var pointPerProduct:Int = 0
+    
     @IBOutlet weak var infoWKView: WKWebView!
     
     @IBOutlet weak var LocationStack: UIStackView!
@@ -26,7 +42,25 @@ class ProductDetailPageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch self.type {
+            case .free:
+                priceView.isHidden = false
+                pointCashTitleView.isHidden = true
+                pointCashView.isHidden = true
+                cashTitleView.isHidden = true
+                cashView.isHidden = true
+            case .cash:
+                priceView.isHidden = true
+                pointCashTitleView.isHidden = false
+                pointCashView.isHidden = false
+                cashTitleView.isHidden = false
+                cashView.isHidden = false
+        }
+        
+        
         infoWKView.navigationDelegate = self
+        
         addDismissButton()
         getProductDetail()
     }
@@ -46,10 +80,19 @@ class ProductDetailPageVC: UIViewController {
                 guard let product = res["product"] as? NSDictionary else{ return }
                 
                 let urlString = product["imgUrl"] as? String ?? ""
-                self.buynowUrl = product["buynowUrl"] as? String ?? ""
+                
                 self.productImage.loadImageUsingUrlString(urlString: urlString)
-                self.nameLabel.text = "商品：\(product["name"] as? String ?? "")"
+                self.nameLabel.text = product["name"] as? String ?? ""
                 self.priceLabel.text = "樂幣：\((product["price"] as? Int)?.description ?? "")"
+                
+                self.payCashPriceLabel.text = (product["pay_cash_price"] as? Int)?.description ?? ""
+                self.payCashPointLabel.text = (product["pay_cash_point"] as? Int)?.description ?? ""
+                self.cashPerProduct = product["pay_cash_price"] as? Int ?? 0
+                self.pointPerProduct = product["pay_cash_point"] as? Int ?? 0
+                
+                self.cashLabel.text = (product["cash"] as? Int)?.description ?? ""
+                let originalCashString = "原價：\((product["original_cash"] as? Int)?.description ?? "")"
+                self.originalCashLabel.attributedText = NSAttributedString(string: originalCashString, attributes:[NSAttributedString.Key.strikethroughStyle:1])
                 
                 let html = "<style>body{font-family:'Arial';font-size:32px;}</style>\(product["info"] as? String ?? "")"
                 self.infoWKView.loadHTMLString(html, baseURL: nil)
@@ -86,7 +129,15 @@ class ProductDetailPageVC: UIViewController {
         
         for location in locationList{
             
-            let quantity = location["quantity"] as? Int ?? 0
+            var quantity = 0
+            
+            switch self.type {
+            case .free:
+                quantity = location["quantity"] as? Int ?? 0
+            case .cash:
+                quantity = location["quantity_cash"] as? Int ?? 0
+            }
+            
             guard let locationCell = LocationCell(location: location, quantity: quantity) else { return }
             self.locationCellArray.append(locationCell)
             locationCell.delegate = self
@@ -97,23 +148,26 @@ class ProductDetailPageVC: UIViewController {
         }
     }
     
-    @IBAction func buynow(_ sender:Any){
-        if(self.buynowUrl.isEmpty){ return }
-        let urlString = "\(self.buynowUrl)?token=\(UserDefaults.standard.getToken() ?? "")"
-        let board = UIStoryboard(name: "Main", bundle: nil)
-        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc,animated: true,completion: {
-            vc.loadUrl(urlString: urlString, title: "銀髮商城")
-        })
-    }
-    
-    @IBAction func SubmitPurchaseRequest(_ sender: Any) {
+    /**點擊確認兌換按鈕*/
+    @IBAction func purchaseAction(_ sender: Any) {
         if(self.selectedLocationId == nil){
             Common.SystemAlert(Title: "提醒", Body: "請選擇門市", SingleBtn: "確定", viewController: self)
             return
         }
         
+        switch self.type {
+        case .free:
+            self.purchaseRequest()
+        case .cash:
+            let cartVC = CartVC(slug: slug!, location_id: selectedLocationId!, pointPerProduct: pointPerProduct, cashPerProduct: cashPerProduct)
+            cartVC.modalPresentationStyle = .overCurrentContext
+            self.present(cartVC,animated: false)
+        }
+        
+    }
+    
+    /**兌換請求 api*/
+    private func purchaseRequest(){
         Spinner.start()
         AD.service.PurchaseProduct(location_id: self.selectedLocationId!, product_slug: self.slug!, completion: {result in
             switch result{
@@ -130,8 +184,8 @@ class ProductDetailPageVC: UIViewController {
                 DispatchQueue.main.async {Spinner.stop()}
             }
         })
-        
     }
+    
     
     @IBAction func shareAction(_ sender: Any) {
         guard let url = URL(string: "\(Service.host)/app/product/\(slug ?? "")") else { return }

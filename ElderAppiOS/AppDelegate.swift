@@ -331,18 +331,19 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
 
 extension AppDelegate: MessagingDelegate {
     
-  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-    print("Firebase registration token: \(fcmToken)")
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         
-    let dataDict:[String: String] = ["token": fcmToken]
-    NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-    
-    if(UserDefaults.standard.getAccount() == nil){ return }
-    
-    service.SetPushToken(push_token: fcmToken, completion: {_ in
-        print("Set push token complete.")
-    })
-  }
+        guard let _fcmToken = fcmToken else { return }
+        print("Firebase registration token: \(_fcmToken)")
+            
+//        let dataDict:[String: String] = ["token": _fcmToken]
+//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+        if(UserDefaults.standard.getAccount() == nil){ return }
+        service.SetPushToken(push_token: _fcmToken, completion: {_ in
+            print("Set push token complete.")
+        })
+    }
     
 //  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
 //    print("Received data message: \(remoteMessage.appData)")

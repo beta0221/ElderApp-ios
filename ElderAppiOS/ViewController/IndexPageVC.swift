@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import CoreData
 
+@available(iOS 13.0, *)
 class IndexPageVC: UIViewController {
 
     @IBOutlet weak var bannerView: UIView!
@@ -119,12 +120,19 @@ class IndexPageVC: UIViewController {
     
     
     @IBAction func loadProductList(_ sender: Any) {
+        
         let board = UIStoryboard(name: "Main", bundle: nil)
-        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        let vc = board.instantiateViewController(withIdentifier: "ShopPageVC") as! ShopPageVC
         vc.modalPresentationStyle = .currentContext
-        self.present(vc,animated: true,completion: {
-            vc.loadProductList()
-        })
+        vc.listType = .cash
+        self.present(vc,animated: true)
+        
+//        let board = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+//        vc.modalPresentationStyle = .currentContext
+//        self.present(vc,animated: true,completion: {
+//            vc.loadProductList()
+//        })
     }
     
     

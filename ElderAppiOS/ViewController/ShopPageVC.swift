@@ -8,11 +8,19 @@
 
 import UIKit
 
+enum ListType:String{
+    case free = "free"
+    case cash = "cash"
+}
+
 class ShopPageVC: UIViewController {
 
+    var listType:ListType = .free
+    @IBOutlet weak var navBarView: UIView!
     //所有商品
     
     @IBOutlet weak var showProductButton: UIButton!
+    @IBOutlet weak var orderListButton: UIButton!
     
     var productList:[NSDictionary] = []
     var page:Int = 1
@@ -49,6 +57,15 @@ class ShopPageVC: UIViewController {
         productCollectionView.dataSource = self
         myOrderCollectionView.delegate = self
         myOrderCollectionView.dataSource = self
+        
+        switch listType {
+        case .free:
+            self.navBarView.isHidden = false
+            self.orderListButton.isHidden = true
+        case .cash:
+            self.navBarView.isHidden = true
+            self.orderListButton.isHidden = false
+        }
         getProducts()
     }
     
@@ -57,27 +74,50 @@ class ShopPageVC: UIViewController {
         contentView.addAndFill(view: MyOrderListView)
     }
     
+    /**取得產品List*/
     private func getProducts(){
         Spinner.start()
-        AD.service.GetProductList(page:self.page,completion: {result in
-            switch result{
-            case .success(let res):
-                self.productList +=  res["productList"] as? [NSDictionary] ?? []
-                
-                let hasNextPage = res["hasNextPage"] as? Bool ?? false
-                if(hasNextPage){
-                    self.page += 1
+        
+        switch self.listType {
+        case .free:
+            AD.service.GetProductList(page:self.page,completion: {result in
+                switch result{
+                case .success(let res):
+                    self.handleGetProductsResponse(res: res)
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {Spinner.stop()}
                 }
-                self.hasNextPage = hasNextPage
-                
-                self.productCollectionView.reloadData()
-                DispatchQueue.main.async {Spinner.stop()}
-            case .failure(let error):
-                print(error)
-                DispatchQueue.main.async {Spinner.stop()}
-            }
-        })
+            })
+        case .cash:
+            AD.service.GetMarketProductList(page:self.page,completion: {result in
+                switch result{
+                case .success(let res):
+                    self.handleGetProductsResponse(res: res)
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.async {Spinner.stop()}
+                }
+            })
+        }
+        
     }
+    
+    /**處理回傳*/
+    private func handleGetProductsResponse(res:NSDictionary){
+        self.productList +=  res["productList"] as? [NSDictionary] ?? []
+        
+        let hasNextPage = res["hasNextPage"] as? Bool ?? false
+        if(hasNextPage){
+            self.page += 1
+        }
+        self.hasNextPage = hasNextPage
+        
+        self.productCollectionView.reloadData()
+        DispatchQueue.main.async {Spinner.stop()}
+    }
+    
+    /**以兌換紀錄api*/
     private func getMyOrderList(){
         Spinner.start()
         AD.service.MyOrderList(page:self.myOrderPage,completion: {result in
@@ -119,7 +159,16 @@ class ShopPageVC: UIViewController {
         showMyOrderButton.backgroundColor = UIColor(red: 254/255, green: 167/255, blue: 53/255, alpha: 100)
     }
     
-
+    
+    @IBAction func orderListAction(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadOrderList()
+        })
+    }
+    
+    
 }
 
 
@@ -140,7 +189,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCVC", for: indexPath) as! ProductCVC
             
             let product = self.productList[indexPath.row]
-            cell.setProductCVC(product: product)
+            cell.setProductCVC(product: product,listType: self.listType)
             return cell
         }
         
@@ -162,7 +211,9 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
                 return
             }
             let product = self.productList[indexPath.row]
-            vc.slug = product["slug"] as? String ?? ""
+            guard let slug = product["slug"] as? String else { return }
+            vc.slug = slug
+            vc.type = listType
             self.present(vc,animated: true,completion: nil)
         }
         
@@ -170,7 +221,19 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let w = self.productCollectionView.frame.size.width
-        return CGSize(width: w, height: 240.0)
+        
+        
+        if(collectionView == myOrderCollectionView){
+            return CGSize(width: w, height: 240.0)
+        }
+        
+        switch self.listType {
+        case .free:
+            return CGSize(width: w, height: 240.0)
+        case .cash:
+            return CGSize(width: w, height: 360.0)
+        }
+        
     }
     
     

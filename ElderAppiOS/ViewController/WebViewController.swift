@@ -31,6 +31,18 @@ class WebViewController: UIViewController {
         loadWebView(urlString: urlString)
     }
     
+    func loadOrderDetail(orderNumero:String){
+        titleLabel.text = "訂單管理"
+        let urlString = "\(Service.host)/order/detail/\(orderNumero)?token=\(UserDefaults.standard.getToken() ?? "")&noFooter=1"
+        loadWebView(urlString: urlString)
+    }
+    
+    func loadOrderList(){
+        titleLabel.text = "訂單管理"
+        let urlString = "\(Service.host)/order/list?token=\(UserDefaults.standard.getToken() ?? "")&noFooter=1"
+        loadWebView(urlString: urlString)
+    }
+    
     func loadMyGroupMember(){
         titleLabel.text = "我的組織"
         let urlString = "\(Service.host)/memberGroupMembers?token=\(UserDefaults.standard.getToken() ?? "")"
