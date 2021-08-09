@@ -34,11 +34,15 @@ class AccountPageVC: UIViewController {
     
     @IBOutlet weak var userIdNumberLabel: UILabel!
     
+    @IBOutlet weak var userInsuranceDateLabel: UILabel!
+    
     @IBOutlet weak var userExpiryDateLabel: UILabel!
     
     @IBOutlet weak var userIsValidLabel: UILabel!
     
     @IBOutlet weak var userQrCodeImage: UIImageView!
+    
+    @IBOutlet weak var applyInsuranceButton: UIButton!
     
     @IBOutlet weak var updateRequestButton: UIButton!
     
@@ -65,6 +69,7 @@ class AccountPageVC: UIViewController {
         
         updateRequestButton.layer.cornerRadius = 5
         extendRequestButton.layer.cornerRadius = 5
+        applyInsuranceButton.layer.cornerRadius = 5
         
         loadAccountData()
     }
@@ -94,6 +99,7 @@ class AccountPageVC: UIViewController {
                 self.userAddressLabel.text = res["address"] as? String ?? ""
                 self.userIdNumberLabel.text = res["id_number"] as? String ?? ""
                 
+                self.userInsuranceDateLabel.text = res["insurance_date"] as? String ?? ""
                 self.userExpiryDateLabel.text = res["expiry_date"] as? String ?? ""
                 
                 if(res["valid"] as! Int == 1){
@@ -244,6 +250,15 @@ class AccountPageVC: UIViewController {
             }
         })
     }
+    
+    
+    @IBAction func applyInsuranceAction(_ sender: Any) {
+        
+        let applyInsuranceVC = ApplyInsuranceVC(nibName: "ApplyInsuranceVC", bundle: nil)
+        self.present(applyInsuranceVC,animated: true)
+        
+    }
+    
    
     
     @IBAction func showStatement(_ sender: Any) {

@@ -1223,6 +1223,19 @@ struct Service {
         self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
     
+    func applyInsurance(name:String,identityNumber:String,phone:String,birthdate:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("applyInsurance request")
+        let requestString = "\(Service.host)/api/insurance/apply"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("Bearer \(UserDefaults.standard.getToken() ?? "")", forHTTPHeaderField: "Authorization")
+        let postString = "name=\(name)&identityNumber=\(identityNumber)&phone=\(phone)&birthdate=\(birthdate)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    
     
 }
 

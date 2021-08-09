@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		955FC13D26C0EF2100C51830 /* ApplyInsuranceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */; };
+		955FC13F26C0EF3700C51830 /* ApplyInsuranceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */; };
 		957909C726A57D64008D8C6E /* CartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957909C626A57D64008D8C6E /* CartVC.xib */; };
 		957909C926A57DA8008D8C6E /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957909C826A57DA8008D8C6E /* CartVC.swift */; };
 		9C10E70B23702F89007E7557 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C10E70A23702F89007E7557 /* UserHelper.swift */; };
@@ -71,6 +73,8 @@
 
 /* Begin PBXFileReference section */
 		7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElderAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyInsuranceVC.xib; sourceTree = "<group>"; };
+		955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyInsuranceVC.swift; sourceTree = "<group>"; };
 		957909C626A57D64008D8C6E /* CartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartVC.xib; sourceTree = "<group>"; };
 		957909C826A57DA8008D8C6E /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		9C10E70A23702F89007E7557 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 				CD0F596C239CB69400ED495A /* LocationCell.swift */,
 				CD0F596E239CBCD600ED495A /* CheckBox.swift */,
 				957909C626A57D64008D8C6E /* CartVC.xib */,
+				955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */,
+				955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				CDCA63AB236EC3B5000D054B /* Assets.xcassets in Resources */,
 				CDCA63A6236EC3B4000D054B /* Main.storyboard in Resources */,
 				9C9D65CB24EBE07D007434C3 /* CommentView.xib in Resources */,
+				955FC13D26C0EF2100C51830 /* ApplyInsuranceVC.xib in Resources */,
 				CDBEE0C824D9B2E0005D3848 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +475,7 @@
 				CDCA63B7236EC6A9000D054B /* Service.swift in Sources */,
 				CD736854239CA29C00B7690A /* ShopPageVC.swift in Sources */,
 				9C9D36E124EA85C300AA1069 /* PostPageVC.swift in Sources */,
+				955FC13F26C0EF3700C51830 /* ApplyInsuranceVC.swift in Sources */,
 				CD0F5969239CAE3500ED495A /* ProductDetailPageVC.swift in Sources */,
 				9C9D36E324EA8BCE00AA1069 /* PostCVC.swift in Sources */,
 				9C9B281B236FEF1700C93C2C /* LoginPageVC.swift in Sources */,
@@ -643,7 +651,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -651,7 +659,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.10;
+				MARKETING_VERSION = 1.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fullygarden.ElderAppiOS;
 				PRODUCT_NAME = "銀髮學院";
 				SWIFT_VERSION = 5.0;
@@ -666,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ElderAppiOS/銀髮學院.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V4C8JA4SFU;
 				INFOPLIST_FILE = ElderAppiOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -674,7 +682,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.10;
+				MARKETING_VERSION = 1.1.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fullygarden.ElderAppiOS;
 				PRODUCT_NAME = "銀髮學院";
 				SWIFT_VERSION = 5.0;
