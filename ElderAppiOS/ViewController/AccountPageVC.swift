@@ -254,8 +254,14 @@ class AccountPageVC: UIViewController {
     
     @IBAction func applyInsuranceAction(_ sender: Any) {
         
-        let applyInsuranceVC = ApplyInsuranceVC(nibName: "ApplyInsuranceVC", bundle: nil)
-        self.present(applyInsuranceVC,animated: true)
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as? WebViewController else {return}
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadApplyInsuranceUrl()
+        })
+        
+//        let applyInsuranceVC = ApplyInsuranceVC(nibName: "ApplyInsuranceVC", bundle: nil)
+//        self.present(applyInsuranceVC,animated: true)
         
     }
     

@@ -61,6 +61,12 @@ class WebViewController: UIViewController {
         loadWebView(urlString: urlString)
     }
     
+    func loadApplyInsuranceUrl(){
+        titleLabel.text = "申請保險"
+        let urlString = "\(Service.host)/insurance/apply?token=\(UserDefaults.standard.getToken() ?? "")"
+        loadWebView(urlString: urlString)
+    }
+    
     private func loadWebView(urlString:String){
         guard let url = URL(string: urlString) else { return }
         let urlRequest = URLRequest(url: url)
