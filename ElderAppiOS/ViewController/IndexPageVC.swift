@@ -118,6 +118,14 @@ class IndexPageVC: UIViewController {
     }
     
     
+    @IBAction func volunteerLogAction(_ sender: Any) {
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadVolunteerLogUrl()
+        })
+    }
     
     @IBAction func loadProductList(_ sender: Any) {
         

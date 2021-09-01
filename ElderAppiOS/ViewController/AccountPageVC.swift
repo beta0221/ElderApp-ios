@@ -58,6 +58,9 @@ class AccountPageVC: UIViewController {
     var myCourseUrl:String?
     @IBOutlet weak var myCourseUrlOutterView: UIView!
     
+    var clinicUrl:String?
+    @IBOutlet weak var clinicUrlOutterView: UIView!
+    
     @IBOutlet weak var bindLineOutterView: UIView!
     
     override func viewDidLoad() {
@@ -130,6 +133,11 @@ class AccountPageVC: UIViewController {
                     self.myCourseUrlOutterView.isHidden = false
                 }
                     
+                if let clinicUrl = res["clinicUrl"] as? String{
+                    self.clinicUrl = clinicUrl
+                    self.clinicUrlOutterView.isHidden = false
+                }
+                    
 //                if let isLineAccountBinded = res["isLineAccountBinded"] as? Bool,
 //                   isLineAccountBinded == false{
 //                    self.bindLineOutterView.isHidden = false
@@ -162,6 +170,18 @@ class AccountPageVC: UIViewController {
             vc.loadMyCourseUrl(myCourseUrl: myCourseUrl)
         })
     }
+    
+    @IBAction func clinicUrlAction(_ sender: Any) {
+        guard let clinicUrl = self.clinicUrl else { return }
+        let urlString = "\(Service.host)/\(clinicUrl)?token=\(UserDefaults.standard.getToken() ?? "")"
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        vc.modalPresentationStyle = .currentContext
+        self.present(vc,animated: true,completion: {
+            vc.loadUrl(urlString: urlString, title: "診所志工管理")
+        })
+    }
+    
     @IBAction func bindLineAccountAction(_ sender:Any){
         Spinner.start()
         LoginManager.shared.login(permissions: [.profile], in: self){ result in

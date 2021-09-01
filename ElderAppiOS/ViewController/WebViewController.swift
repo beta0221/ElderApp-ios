@@ -67,6 +67,12 @@ class WebViewController: UIViewController {
         loadWebView(urlString: urlString)
     }
     
+    func loadVolunteerLogUrl(){
+        titleLabel.text = "志工服務記錄"
+        let urlString = "\(Service.host)/clinic/volunteer/log?token=\(UserDefaults.standard.getToken() ?? "")"
+        loadWebView(urlString: urlString)
+    }
+    
     private func loadWebView(urlString:String){
         guard let url = URL(string: urlString) else { return }
         let urlRequest = URLRequest(url: url)
