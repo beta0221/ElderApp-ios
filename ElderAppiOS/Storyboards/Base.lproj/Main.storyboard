@@ -5245,10 +5245,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lly-I7-8Z4">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1127"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1314.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mNX-vG-4Bz">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1127"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1314.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70f-NO-icG">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -5525,8 +5525,35 @@
                                                             <constraint firstItem="sPk-Mp-4Xh" firstAttribute="top" secondItem="YR8-H5-8bH" secondAttribute="top" id="nY1-SU-NAG"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17i-hd-X9F">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnE-bg-NrB">
                                                         <rect key="frame" x="0.0" y="615" width="375" height="187.5"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbP-gX-Oej" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
+                                                                <rect key="frame" x="24" y="12" width="327" height="163.5"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-R8-72t" customClass="RoundButton" customModule="銀髮學院" customModuleProvider="target">
+                                                                <rect key="frame" x="24" y="12" width="327" height="163.5"/>
+                                                                <state key="normal" image="scan_button"/>
+                                                                <connections>
+                                                                    <action selector="scanAction:" destination="YnN-T5-PUn" eventType="touchUpInside" id="c53-It-0h2"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="vbP-gX-Oej" firstAttribute="leading" secondItem="SnE-bg-NrB" secondAttribute="leading" constant="24" id="1Dh-ZT-GOc"/>
+                                                            <constraint firstAttribute="bottom" secondItem="vbP-gX-Oej" secondAttribute="bottom" constant="12" id="DHQ-n7-cWV"/>
+                                                            <constraint firstAttribute="bottom" secondItem="KqB-R8-72t" secondAttribute="bottom" constant="12" id="Rnd-KA-xz8"/>
+                                                            <constraint firstItem="vbP-gX-Oej" firstAttribute="top" secondItem="SnE-bg-NrB" secondAttribute="top" constant="12" id="gMS-Uo-ah4"/>
+                                                            <constraint firstAttribute="trailing" secondItem="vbP-gX-Oej" secondAttribute="trailing" constant="24" id="lub-L3-nkb"/>
+                                                            <constraint firstAttribute="width" secondItem="SnE-bg-NrB" secondAttribute="height" multiplier="2:1" id="nKT-Hl-zpO"/>
+                                                            <constraint firstItem="KqB-R8-72t" firstAttribute="top" secondItem="SnE-bg-NrB" secondAttribute="top" constant="12" id="tNb-ba-VCm"/>
+                                                            <constraint firstItem="KqB-R8-72t" firstAttribute="leading" secondItem="SnE-bg-NrB" secondAttribute="leading" constant="24" id="yNr-ay-ucV"/>
+                                                            <constraint firstAttribute="trailing" secondItem="KqB-R8-72t" secondAttribute="trailing" constant="24" id="yxC-DC-gBf"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17i-hd-X9F">
+                                                        <rect key="frame" x="0.0" y="802.5" width="375" height="187.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ojv-RF-Fmb" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
@@ -5564,7 +5591,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWQ-32-taK">
-                                                        <rect key="frame" x="0.0" y="802.5" width="375" height="125"/>
+                                                        <rect key="frame" x="0.0" y="990" width="375" height="125"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm5-5F-Y0C" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="101"/>
@@ -5595,13 +5622,13 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHb-09-Ngs">
-                                                        <rect key="frame" x="0.0" y="927.5" width="375" height="12"/>
+                                                        <rect key="frame" x="0.0" y="1115" width="375" height="12"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="12" id="RO6-nK-Vp2"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mt4-dY-Nc8">
-                                                        <rect key="frame" x="0.0" y="939.5" width="375" height="187.5"/>
+                                                        <rect key="frame" x="0.0" y="1127" width="375" height="187.5"/>
                                                         <subviews>
                                                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brt-ls-2Cg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
@@ -6414,6 +6441,7 @@ C○二一 家庭情形：如婚姻有無、子女人數等。
         <image name="passpermit" width="400" height="300"/>
         <image name="promo" width="393" height="400"/>
         <image name="receive" width="200" height="200"/>
+        <image name="scan_button" width="400" height="200"/>
         <image name="shop_banner" width="400" height="200"/>
         <image name="take" width="393" height="400"/>
         <image name="trans" width="393" height="400"/>

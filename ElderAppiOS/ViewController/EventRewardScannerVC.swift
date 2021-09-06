@@ -76,35 +76,60 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
     
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-           captureSession?.stopRunning()
+        
+        
+        captureSession?.stopRunning()
            
-           if let metadataObject = metadataObjects.first{
-               guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else{return}
-               guard let stringValue = readableObject.stringValue else {
-                   return
-               }
+        if let metadataObject = metadataObjects.first{
+            
+            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else{ return }
+            guard let stringValue = readableObject.stringValue else { return }
                
-               print("\(stringValue)")
+            print("\(stringValue)")
+            var str = stringValue.split(separator: ",")
             
-            let str = stringValue.split(separator: ",")
-            
-            if (str.count != 2){
-                Common.SystemAlert(Title: "錯誤", Body: "條碼錯誤", SingleBtn: "確定", viewController: self,handler: {_ in
-                self.captureSession?.startRunning()
-                })
+            if let url = URLComponents(string: stringValue),
+               let query = url.queryItems?.first(where: {$0.name == "query"})?.value{
+                
+                let code = query.substring(to: query.count - 2)
+                print("code:\(code)")
+                if let decodeData = Data(base64Encoded: code, options: .ignoreUnknownCharacters),
+                   let decodeString = String(data: decodeData, encoding: .utf8){
+                    print("decodeString:\(decodeString)")
+                    str = decodeString.split(separator:",")
+                }
             }
             
-            if(String(str[0]) == "reward"){
+            if (str.count != 2){
+                self.qrCodeAlert(body: "條碼錯誤")
+                return
+            }
+            
+            
+            switch String(str[0]) {
+            case "reward":
                 self.getReward(stringValue: String(str[1]))
-            }else if(String(str[0]) == "arrive"){
+            case "arrive":
                 self.arriveEvent(stringValue: String(str[1]))
+            case "clinicOnDuty":
+                self.volunteerOnDuty(slug: String(str[1]))
+            case "clinicOffDuty":
+                self.volunteerOffDuty(slug: String(str[1]))
+            default:
+                break
             }
                
         }
            
     }
     
-    
+    private func qrCodeAlert(body:String){
+        DispatchQueue.main.async {
+            Common.SystemAlert(Title: "訊息", Body: body, SingleBtn: "確定", viewController: self,handler: {_ in
+                self.captureSession?.startRunning()
+            })
+        }
+    }
     
     func getReward(stringValue:String){
         AD.service.RrawEventReward(event_slug: stringValue, completion: {result in
@@ -142,6 +167,28 @@ class EventRewardScannerVC: UIViewController,AVCaptureMetadataOutputObjectsDeleg
                 break
             case .failure(let error):
                 print(error)
+            }
+        })
+    }
+    
+    private func volunteerOnDuty(slug:String){
+        AD.service.volunteerOnDuty(slug: slug, completion: {result in
+            switch result{
+            case .success(let res):
+                self.qrCodeAlert(body: res)
+            case .failure(let error):
+                self.qrCodeAlert(body: error.content)
+            }
+        })
+    }
+    
+    private func volunteerOffDuty(slug:String){
+        AD.service.volunteerOffDuty(slug: slug, completion: {result in
+            switch result{
+            case .success(let res):
+                self.qrCodeAlert(body: res)
+            case .failure(let error):
+                self.qrCodeAlert(body: error.content)
             }
         })
     }

@@ -117,6 +117,11 @@ class IndexPageVC: UIViewController {
         
     }
     
+    @IBAction func scanAction(_ sender: Any){
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "EventRewardScannerVC") as! EventRewardScannerVC
+        self.present(vc,animated: true)
+        
+    }
     
     @IBAction func volunteerLogAction(_ sender: Any) {
         let board = UIStoryboard(name: "Main", bundle: nil)

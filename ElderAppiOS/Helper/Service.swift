@@ -104,6 +104,37 @@ struct Service {
             }
         }.resume()
     }
+    
+    
+    /// Default String Resume
+    /// - Parameters:
+    ///   - urlRequest:
+    ///   - completion:
+    private func DefaultStringResume(urlRequest:URLRequest,completion:@escaping(Result<String,ErrorString>)->Void){
+        URLSession.shared.dataTask(with: urlRequest){data,response, _ in
+            guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200,
+            let jsonData = data else {
+                
+                DispatchQueue.main.async{
+                    completion(.failure(ErrorString(data: data)))
+                }
+                return
+            }
+            
+            guard let msg = String(data: jsonData, encoding: .utf8) else {
+                DispatchQueue.main.async {
+                    completion(.success("系統錯誤"))
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(.success(msg))
+            }
+            
+        }.resume()
+    }
         
     
     //會員申請續會
@@ -1234,6 +1265,40 @@ struct Service {
         let postString = "name=\(name)&identityNumber=\(identityNumber)&phone=\(phone)&birthdate=\(birthdate)"
         urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
         self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    
+    
+    
+    /// 診所簽到
+    /// - Parameters:
+    ///   - slug:
+    ///   - completion:
+    func volunteerOnDuty(slug:String,completion:@escaping(Result<String,ErrorString>)->Void){
+        let requestString = "\(Service.host)/api/clinic/scanQRCode/\(slug)/onDuty"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        self.DefaultStringResume(urlRequest: urlRequest, completion: completion)
+    }
+    
+    /// 診所簽退
+    /// - Parameters:
+    ///   - slug:
+    ///   - completion:
+    func volunteerOffDuty(slug:String,completion:@escaping(Result<String,ErrorString>)->Void){
+        let requestString = "\(Service.host)/api/clinic/scanQRCode/\(slug)/offDuty"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        self.DefaultStringResume(urlRequest: urlRequest, completion: completion)
     }
     
     
