@@ -24,6 +24,7 @@ class Common{
         let controller = UIAlertController(title: Title, message:Body , preferredStyle: .alert)
         let okAction = UIAlertAction(title: SingleBtn, style: .default, handler: nil)
         controller.addAction(okAction)
+        controller.popoverPresentationController?.sourceView = viewController.view
         viewController.present(controller, animated: true, completion: nil)
     }
     
@@ -31,6 +32,7 @@ class Common{
         let controller = UIAlertController(title: Title, message:Body , preferredStyle: .alert)
         let okAction = UIAlertAction(title: SingleBtn, style: .default, handler: handler)
         controller.addAction(okAction)
+        controller.popoverPresentationController?.sourceView = viewController.view
         viewController.present(controller, animated: true, completion: nil)
     }
     
@@ -40,6 +42,7 @@ class Common{
         let cancelAction = UIAlertAction(title: CancelBtn, style: .default, handler: CancelHandler)
         controller.addAction(okAction)
         controller.addAction(cancelAction)
+        controller.popoverPresentationController?.sourceView = viewController.view
         viewController.present(controller, animated: true, completion: nil)
     }
     

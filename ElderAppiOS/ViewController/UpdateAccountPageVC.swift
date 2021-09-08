@@ -76,29 +76,20 @@ class UpdateAccountPageVC: UIViewController {
             switch result{
             case .success(let res):
                 if(res["s"] as? Int == 1){
-                    let controller = UIAlertController(title: "完成", message: (res["m"] as! String), preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "確定", style: .default, handler:{ action in
+                    Common.SystemAlert(Title: "完成", Body: res["m"] as? String ?? "", SingleBtn: "確定", viewController: self,handler: {_ in
                         self.dismiss(animated: true, completion: nil)
                         self.updateDelegate?.update()
                     })
-                    controller.addAction(okAction)
-                    self.present(controller, animated: true, completion:nil)
                 }else{
-                    let controller = UIAlertController(title: "錯誤", message: (res["m"] as! String), preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "確定", style: .default, handler:{ action in
+                    Common.SystemAlert(Title: "錯誤", Body: res["m"] as? String ?? "", SingleBtn: "確定", viewController: self,handler: {_ in
                         self.dismiss(animated: true, completion: nil)
                     })
-                    controller.addAction(okAction)
-                    self.present(controller, animated: true, completion:nil)
                 }
             case .failure(let error):
                 print(error)
-                let controller = UIAlertController(title: "OOps!", message:"錯誤", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "確定", style: .default, handler:{ action in
+                Common.SystemAlert(Title: "OOps!", Body: "錯誤", SingleBtn: "確定", viewController: self,handler: {_ in
                     self.dismiss(animated: true, completion: nil)
                 })
-                controller.addAction(okAction)
-                self.present(controller, animated: true, completion:nil)
             }
             
         })

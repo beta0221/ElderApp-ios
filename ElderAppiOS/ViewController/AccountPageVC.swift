@@ -260,10 +260,9 @@ class AccountPageVC: UIViewController {
             switch result{
             case .success(let res):
                 DispatchQueue.main.async {Spinner.stop()}
-                let controller = UIAlertController(title: "訊息", message:res, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "確定", style: .default, handler:nil)
-                controller.addAction(okAction)
-                self.present(controller, animated: true, completion:nil)
+                
+                Common.SystemAlert(Title: "訊息", Body: res, SingleBtn: "確定", viewController: self)
+                
             case .failure(let error):
                 print(error)
                 DispatchQueue.main.async {Spinner.stop()}

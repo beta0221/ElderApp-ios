@@ -41,10 +41,7 @@ class GiveMoneyFormVC: UIViewController {
         let comment = commentTextfield.text
         
         if(amount! <= 0){
-            let controller = UIAlertController(title: "金額錯誤", message: "請輸入有效金額", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
-            controller.addAction(okAction)
-            self.present(controller, animated: true, completion: nil)
+            Common.SystemAlert(Title: "金額錯誤", Body: "請輸入有效金額", SingleBtn: "確定", viewController: self)
             return
         }
         
@@ -53,30 +50,18 @@ class GiveMoneyFormVC: UIViewController {
             result{
             case .success(let res):
                 if(res == "success"){
-                    let controller = UIAlertController(title: "支付成功", message: "回首頁", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "確定", style: .default, handler:{ action in
+                    Common.SystemAlert(Title: "支付成功", Body: "回首頁", SingleBtn: "確定", viewController: self,handler: {_ in
                         NotificationCenter.default.post(name: Notification.Name("updateMyData"), object: nil)
                         self.performSegue(withIdentifier: "unwind_IndexPageVC", sender: nil)
                     })
-                    controller.addAction(okAction)
-                    self.present(controller, animated: true, completion:nil)
-                    
                 }else if(res == "insufficient"){
-                    let controller = UIAlertController(title: "失敗", message: "剩餘樂幣不足", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "確定", style: .default, handler: { action in
+                    Common.SystemAlert(Title: "失敗", Body: "剩餘樂幣不足", SingleBtn: "確定", viewController: self,handler: {_ in
                         self.performSegue(withIdentifier: "unwind_IndexPageVC", sender: nil)
                     })
-                    controller.addAction(okAction)
-                    self.present(controller, animated: true, completion:nil)
-                    
                 }else{
-                    let controller = UIAlertController(title: "失敗", message: res, preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "確定", style: .default, handler: { action in
+                    Common.SystemAlert(Title: "失敗", Body: res, SingleBtn: "確定", viewController: self,handler: {_ in
                         self.performSegue(withIdentifier: "unwind_IndexPageVC", sender: nil)
                     })
-                    controller.addAction(okAction)
-                    self.present(controller, animated: true, completion:nil)
-                    
                 }
                 
                 

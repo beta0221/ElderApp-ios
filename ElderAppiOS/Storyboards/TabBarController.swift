@@ -37,7 +37,7 @@ class TabBarController: UITabBarController {
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(showEventDetail), name: Notification.Name("showEventDetail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showEventDetail), name: Notification.Name("showEventDetail"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showPostDetail), name: Notification.Name("showPostDetail"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(showPostDetail), name: Notification.Name("showPostDetail"), object: nil)
     }
     
     @objc func showEventDetail(){
