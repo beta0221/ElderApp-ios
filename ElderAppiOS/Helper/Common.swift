@@ -16,6 +16,7 @@ class Common{
         for action in actions{
             alert.addAction(action)
         }
+        alert.popoverPresentationController?.sourceView = viewController.view
         viewController.present(alert,animated: true)
         
     }
