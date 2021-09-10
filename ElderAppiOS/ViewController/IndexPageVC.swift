@@ -118,15 +118,16 @@ class IndexPageVC: UIViewController {
     }
     
     @IBAction func scanAction(_ sender: Any){
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "EventRewardScannerVC") as! EventRewardScannerVC
+        let board = UIStoryboard(name: "Main", bundle: nil)
+        let vc = board.instantiateViewController(withIdentifier: "EventRewardScannerVC") as! EventRewardScannerVC
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true)
-        
     }
     
     @IBAction func volunteerLogAction(_ sender: Any) {
         let board = UIStoryboard(name: "Main", bundle: nil)
         let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadVolunteerLogUrl()
         })
@@ -136,23 +137,17 @@ class IndexPageVC: UIViewController {
         
         let board = UIStoryboard(name: "Main", bundle: nil)
         let vc = board.instantiateViewController(withIdentifier: "ShopPageVC") as! ShopPageVC
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         vc.listType = .cash
         self.present(vc,animated: true)
         
-//        let board = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-//        vc.modalPresentationStyle = .currentContext
-//        self.present(vc,animated: true,completion: {
-//            vc.loadProductList()
-//        })
     }
     
     
     @IBAction func viewMyGroup(_ sender: Any) {
         let board = UIStoryboard(name: "Main", bundle: nil)
         let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadMyGroupMember()
         })

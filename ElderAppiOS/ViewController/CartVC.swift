@@ -78,7 +78,7 @@ class CartVC: UIViewController {
                     weak var pvc = self.presentingViewController
                     self.dismiss(animated: false, completion: {
                         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-                        vc.modalPresentationStyle = .currentContext
+                        vc.modalPresentationStyle = .overCurrentContext
                         pvc?.present(vc,animated: true,completion: {
                             vc.loadOrderDetail(orderNumero: orderNumero)
                         })

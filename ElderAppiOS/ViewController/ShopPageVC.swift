@@ -162,7 +162,7 @@ class ShopPageVC: UIViewController {
     
     @IBAction func orderListAction(_ sender: Any) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadOrderList()
         })

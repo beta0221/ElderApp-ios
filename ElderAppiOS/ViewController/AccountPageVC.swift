@@ -156,7 +156,7 @@ class AccountPageVC: UIViewController {
         guard let locationUrl = self.locationUrl else { return }
         let board = UIStoryboard(name: "Main", bundle: nil)
         let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadLocationUrl(locationUrl: locationUrl)
         })
@@ -165,7 +165,7 @@ class AccountPageVC: UIViewController {
         guard let myCourseUrl = self.myCourseUrl else { return }
         let board = UIStoryboard(name: "Main", bundle: nil)
         let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadMyCourseUrl(myCourseUrl: myCourseUrl)
         })
@@ -176,7 +176,7 @@ class AccountPageVC: UIViewController {
         let urlString = "\(Service.host)/\(clinicUrl)?token=\(UserDefaults.standard.getToken() ?? "")"
         let board = UIStoryboard(name: "Main", bundle: nil)
         let vc = board.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadUrl(urlString: urlString, title: "診所志工管理")
         })
@@ -274,7 +274,7 @@ class AccountPageVC: UIViewController {
     @IBAction func applyInsuranceAction(_ sender: Any) {
         
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WebViewController") as? WebViewController else {return}
-        vc.modalPresentationStyle = .currentContext
+        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc,animated: true,completion: {
             vc.loadApplyInsuranceUrl()
         })

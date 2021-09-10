@@ -5528,25 +5528,35 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnE-bg-NrB">
                                                         <rect key="frame" x="0.0" y="615" width="375" height="187.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbP-gX-Oej" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W3B-p4-4Fo" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scan_button" translatesAutoresizingMaskIntoConstraints="NO" id="3Nc-us-IPm" customClass="RoundCornerView" customModule="銀髮學院" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="163.5"/>
+                                                                    </imageView>
+                                                                </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="3Nc-us-IPm" firstAttribute="top" secondItem="W3B-p4-4Fo" secondAttribute="top" id="Do0-6j-slt"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="3Nc-us-IPm" secondAttribute="bottom" id="YEU-Mt-Tqx"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="3Nc-us-IPm" secondAttribute="trailing" id="euG-5w-spe"/>
+                                                                    <constraint firstItem="3Nc-us-IPm" firstAttribute="leading" secondItem="W3B-p4-4Fo" secondAttribute="leading" id="hgR-xP-5zs"/>
+                                                                </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-R8-72t" customClass="RoundButton" customModule="銀髮學院" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqB-R8-72t" customClass="RoundButton" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
-                                                                <state key="normal" image="scan_button"/>
                                                                 <connections>
-                                                                    <action selector="scanAction:" destination="YnN-T5-PUn" eventType="touchUpInside" id="c53-It-0h2"/>
+                                                                    <action selector="scanAction:" destination="YnN-T5-PUn" eventType="touchUpInside" id="SQD-kL-QdF"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="vbP-gX-Oej" firstAttribute="leading" secondItem="SnE-bg-NrB" secondAttribute="leading" constant="24" id="1Dh-ZT-GOc"/>
-                                                            <constraint firstAttribute="bottom" secondItem="vbP-gX-Oej" secondAttribute="bottom" constant="12" id="DHQ-n7-cWV"/>
+                                                            <constraint firstItem="W3B-p4-4Fo" firstAttribute="top" secondItem="SnE-bg-NrB" secondAttribute="top" constant="12" id="0hk-y5-Uio"/>
+                                                            <constraint firstItem="W3B-p4-4Fo" firstAttribute="leading" secondItem="SnE-bg-NrB" secondAttribute="leading" constant="24" id="2Ct-hU-Uii"/>
+                                                            <constraint firstAttribute="trailing" secondItem="W3B-p4-4Fo" secondAttribute="trailing" constant="24" id="7t4-y8-jR9"/>
                                                             <constraint firstAttribute="bottom" secondItem="KqB-R8-72t" secondAttribute="bottom" constant="12" id="Rnd-KA-xz8"/>
-                                                            <constraint firstItem="vbP-gX-Oej" firstAttribute="top" secondItem="SnE-bg-NrB" secondAttribute="top" constant="12" id="gMS-Uo-ah4"/>
-                                                            <constraint firstAttribute="trailing" secondItem="vbP-gX-Oej" secondAttribute="trailing" constant="24" id="lub-L3-nkb"/>
                                                             <constraint firstAttribute="width" secondItem="SnE-bg-NrB" secondAttribute="height" multiplier="2:1" id="nKT-Hl-zpO"/>
+                                                            <constraint firstAttribute="bottom" secondItem="W3B-p4-4Fo" secondAttribute="bottom" constant="12" id="r7p-Hs-zXG"/>
                                                             <constraint firstItem="KqB-R8-72t" firstAttribute="top" secondItem="SnE-bg-NrB" secondAttribute="top" constant="12" id="tNb-ba-VCm"/>
                                                             <constraint firstItem="KqB-R8-72t" firstAttribute="leading" secondItem="SnE-bg-NrB" secondAttribute="leading" constant="24" id="yNr-ay-ucV"/>
                                                             <constraint firstAttribute="trailing" secondItem="KqB-R8-72t" secondAttribute="trailing" constant="24" id="yxC-DC-gBf"/>
@@ -5557,11 +5567,22 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ojv-RF-Fmb" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop_banner" translatesAutoresizingMaskIntoConstraints="NO" id="gbI-3E-cUw" customClass="RoundCornerView" customModule="銀髮學院" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="163.5"/>
+                                                                    </imageView>
+                                                                </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="gbI-3E-cUw" secondAttribute="bottom" id="XHJ-Wr-bdm"/>
+                                                                    <constraint firstItem="gbI-3E-cUw" firstAttribute="leading" secondItem="Ojv-RF-Fmb" secondAttribute="leading" id="ZPu-Ou-gRv"/>
+                                                                    <constraint firstItem="gbI-3E-cUw" firstAttribute="top" secondItem="Ojv-RF-Fmb" secondAttribute="top" id="ipJ-iU-3DW"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gbI-3E-cUw" secondAttribute="trailing" id="npr-FX-pTB"/>
+                                                                </constraints>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIS-IR-sq3" customClass="RoundButton" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
-                                                                <state key="normal" image="shop_banner">
+                                                                <state key="normal">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
@@ -5587,11 +5608,22 @@
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lm5-5F-Y0C" customClass="ShadowView" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love_bank_button" translatesAutoresizingMaskIntoConstraints="NO" id="tK4-jS-eRL" customClass="RoundCornerView" customModule="銀髮學院" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="163.5"/>
+                                                                    </imageView>
+                                                                </subviews>
                                                                 <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="tK4-jS-eRL" firstAttribute="top" secondItem="lm5-5F-Y0C" secondAttribute="top" id="78X-s5-gUB"/>
+                                                                    <constraint firstItem="tK4-jS-eRL" firstAttribute="leading" secondItem="lm5-5F-Y0C" secondAttribute="leading" id="CGT-lh-8n2"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="tK4-jS-eRL" secondAttribute="trailing" id="NiS-7h-Vcr"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="tK4-jS-eRL" secondAttribute="bottom" id="jFf-bo-Tpg"/>
+                                                                </constraints>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d3-wQ-azL" customClass="RoundButton" customModule="銀髮學院" customModuleProvider="target">
                                                                 <rect key="frame" x="24" y="12" width="327" height="163.5"/>
-                                                                <state key="normal" image="love_bank_button">
+                                                                <state key="normal">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
