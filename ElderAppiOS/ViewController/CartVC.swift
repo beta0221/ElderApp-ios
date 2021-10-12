@@ -52,9 +52,27 @@ class CartVC: UIViewController {
         let quantity = Int(textField.text ?? "0") ?? 0
         textField.text = quantity.description
         
+        cacuCashAndPoint(quantity: quantity)
+    }
+    
+    @IBAction func increaseAction(_ sender: Any) {
+        var quantity = Int(quantityTextfield.text ?? "0") ?? 0
+        quantity += 1
+        quantityTextfield.text = quantity.description
+        cacuCashAndPoint(quantity: quantity)
+    }
+    
+    @IBAction func decreaseAction(_ sender: Any) {
+        var quantity = Int(quantityTextfield.text ?? "0") ?? 0
+        if(quantity == 0){ return }
+        quantity -= 1
+        quantityTextfield.text = quantity.description
+        cacuCashAndPoint(quantity: quantity)
+    }
+    
+    private func cacuCashAndPoint(quantity:Int){
         totalCash.text = ((self.cashPerProduct ?? 0) * quantity).description
         totalPoint.text = ((self.pointPerProduct ?? 0) * quantity).description
-        
     }
     
     @IBAction func purchaseAction(_ sender: Any) {

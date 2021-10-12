@@ -53,23 +53,56 @@
                                         <constraint firstAttribute="trailing" secondItem="Amn-70-0xq" secondAttribute="trailing" id="oV0-aB-8Ud"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqE-Wx-0Mx">
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fDq-aM-BsT">
                                     <rect key="frame" x="0.0" y="48" width="294" height="48"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uP0-GJ-ZAW">
-                                            <rect key="frame" x="0.0" y="0.0" width="294" height="48"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqE-Wx-0Mx">
+                                            <rect key="frame" x="0.0" y="0.0" width="182" height="48"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uP0-GJ-ZAW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="48"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="uP0-GJ-ZAW" firstAttribute="leading" secondItem="rqE-Wx-0Mx" secondAttribute="leading" id="1aj-8n-2ku"/>
+                                                <constraint firstAttribute="trailing" secondItem="uP0-GJ-ZAW" secondAttribute="trailing" id="FtL-YA-fGt"/>
+                                                <constraint firstItem="uP0-GJ-ZAW" firstAttribute="top" secondItem="rqE-Wx-0Mx" secondAttribute="top" id="RJ1-g7-UJs"/>
+                                                <constraint firstAttribute="bottom" secondItem="uP0-GJ-ZAW" secondAttribute="bottom" id="xsN-wG-3mK"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6L-xK-3kC">
+                                            <rect key="frame" x="190" y="0.0" width="48" height="48"/>
+                                            <color key="backgroundColor" red="0.1450980392" green="0.17254901959999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="f6L-xK-3kC" secondAttribute="height" multiplier="1:1" id="8XV-g0-KuD"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        </textField>
+                                            <state key="normal" title="-">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="decreaseAction:" destination="-1" eventType="touchUpInside" id="3eL-Yi-2Ci"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wp-Cu-YwZ">
+                                            <rect key="frame" x="246" y="0.0" width="48" height="48"/>
+                                            <color key="backgroundColor" red="0.1450980392" green="0.17254901959999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="2wp-Cu-YwZ" secondAttribute="height" multiplier="1:1" id="6Hu-Yc-Oba"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <state key="normal" title="+">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="increaseAction:" destination="-1" eventType="touchUpInside" id="Ttt-0k-VjQ"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="uP0-GJ-ZAW" firstAttribute="leading" secondItem="rqE-Wx-0Mx" secondAttribute="leading" id="1aj-8n-2ku"/>
-                                        <constraint firstAttribute="trailing" secondItem="uP0-GJ-ZAW" secondAttribute="trailing" id="FtL-YA-fGt"/>
-                                        <constraint firstItem="uP0-GJ-ZAW" firstAttribute="top" secondItem="rqE-Wx-0Mx" secondAttribute="top" id="RJ1-g7-UJs"/>
-                                        <constraint firstAttribute="bottom" secondItem="uP0-GJ-ZAW" secondAttribute="bottom" id="xsN-wG-3mK"/>
-                                    </constraints>
-                                </view>
+                                </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xt-3M-UKP">
                                     <rect key="frame" x="0.0" y="96" width="294" height="48"/>
                                     <subviews>
