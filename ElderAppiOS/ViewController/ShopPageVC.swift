@@ -229,7 +229,7 @@ extension ShopPageVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         
         switch self.listType {
         case .free:
-            return CGSize(width: w, height: 240.0)
+            return CGSize(width: w, height: 288.0)
         case .cash:
             return CGSize(width: w, height: 360.0)
         }
