@@ -195,6 +195,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 topController.present(vc,animated: true)
             }
 //            NotificationCenter.default.post(name: Notification.Name("showPostDetail"), object: nil, userInfo: ["slug":slug])
+        }else if(path.contains("/transaction/myTransactionHistory")){
+            guard let topController = self.topController() else { return }
+            if (topController is TransPageVC){ return }
+            guard let vc = board.instantiateViewController(withIdentifier: "TransPageVC") as? TransPageVC else { return }
+            topController.present(vc,animated: true)
         }
         
     }

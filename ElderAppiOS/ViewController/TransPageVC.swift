@@ -25,7 +25,13 @@ class TransPageVC: UIViewController {
         transCollectionView.dataSource = self
         transCollectionView.delegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("updateMyData"), object: nil)
+        
         self.getTransHistory()
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func getTransHistory(){
@@ -49,6 +55,13 @@ class TransPageVC: UIViewController {
         })
     }
     
+    @objc private func reloadData(){
+        self.TransList = []
+        self.transCollectionView.reloadData()
+        self.page = 1
+        self.hasNextPage = true
+        self.getTransHistory()
+    }
 
 }
 

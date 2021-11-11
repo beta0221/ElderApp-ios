@@ -2821,7 +2821,7 @@
         <!--Trans PageVC-->
         <scene sceneID="rbH-fx-HQm">
             <objects>
-                <viewController id="qpF-L7-9fL" customClass="TransPageVC" customModule="銀髮學院" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransPageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qpF-L7-9fL" customClass="TransPageVC" customModule="銀髮學院" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HUB-4F-qdZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
