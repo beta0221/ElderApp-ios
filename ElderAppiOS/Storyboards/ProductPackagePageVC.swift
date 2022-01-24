@@ -14,6 +14,7 @@ class ProductPackagePageVC: UIViewController {
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     
+    @IBOutlet weak var packageStackview: UIStackView!
     @IBOutlet weak var infoWKView: WKWebView!
     var slug:String!
     
@@ -44,6 +45,14 @@ class ProductPackagePageVC: UIViewController {
                 let html = "<style>body{font-family:'Arial';font-size:32px;}</style>\(product["info"] as? String ?? "")"
                 self.infoWKView.loadHTMLString(html, baseURL: nil)
                 
+                if let packages = res["packages"] as? [NSDictionary] {
+                    for package in packages{
+                        let _package = Package(package)
+                        _package.delegate = self
+                        self.packageStackview.addArrangedSubview(_package)
+                    }
+                }
+                
                 
                 DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
@@ -52,6 +61,9 @@ class ProductPackagePageVC: UIViewController {
             }
         })
     }
+    
+    
+    
 
     
     private func setWKViewBodyHeight(_ height:CGFloat){
@@ -87,3 +99,9 @@ extension ProductPackagePageVC:WKNavigationDelegate{
     }
 }
 
+extension ProductPackagePageVC:PackageDelegate{
+    func tap(id: Int) {
+        print(id)
+    }
+    
+}

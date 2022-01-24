@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		95572DDD279E6AAA00648558 /* ProductPackagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95572DDB279E6AAA00648558 /* ProductPackagePageVC.swift */; };
 		95572DDE279E6AAA00648558 /* ProductPackagePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */; };
+		95572DE0279E891900648558 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95572DDF279E891900648558 /* Package.swift */; };
+		95572DE2279E893000648558 /* Package.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95572DE1279E893000648558 /* Package.xib */; };
 		955FC13D26C0EF2100C51830 /* ApplyInsuranceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */; };
 		955FC13F26C0EF3700C51830 /* ApplyInsuranceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */; };
 		957909C726A57D64008D8C6E /* CartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957909C626A57D64008D8C6E /* CartVC.xib */; };
@@ -77,6 +79,8 @@
 		7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElderAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		95572DDB279E6AAA00648558 /* ProductPackagePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPackagePageVC.swift; sourceTree = "<group>"; };
 		95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductPackagePageVC.xib; sourceTree = "<group>"; };
+		95572DDF279E891900648558 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		95572DE1279E893000648558 /* Package.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Package.xib; sourceTree = "<group>"; };
 		955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyInsuranceVC.xib; sourceTree = "<group>"; };
 		955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyInsuranceVC.swift; sourceTree = "<group>"; };
 		957909C626A57D64008D8C6E /* CartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartVC.xib; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				9C9D65CC24EBE0E3007434C3 /* CommentView.swift */,
 				CD7A21F824EEB4BF002427F8 /* RoundCornerView.swift */,
 				CD7A21FA24EEB6EE002427F8 /* ShadowView.swift */,
+				95572DDF279E891900648558 /* Package.swift */,
+				95572DE1279E893000648558 /* Package.xib */,
 			);
 			path = CustomUIComponent;
 			sourceTree = "<group>";
@@ -386,6 +392,7 @@
 				CD0F596B239CB67900ED495A /* LocationCell.xib in Resources */,
 				957909C726A57D64008D8C6E /* CartVC.xib in Resources */,
 				CD10C80E237124B700029C90 /* EventList.xib in Resources */,
+				95572DE2279E893000648558 /* Package.xib in Resources */,
 				CDCA63AE236EC3B5000D054B /* LaunchScreen.storyboard in Resources */,
 				CD10C812237124E500029C90 /* EventCVC.xib in Resources */,
 				CDCA63AB236EC3B5000D054B /* Assets.xcassets in Resources */,
@@ -474,6 +481,7 @@
 				CDC482D72371BB300038AF34 /* EventDetailPageVC.swift in Sources */,
 				CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */,
 				95572DDD279E6AAA00648558 /* ProductPackagePageVC.swift in Sources */,
+				95572DE0279E891900648558 /* Package.swift in Sources */,
 				CDC482D92371E4C70038AF34 /* EventRewardScannerVC.swift in Sources */,
 				CD7A21FB24EEB6EE002427F8 /* ShadowView.swift in Sources */,
 				CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */,
