@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95572DDD279E6AAA00648558 /* ProductPackagePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95572DDB279E6AAA00648558 /* ProductPackagePageVC.swift */; };
+		95572DDE279E6AAA00648558 /* ProductPackagePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */; };
 		955FC13D26C0EF2100C51830 /* ApplyInsuranceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */; };
 		955FC13F26C0EF3700C51830 /* ApplyInsuranceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */; };
 		957909C726A57D64008D8C6E /* CartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957909C626A57D64008D8C6E /* CartVC.xib */; };
@@ -73,6 +75,8 @@
 
 /* Begin PBXFileReference section */
 		7D23CCC86876B5C06455D587 /* Pods-ElderAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElderAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-ElderAppiOS/Pods-ElderAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		95572DDB279E6AAA00648558 /* ProductPackagePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPackagePageVC.swift; sourceTree = "<group>"; };
+		95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductPackagePageVC.xib; sourceTree = "<group>"; };
 		955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyInsuranceVC.xib; sourceTree = "<group>"; };
 		955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyInsuranceVC.swift; sourceTree = "<group>"; };
 		957909C626A57D64008D8C6E /* CartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartVC.xib; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 				957909C626A57D64008D8C6E /* CartVC.xib */,
 				955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */,
 				955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */,
+				95572DDB279E6AAA00648558 /* ProductPackagePageVC.swift */,
+				95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -376,6 +382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95572DDE279E6AAA00648558 /* ProductPackagePageVC.xib in Resources */,
 				CD0F596B239CB67900ED495A /* LocationCell.xib in Resources */,
 				957909C726A57D64008D8C6E /* CartVC.xib in Resources */,
 				CD10C80E237124B700029C90 /* EventList.xib in Resources */,
@@ -466,6 +473,7 @@
 				CDC3462723719A7500E44069 /* EventPageVC.swift in Sources */,
 				CDC482D72371BB300038AF34 /* EventDetailPageVC.swift in Sources */,
 				CD7B9085236F3C430032AE63 /* GiveMoneyVC.swift in Sources */,
+				95572DDD279E6AAA00648558 /* ProductPackagePageVC.swift in Sources */,
 				CDC482D92371E4C70038AF34 /* EventRewardScannerVC.swift in Sources */,
 				CD7A21FB24EEB6EE002427F8 /* ShadowView.swift in Sources */,
 				CD736856239CA2CC00B7690A /* ProductCVC.swift in Sources */,

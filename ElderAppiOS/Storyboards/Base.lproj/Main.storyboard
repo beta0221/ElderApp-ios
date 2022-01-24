@@ -3641,10 +3641,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="531"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSP-Bg-Uky">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="784"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="856"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6DA-yK-vHr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="784"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="856"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dav-TW-ggn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
@@ -3662,8 +3662,32 @@
                                                                             <constraint firstItem="KDR-6A-v0H" firstAttribute="leading" secondItem="Dav-TW-ggn" secondAttribute="leading" id="zxJ-2N-UgB"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enB-hU-ltO">
+                                                                        <rect key="frame" x="0.0" y="240" width="375" height="72"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyo-eh-xFV">
+                                                                                <rect key="frame" x="8" y="8" width="359" height="56"/>
+                                                                                <color key="backgroundColor" red="0.99607843139999996" green="0.65490196079999996" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <state key="normal" title="我要團購">
+                                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                </state>
+                                                                                <connections>
+                                                                                    <action selector="showPackagePageAction:" destination="2vb-K2-qcJ" eventType="touchUpInside" id="1oz-Bb-huR"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="cyo-eh-xFV" secondAttribute="trailing" constant="8" id="AYy-aw-zTL"/>
+                                                                            <constraint firstItem="cyo-eh-xFV" firstAttribute="leading" secondItem="enB-hU-ltO" secondAttribute="leading" constant="8" id="UTS-gg-GEp"/>
+                                                                            <constraint firstItem="cyo-eh-xFV" firstAttribute="top" secondItem="enB-hU-ltO" secondAttribute="top" constant="8" id="boR-nF-tOg"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="cyo-eh-xFV" secondAttribute="bottom" constant="8" id="hay-zg-MIG"/>
+                                                                            <constraint firstAttribute="height" constant="72" id="kA1-2i-WLY"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1P-aY-Zuj">
-                                                                        <rect key="frame" x="0.0" y="240" width="375" height="64"/>
+                                                                        <rect key="frame" x="0.0" y="312" width="375" height="64"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwN-8t-NHc">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="64"/>
@@ -3682,7 +3706,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVV-WV-fKA">
-                                                                        <rect key="frame" x="0.0" y="304" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="376" width="375" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8O-Wn-gH4">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="40"/>
@@ -3701,7 +3725,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJ8-6k-GpO">
-                                                                        <rect key="frame" x="0.0" y="344" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="416" width="375" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="台幣+樂幣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4L-44-9DM">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="40"/>
@@ -3720,7 +3744,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37X-hH-NRT">
-                                                                        <rect key="frame" x="0.0" y="384" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="456" width="375" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttM-Ec-KXu">
                                                                                 <rect key="frame" x="12" y="0.0" width="13.5" height="40"/>
@@ -3756,7 +3780,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjU-Ku-Vuw">
-                                                                        <rect key="frame" x="0.0" y="424" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="496" width="375" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="台幣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgG-Mp-72M">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="40"/>
@@ -3775,7 +3799,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkR-eI-vom">
-                                                                        <rect key="frame" x="0.0" y="464" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="536" width="375" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErU-3O-uYD">
                                                                                 <rect key="frame" x="12" y="0.0" width="13.5" height="40"/>
@@ -3810,7 +3834,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STB-nd-z5q">
-                                                                        <rect key="frame" x="0.0" y="504" width="375" height="56"/>
+                                                                        <rect key="frame" x="0.0" y="576" width="375" height="56"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兌換據點：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kph-QV-gq2">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3829,7 +3853,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wjy-BI-3Qv">
-                                                                        <rect key="frame" x="0.0" y="560" width="375" height="128"/>
+                                                                        <rect key="frame" x="0.0" y="632" width="375" height="128"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5pH-FV-iqa">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="128"/>
@@ -3844,7 +3868,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfF-GJ-2NU">
-                                                                        <rect key="frame" x="0.0" y="688" width="375" height="56"/>
+                                                                        <rect key="frame" x="0.0" y="760" width="375" height="56"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品資訊：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeT-Yl-wSG">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="56"/>
@@ -3863,7 +3887,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftS-yC-6X6">
-                                                                        <rect key="frame" x="0.0" y="744" width="375" height="0.0"/>
+                                                                        <rect key="frame" x="0.0" y="816" width="375" height="0.0"/>
                                                                         <subviews>
                                                                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lS5-Ki-i9Z">
                                                                                 <rect key="frame" x="12" y="0.0" width="351" height="0.0"/>
@@ -3886,7 +3910,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xku-d2-fMJ">
-                                                                        <rect key="frame" x="0.0" y="744" width="375" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="816" width="375" height="40"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="XtO-ty-uWw"/>
@@ -3984,6 +4008,7 @@
                         <outlet property="priceLabel" destination="j8O-Wn-gH4" id="IQ4-Nx-nvd"/>
                         <outlet property="priceView" destination="eVV-WV-fKA" id="6xe-8u-HcE"/>
                         <outlet property="productImage" destination="KDR-6A-v0H" id="Hws-7Z-ffN"/>
+                        <outlet property="productPackageButtonView" destination="enB-hU-ltO" id="nxC-po-Qb8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ikT-3y-hyZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -36,17 +36,20 @@ class ErrorString:Error{
 
 enum RunningMode{
     case Production
+    case Test
     case LocalDevelope
 }
 
 struct Service {
     
-    static let runningMode:RunningMode = .Production
+    static let runningMode:RunningMode = .Test
     
     static var host:String{
         switch runningMode {
         case .Production:
             return "https://app.happybi.com.tw"
+        case .Test:
+            return "https://test.happybi.com.tw"
         case .LocalDevelope:
             return "http://localhost:8000"
         }
@@ -959,6 +962,20 @@ struct Service {
         }
         dataTask.resume()
         
+    }
+    
+    
+    /// Get 團購產品列表
+    /// - Parameters:
+    ///   - slug: 產品代號
+    ///   - completion: completion
+    func GetProductPackages(slug:String,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("GetProductPackages request")
+        let requestString = "\(Service.host)/api/product/productPackage/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
     }
     
     //所有經銷據點

@@ -16,6 +16,7 @@ class ProductDetailPageVC: UIViewController {
     
     @IBOutlet weak var productImage: UIImageView!
     
+    @IBOutlet weak var productPackageButtonView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var priceView: UIView!
@@ -50,12 +51,14 @@ class ProductDetailPageVC: UIViewController {
                 pointCashView.isHidden = true
                 cashTitleView.isHidden = true
                 cashView.isHidden = true
+                productPackageButtonView.isHidden = true
             case .cash:
                 priceView.isHidden = true
                 pointCashTitleView.isHidden = false
                 pointCashView.isHidden = false
                 cashTitleView.isHidden = false
                 cashView.isHidden = false
+                productPackageButtonView.isHidden = false
         }
         
         
@@ -192,6 +195,15 @@ class ProductDetailPageVC: UIViewController {
         let ac = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         present(ac, animated: true)
     }
+    
+    @IBAction func showPackagePageAction(_ sender: Any) {
+        let vc = ProductPackagePageVC(nibName: "ProductPackagePageVC", bundle: nil)
+        vc.slug = self.slug
+        self.dismiss(animated: true, completion: {
+            self.presentOnTop(vc)
+        })
+    }
+    
     
     
     
