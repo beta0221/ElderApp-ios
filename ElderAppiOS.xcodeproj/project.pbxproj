@@ -11,6 +11,8 @@
 		95572DDE279E6AAA00648558 /* ProductPackagePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */; };
 		95572DE0279E891900648558 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95572DDF279E891900648558 /* Package.swift */; };
 		95572DE2279E893000648558 /* Package.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95572DE1279E893000648558 /* Package.xib */; };
+		95572DE5279FB04E00648558 /* PackagePurchasePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95572DE3279FB04D00648558 /* PackagePurchasePageVC.swift */; };
+		95572DE6279FB04E00648558 /* PackagePurchasePageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95572DE4279FB04E00648558 /* PackagePurchasePageVC.xib */; };
 		955FC13D26C0EF2100C51830 /* ApplyInsuranceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */; };
 		955FC13F26C0EF3700C51830 /* ApplyInsuranceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */; };
 		957909C726A57D64008D8C6E /* CartVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 957909C626A57D64008D8C6E /* CartVC.xib */; };
@@ -81,6 +83,8 @@
 		95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductPackagePageVC.xib; sourceTree = "<group>"; };
 		95572DDF279E891900648558 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		95572DE1279E893000648558 /* Package.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Package.xib; sourceTree = "<group>"; };
+		95572DE3279FB04D00648558 /* PackagePurchasePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagePurchasePageVC.swift; sourceTree = "<group>"; };
+		95572DE4279FB04E00648558 /* PackagePurchasePageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PackagePurchasePageVC.xib; sourceTree = "<group>"; };
 		955FC13C26C0EF2100C51830 /* ApplyInsuranceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplyInsuranceVC.xib; sourceTree = "<group>"; };
 		955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyInsuranceVC.swift; sourceTree = "<group>"; };
 		957909C626A57D64008D8C6E /* CartVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartVC.xib; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 				955FC13E26C0EF3700C51830 /* ApplyInsuranceVC.swift */,
 				95572DDB279E6AAA00648558 /* ProductPackagePageVC.swift */,
 				95572DDC279E6AAA00648558 /* ProductPackagePageVC.xib */,
+				95572DE3279FB04D00648558 /* PackagePurchasePageVC.swift */,
+				95572DE4279FB04E00648558 /* PackagePurchasePageVC.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 				CD10C80E237124B700029C90 /* EventList.xib in Resources */,
 				95572DE2279E893000648558 /* Package.xib in Resources */,
 				CDCA63AE236EC3B5000D054B /* LaunchScreen.storyboard in Resources */,
+				95572DE6279FB04E00648558 /* PackagePurchasePageVC.xib in Resources */,
 				CD10C812237124E500029C90 /* EventCVC.xib in Resources */,
 				CDCA63AB236EC3B5000D054B /* Assets.xcassets in Resources */,
 				CDCA63A6236EC3B4000D054B /* Main.storyboard in Resources */,
@@ -501,6 +508,7 @@
 				CD7D7631241FC05C0028FCB5 /* WebViewController.swift in Sources */,
 				CD6397622379A8FD00794788 /* StatementVC.swift in Sources */,
 				CD7B9083236F366E0032AE63 /* TakeMoneyVC.swift in Sources */,
+				95572DE5279FB04E00648558 /* PackagePurchasePageVC.swift in Sources */,
 				CDCA63BA236EC932000D054B /* TabBarController.swift in Sources */,
 				9C9D65C924EBC5BC007434C3 /* LikeButton.swift in Sources */,
 				CDC6FA0624EAB9F500D7E4D1 /* NewPostPageVC.swift in Sources */,

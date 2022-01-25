@@ -101,7 +101,13 @@ extension ProductPackagePageVC:WKNavigationDelegate{
 
 extension ProductPackagePageVC:PackageDelegate{
     func tap(id: Int) {
-        print(id)
+        
+        let vc = PackagePurchasePageVC(nibName: "PackagePurchasePageVC", bundle: nil)
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.slug = self.slug
+        vc.packageId = id
+        self.present(vc, animated: true)
+        
     }
     
 }

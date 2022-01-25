@@ -1075,6 +1075,33 @@ struct Service {
     }
     
     
+    /// 計算紅利＆價錢
+    func CaculatePackage(slug:String,package_id:Int,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        print("CaculatePackage request")
+        let requestString = "\(Service.host)/api/caculatePackage/\(slug)?package_id=\(package_id.description)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    
+    func purchasePackage(slug:String,packageId:Int,receiverName:String,receiverPhone:String,address:String,bonusDiscount:Int,completion:@escaping(Result<NSDictionary,APIError>)->Void){
+        let requestString = "\(Service.host)/api/purchasePackage/\(slug)"
+        guard let requestURL = URL(string:requestString) else{fatalError()}
+        var urlRequest = URLRequest(url:requestURL)
+        urlRequest.httpMethod = "POST"
+        let token = UserDefaults.standard.getToken() ?? ""
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let postString = "package_id=\(packageId.description)&receiver_name=\(receiverName)&receiver_phone=\(receiverPhone)&address=\(address)&bonus_discount=\(bonusDiscount.description)"
+        urlRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        self.DefaultResume(urlRequest: urlRequest, completion: completion)
+    }
+    
+    
     //我的兌換清單
     func MyOrderList(page:Int = 1,completion:@escaping(Result<NSDictionary,APIError>)->Void){
         let requestString = "\(Service.host)/api/order/myOrderList?page=\(page.description)"
