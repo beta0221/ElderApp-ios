@@ -171,32 +171,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleUniversalLinks(path:String){
         let board = UIStoryboard(name: "Main", bundle: nil)
+        guard let topController = self.topController() else { return }
         if(path.contains("/app/product/")){
             guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC,
                 let slug = self.getSlugIn(path: path) else { return }
             vc.slug = slug
-            if let topController = self.topController(){
-                topController.present(vc,animated: true)
-            }
+            topController.present(vc,animated: true)
+        }else if(path.contains("/app/cashProduct/")){
+            guard let vc = board.instantiateViewController(withIdentifier: "ProductDetailPageVC") as? ProductDetailPageVC,
+                let slug = self.getSlugIn(path: path) else { return }
+            vc.slug = slug
+            vc.type = .cash
+            topController.present(vc,animated: true)
         }else if(path.contains("/app/event/")){
             guard let vc = board.instantiateViewController(withIdentifier: "EventDetailPageVC") as? EventDetailPageVC,
                 let slug = self.getSlugIn(path: path) else { return }
             vc.slug = slug
-            if let topController = self.topController(){
-                topController.present(vc,animated: true)
-            }
-            //NotificationCenter.default.post(name: Notification.Name("showEventDetail"), object: nil, userInfo: ["slug":slug])
+            topController.present(vc,animated: true)
         }else if(path.contains("/app/post/")){
             guard let vc = board.instantiateViewController(withIdentifier: "PostDetailPageVC") as? PostDetailPageVC,
                 let slug = self.getSlugIn(path: path) else { return }
             
             vc.slug = slug
-            if let topController = self.topController(){
-                topController.present(vc,animated: true)
-            }
-//            NotificationCenter.default.post(name: Notification.Name("showPostDetail"), object: nil, userInfo: ["slug":slug])
+            topController.present(vc,animated: true)
         }else if(path.contains("/transaction/myTransactionHistory")){
-            guard let topController = self.topController() else { return }
             if (topController is TransPageVC){ return }
             guard let vc = board.instantiateViewController(withIdentifier: "TransPageVC") as? TransPageVC else { return }
             topController.present(vc,animated: true)

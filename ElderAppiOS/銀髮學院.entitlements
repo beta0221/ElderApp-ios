@@ -8,6 +8,7 @@
 	<array>
 		<string>applinks:www.happybi.com.tw</string>
 		<string>applinks:app.happybi.com.tw</string>
+		<string>applinks:test.happybi.com.tw</string>
 	</array>
 </dict>
 </plist>

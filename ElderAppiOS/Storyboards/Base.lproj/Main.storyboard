@@ -726,7 +726,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BPj-vU-bzq"/>
-                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.25642123287671231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.14901960784313725" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ao6-km-IZy" firstAttribute="top" secondItem="cVC-7Z-0ot" secondAttribute="bottom" constant="20" id="OcS-9P-xli"/>
                             <constraint firstItem="X1B-Ra-j8F" firstAttribute="top" secondItem="Ao6-km-IZy" secondAttribute="bottom" constant="20" id="Qrv-1R-SMI"/>
@@ -3667,7 +3667,7 @@
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyo-eh-xFV">
                                                                                 <rect key="frame" x="8" y="8" width="359" height="56"/>
-                                                                                <color key="backgroundColor" red="0.99607843139999996" green="0.65490196079999996" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" red="1" green="0.33203125" blue="0.36859587585034015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                                 <state key="normal" title="我要團購">
                                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
