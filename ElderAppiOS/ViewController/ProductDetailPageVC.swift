@@ -104,6 +104,10 @@ class ProductDetailPageVC: UIViewController {
                 let locationList = res["locationList"] as? [NSDictionary] ?? []
                 self.loadLocation(locationList: locationList)
                 
+                if(!(res["hasPackage"] as? Bool ?? false)){
+                    self.productPackageButtonView.isHidden = true
+                }
+                
                 DispatchQueue.main.async {Spinner.stop()}
             case .failure(let error):
                 print(error)
