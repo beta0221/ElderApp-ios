@@ -14,6 +14,8 @@ class Package:UIView{
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var avgPriceLabel: UILabel!
+    @IBOutlet weak var hostBonusLabel: UILabel!
+    
     
     weak var delegate:PackageDelegate?
     
@@ -34,11 +36,13 @@ class Package:UIView{
         guard let id = package["id"] as? Int,
               let quantity = package["quantity"] as? Int,
               let price = package["price"] as? Int,
-              let price_per_item = package["price_per_item"] as? Int else { return }
+              let price_per_item = package["price_per_item"] as? Int,
+              let host_bonus_rate = package["host_bonus_rate"] as? Int else { return }
         
         self.id = id
         priceLabel.text = "\(quantity.description)組 - \(price)元"
         avgPriceLabel.text = "平均單價：\(price_per_item.description)元"
+        hostBonusLabel.text = "紅利：\(host_bonus_rate.description)％"
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapPackage))
         view.addGestureRecognizer(tap)
